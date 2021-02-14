@@ -15,7 +15,7 @@ public class supervisorMenu extends javax.swing.JFrame {
      * Creates new form startHome
      */
     public supervisorMenu() {
-        initComponents();
+        initComponents(); //hello approooove
        setLocationRelativeTo(null);
     }
 
