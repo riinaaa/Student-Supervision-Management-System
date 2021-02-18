@@ -18,6 +18,7 @@ public class Student {
   private String stuStatus;
   private String stuMajor;
   private String stuType;
+  
 
     public Student(String stuID, String stuName, double stuGPA, String natID, int hours, String stuStatus, String stuMajor, String stuType) {
         this.stuID = stuID;
