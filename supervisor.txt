@@ -1,3 +1,3 @@
-1 0,229089,AfraaAttiah
-2 0,221330,FelwaAbuKhudair
-3 0,227635,Noorbajunaid
+1 0,229089,Afraa
+2 0,221330,Felwa
+3 0,227635,Noor

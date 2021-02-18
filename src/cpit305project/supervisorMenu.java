@@ -5,6 +5,15 @@
  */
 package cpit305project;
 
+import static cpit305project.Home.svName;
+import static cpit305project.Home.theID;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author mac
@@ -17,6 +26,47 @@ public class supervisorMenu extends javax.swing.JFrame {
     public supervisorMenu() {
         initComponents(); 
        setLocationRelativeTo(null);
+        try {
+            String id1 = Home.theID + " ";
+                File file = new File("supervisor.txt");
+                Scanner read = new Scanner(file);
+                while (read.hasNext()) {
+                    switch (read.next()) {
+                        case "1":
+                            String[] line = read.next().split(",");
+                            id1 = Home.theID + " ";
+                            System.out.println(id1);
+                            if (line[1].trim().equals(id1.trim())) {
+                                svName = line[2];
+                                name.setText(svName);
+                            }
+                            break;
+                        case "2":
+                            id1 = Home.theID + " ";
+                            String[] line1 = read.next().split(",");
+                            if (line1[1].trim().equals(id1.trim())) {
+                                svName = line1[2];
+                                name.setText(svName);
+                            }
+                            break;
+                        case "3":
+                            id1 = Home.theID + " ";
+                            String[] line2 = read.next().split(",");
+                            if (line2[1].equals(id1.trim())) {
+                                svName = line2[2];
+                                name.setText(svName);
+                            }
+                            break;
+
+                    }
+
+                }
+               
+          } catch (FileNotFoundException ex) {
+              Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (IOException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
     /**
@@ -33,18 +83,20 @@ public class supervisorMenu extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        addStu = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 600));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
 
         jLabel2.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel2.setText("welcome back \"name\"!");
+        jLabel2.setText("welcome back supervisor");
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 102));
 
@@ -57,7 +109,7 @@ public class supervisorMenu extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(46, 46, 46)
                 .addComponent(jLabel6)
@@ -73,32 +125,41 @@ public class supervisorMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 204, 102));
+        addStu.setBackground(new java.awt.Color(255, 204, 102));
+        addStu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addStuMouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 0, 51));
         jLabel7.setText("  Add Students");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout addStuLayout = new javax.swing.GroupLayout(addStu);
+        addStu.setLayout(addStuLayout);
+        addStuLayout.setHorizontalGroup(
+            addStuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addStuLayout.createSequentialGroup()
                 .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        addStuLayout.setVerticalGroup(
+            addStuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addStuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addStuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        name.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        name.setForeground(new java.awt.Color(255, 255, 102));
+        name.setText("welcome back ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,25 +168,29 @@ public class supervisorMenu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(name))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel2)))
-                .addContainerGap(273, Short.MAX_VALUE))
+                        .addGap(232, 232, 232)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addStu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(144, 144, 144)
-                .addComponent(jLabel2)
-                .addGap(79, 79, 79)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(name))
+                .addGap(73, 73, 73)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(addStu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -133,6 +198,11 @@ public class supervisorMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addStuMouseClicked
+      addStudent add = new addStudent();
+      add.setVisible(true);
+    }//GEN-LAST:event_addStuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -171,6 +241,7 @@ public class supervisorMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel addStu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -178,6 +249,6 @@ public class supervisorMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class login {
   
     private String password;
-    private String ID;
+    private int ID;
     
     /**
      *
@@ -49,7 +49,7 @@ public class login {
      *
      * @return from user input in the mainHome interface 
      */
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
@@ -57,7 +57,7 @@ public class login {
      *
      * @param ID  set user id 
      */
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
@@ -73,7 +73,7 @@ public class login {
      * @param password of the student 
      * @param ID of the employee
      */
-    public login( String password, String ID) {
+    public login( String password, int ID) {
       
         this.password = password;
         this.ID = ID;
@@ -159,44 +159,16 @@ public class login {
      * @throws FileNotFoundException
      */
     
-    public static boolean isEmployee(String ID) throws FileNotFoundException{
-     
-        boolean check = false;
-           File output = new File("Employee.txt");
-           Scanner read = new Scanner(output);
-   
-      while(read.hasNext()){
-          switch(read.next()){
-              case "1" : 
-                 String info [] = read.next().split(",");
-                 if(ID.equals(info[1])){
-            check=true;
-                 }
-            break;
-              case "2": 
-                             String info2 [] =read.next().split(",");
-                 if(ID.equals(info2[1])){
-            check=true; }break;
-              case "3":
-                      String info3 [] = read.next().split(",");
-                 if(ID.equals(info3[1])){
-            check=true;}
-              break;
-              case "4":
-                      String info4 [] = read.next().split(",");
-                 if(ID.equals(info4[1])){
-            check=true;}
-            break;
-            case "5" : 
-                              String info5 [] = read.next().split(",");
-                 if(ID.equals(info5[1])){
-            check=true;
-                      break;
-      }
-    
-    }
- 
-    }
-       return check;
+    public static boolean isEmployee(int ID) {
+        String IDD = ID+ " ";
+     if(IDD.startsWith("2"))
+         return true;
+     return false;
 }
+    public static  boolean isStudent (int ID){
+          String IDD = ID+ " ";
+     if(IDD.startsWith("1"))
+         return true;
+     return false;
+    }
 }
