@@ -200,8 +200,13 @@ public class supervisorMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addStuMouseClicked
-      addStudent add = new addStudent();
-      add.setVisible(true);
+      addStudent add;
+        try {
+            add = new addStudent();  add.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(supervisorMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }//GEN-LAST:event_addStuMouseClicked
 
     /**

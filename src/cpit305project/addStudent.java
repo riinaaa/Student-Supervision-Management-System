@@ -6,23 +6,104 @@
 package cpit305project;
 
 import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
+import static sun.jvm.hotspot.HelloWorld.e;
 
 /**
  *
  * @author mac
  */
 public class addStudent extends javax.swing.JFrame {
-static int stuID;
-static String stuMajor;
-static String stuName;
+    static int stuID;
+    static String stuMajor;
+    static String stuName;
+    static String line;
+    static String line1;
+    static String line2;
+    static String line3;
+    static String line4;
+    static String line5;
+    static String line6;
+    static ArrayList<String> linesNo = new ArrayList<>();
+    static ArrayList<Student> stds;
+
     /**
      * Creates new form addStudent
      */
-    public addStudent() {
+    public addStudent() throws IOException {
         initComponents();setLocationRelativeTo(null);
+        //add students' info in a file without the supervisor's name because the sv's name will
+        //be added after the supervisor adds the students
+        RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
+        //arraylist of objects -- size of students is unpredictable
+       stds = new ArrayList<>();
+       //declare student one object
+       //(String stuID, String stuName, double stuGPA, String natID, int hours, String stuStatus, String stuMajor, String svName) {
+       Student std1 = new Student("1807227","MarwaAhmed",4.44,"110922222", 75, "Active", "IT", null);
+       Student std2 = new Student("1806443","SaraAhmed",4.60,"119829233", 96, "Active", "IT", null);
+       Student std3 = new Student("1802234","LeenaNour",4.80,"11092983", 34, "Active", "IS", null);
+       Student std4 = new Student("1807589","HindAsli",4.76,"11829273", 58, "Active", "CS", null);
+       Student std5 = new Student("1801236","WaadBunaider",4.22,"10028923", 27, "Active", "IS", null);
+       Student std6 = new Student("1809981","MaryamFahad",4.55,"11822193", 60, "Active", "IT", null);
+       //add them to the array
+       stds.add(std1); stds.add(std2); stds.add(std3); stds.add(std4);stds.add(std5);stds.add(std6);
+       //write them to the file
+       BufferedWriter bwSD = new BufferedWriter (new FileWriter ("Student.txt"));
+        for (int i = 0; i < stds.size(); i++) {
+            bwSD.write("0, "+stds.get(i).getStuMajor() +"," + stds.get(i).getStuID() + "," +stds.get(i).getStuGPA()
+                  +","+stds.get(i).getHours()  +"," + stds.get(i).getNatID()+"," + stds.get(i).getStuStatus()+ "," + stds.get(i).getSvName()
+           +"\n" );
+            
+        }
+            bwSD.close();
+        System.out.println("before writing: " + ra.getFilePointer());
+        ra.seek(1);
+        String temp;
+       /* FileWriter out = new FileWriter(".//employee.txt",StandardCharsets.UTF_8);
+         for (int i = 0; i < stds.size(); i++) {
+            temp=Integer.toString(stds.get(i).getHours());
+            out.write(fixedString(temp,stds.get(i).getStuID()));
+            out.write(fixedString(stds.get(i).getStuName(),stds.get(i).));
+            temp=Double.toString(e.getSalary());
+            out.write(fixedString(temp,Employee.SALARY_SIZE));
+            out.write("\n");  */
+
+             /*  ra.writeUTF("0, "+stds.get(i).getStuMajor() +"," + stds.get(i).getStuID() + ",");
+            ra.writeDouble(stds.get(i).getStuGPA());
+            ra.writeUTF(",");
+            ra.writeInt(stds.get(i).getHours()); ra.writeUTF(",");
+            ra.writeUTF(stds.get(i).getNatID()+"," + stds.get(i).getStuStatus()+ "," + stds.get(i).getSvName());
+            ra.writeUTF("\n");*/
+              
+            
+        
+         System.out.println("after writing: " + ra.getFilePointer());//375
+         
+        File file1 = new File("student.txt");
+        //reading from cart file 
+        Scanner read1 = new Scanner(file1);
+        while (read1.hasNextLine()) {
+            line = read1.nextLine();
+            linesNo.add(line);
+            System.out.println(linesNo.size());
+        }
+    
+
     }
 
     /**
@@ -215,16 +296,19 @@ static String stuName;
     }//GEN-LAST:event_nameActionPerformed
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-
+        BufferedReader brSD = null;
+        String line = "";
+        String[] split;
         try {
             stuID = Integer.parseInt(id.getText());
             stuName = name.getText();
-        
+            brSD = new BufferedReader(new FileReader("Student.txt"));
         } catch (NumberFormatException ex) {
             System.out.println("the entered numbers is string not integer cannot be casted to integer");
-        }
-        finally{ //this code is so important it must be implemented
-        
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } finally { //this code is so important it must be implemented
+
             if (IT.isSelected() && CS.isSelected() == true || IT.isSelected() == true && IS.isSelected() == true || CS.isSelected() == true
                     && IS.isSelected() == true) {
                 UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
@@ -237,13 +321,54 @@ static String stuName;
             } else {
                 if (IT.isSelected() == true && CS.isSelected() == false && IS.isSelected() == false) {//it is IT
                     stuMajor = "IT";
-                    
+                    System.out.println("entered IT");
+                    //check is ID entered by the sv matches the student's to add the sv
+                    for (int i = 0; i < stds.size(); i++) {
+                        if (stds.get(i).getStuID().equals(id.getText())) {
+                            System.out.println("entered ID " + stds.get(i).getStuID());
+                            stds.get(i).setSvName(stuName);
+                            //to modify the supervisor's attribute we need to reach to a specific position
+                            //thus, random file is used.
+                            RandomAccessFile ra;
+                            try {
+                                ra = new RandomAccessFile("student.txt", "rw");
+                               int record_size = stds.get(i).getRECORD_SIZE();
+                                ra.seek((i - 1) * record_size);
+                              
+                                System.out.println(ra.readLine());
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (IOException ex) {
+                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            
+                           /* split = linesNo.get(i).split(",");
+                            System.out.println(split[7]);*/
+                            
+                        } 
+                    }
 
                 } else if (IT.isSelected() == false && CS.isSelected() == true && IS.isSelected() == false) {//CS
                     stuMajor = "CS";
+                    //check is ID entered by the sv matches the student's to add the sv
+                    for (int i = 0; i < stds.size(); i++) {
+                        if (stds.get(i).equals(id.getText())) {
+                            stds.get(i).setSvName(stuName);
+                        } else {
+                            break;
+                        }
+                    }
                 } else {//CS
-                  
+
                     stuMajor = "IS";
+                    //check is ID entered by the sv matches the student's to add the sv
+                    for (int i = 0; i < stds.size(); i++) {
+                        if (stds.get(i).equals(id.getText())) {
+                            stds.get(i).setSvName(stuName);
+                        } else {
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -279,7 +404,11 @@ static String stuName;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addStudent().setVisible(true);
+                try {
+                    new addStudent().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
