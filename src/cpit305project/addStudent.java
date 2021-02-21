@@ -5,6 +5,7 @@
  */
 package cpit305project;
 
+import static cpit305project.Home.svName;
 import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -47,6 +48,7 @@ public class addStudent extends javax.swing.JFrame {
      */
     public addStudent() throws IOException {
         initComponents();setLocationRelativeTo(null);
+        System.out.println(Home.svName);
         //add students' info in a file without the supervisor's name because the sv's name will
         //be added after the supervisor adds the students
         RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
@@ -326,48 +328,45 @@ public class addStudent extends javax.swing.JFrame {
                     for (int i = 0; i < stds.size(); i++) {
                         if (stds.get(i).getStuID().equals(id.getText())) {
                             System.out.println("entered ID " + stds.get(i).getStuID());
-                            stds.get(i).setSvName(stuName);
+                            stds.get(i).setSvName(Home.svName);
+                            System.out.println(stds.get(i).getSvName());
                             //to modify the supervisor's attribute we need to reach to a specific position
                             //thus, random file is used.
                             RandomAccessFile ra;
-                            try {
-                                ra = new RandomAccessFile("student.txt", "rw");
+                            /*    ra = new RandomAccessFile("student.txt", "rw");
                                int record_size = stds.get(i).getRECORD_SIZE();
-                                ra.seek((i - 1) * record_size);
-                              
-                                System.out.println(ra.readLine());
-                            } catch (FileNotFoundException ex) {
-                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
-                            } catch (IOException ex) {
-                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            
-                           /* split = linesNo.get(i).split(",");
+                                ra.seek((i - 1) * record_size);                              
+                                System.out.println(ra.readLine());*/
+ /* split = linesNo.get(i).split(",");
                             System.out.println(split[7]);*/
-                            
-                        } 
+
+                        }
                     }
 
                 } else if (IT.isSelected() == false && CS.isSelected() == true && IS.isSelected() == false) {//CS
                     stuMajor = "CS";
+                     System.out.println("entered CS");
                     //check is ID entered by the sv matches the student's to add the sv
                     for (int i = 0; i < stds.size(); i++) {
-                        if (stds.get(i).equals(id.getText())) {
-                            stds.get(i).setSvName(stuName);
-                        } else {
-                            break;
-                        }
+                      
+                        if (stds.get(i).getStuID().equals(id.getText())) {
+                            System.out.println("entered ID " + stds.get(i).getStuID());
+                            stds.get(i).setSvName(Home.svName);
+                            System.out.println(stds.get(i).getSvName());
+                        } 
                     }
-                } else {//CS
-
+                } else {//IS
+                    System.out.println("entered IS");
                     stuMajor = "IS";
                     //check is ID entered by the sv matches the student's to add the sv
                     for (int i = 0; i < stds.size(); i++) {
-                        if (stds.get(i).equals(id.getText())) {
-                            stds.get(i).setSvName(stuName);
-                        } else {
-                            break;
-                        }
+                          System.out.println(stds.get(i).getStuID());
+                          System.out.println(id.getText());
+                         if (stds.get(i).getStuID().equals(id.getText())) {
+                            System.out.println("entered ID " + stds.get(i).getStuID());
+                            stds.get(i).setSvName(Home.svName);
+                            System.out.println(stds.get(i).getSvName());
+                        } 
                     }
                 }
             }

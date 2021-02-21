@@ -20,16 +20,18 @@ import javax.swing.ImageIcon;
  * @author mac
  */
 public class Home extends javax.swing.JFrame {
-static int theID;
-static String thePass;
-static String svName;
+
+    static int theID;
+    static String thePass;
+    static String svName;
+
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
         setLocationRelativeTo(null);
-     
+
     }
 
     /**
@@ -185,11 +187,11 @@ static String svName;
         theID = Integer.parseInt(ID.getText());
         thePass = password.getText();
         login log = new login(thePass, theID);
-        
+
         if (login.isEmployee(theID) == true) {
             supervisorMenu menSV = new supervisorMenu();
             menSV.setVisible(true);
-           
+
         } else {
             sdmenu menSD;
             try {
