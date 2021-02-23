@@ -52,6 +52,7 @@ public class addStudent extends javax.swing.JFrame {
         //add students' info in a file without the supervisor's name because the sv's name will
         //be added after the supervisor adds the students
         RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
+        RandomAccessFile raa = new RandomAccessFile("student1.txt", "r");
         //arraylist of objects -- size of students is unpredictable
        stds = new ArrayList<>();
        //declare student one object
@@ -72,38 +73,48 @@ public class addStudent extends javax.swing.JFrame {
            +"\n" );
             
         }
-            bwSD.close();
+        bwSD.close();
         System.out.println("before writing: " + ra.getFilePointer());
         ra.seek(1);
-        String temp;
-       /* FileWriter out = new FileWriter(".//employee.txt",StandardCharsets.UTF_8);
-         for (int i = 0; i < stds.size(); i++) {
-            temp=Integer.toString(stds.get(i).getHours());
-            out.write(fixedString(temp,stds.get(i).getStuID()));
-            out.write(fixedString(stds.get(i).getStuName(),stds.get(i).));
-            temp=Double.toString(e.getSalary());
-            out.write(fixedString(temp,Employee.SALARY_SIZE));
-            out.write("\n");  */
-
-             /*  ra.writeUTF("0, "+stds.get(i).getStuMajor() +"," + stds.get(i).getStuID() + ",");
+       
+        for (int i = 0; i < stds.size(); i++) {
+            ra.writeUTF("0, ");
+            ra.writeUTF(stds.get(i).getStuMajor());
+            ra.writeUTF(",");
+            ra.writeUTF(stds.get(i).getStuID());
+            ra.writeUTF(",");
             ra.writeDouble(stds.get(i).getStuGPA());
             ra.writeUTF(",");
-            ra.writeInt(stds.get(i).getHours()); ra.writeUTF(",");
-            ra.writeUTF(stds.get(i).getNatID()+"," + stds.get(i).getStuStatus()+ "," + stds.get(i).getSvName());
-            ra.writeUTF("\n");*/
-              
-            
-        
-         System.out.println("after writing: " + ra.getFilePointer());//375
-         
-        File file1 = new File("student.txt");
-        //reading from cart file 
-        Scanner read1 = new Scanner(file1);
-        while (read1.hasNextLine()) {
-            line = read1.nextLine();
-            linesNo.add(line);
-            System.out.println(linesNo.size());
+            ra.writeInt(stds.get(i).getHours());
+            ra.writeUTF(",");
+            ra.writeUTF(stds.get(i).getNatID());
+            ra.writeUTF(",");
+            ra.writeUTF(stds.get(i).getStuStatus());
+            ra.writeUTF(",");
+            ra.writeUTF("null");
+            ra.writeUTF("\n");
+
         }
+        System.out.println("after writing: " + ra.getFilePointer());//375
+        raa.seek(1);
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.getFilePointer());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readDouble());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readInt());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.readUTF());
+        System.out.println(raa.getFilePointer());
+        
+        
     
 
     }
@@ -328,17 +339,26 @@ public class addStudent extends javax.swing.JFrame {
                     for (int i = 0; i < stds.size(); i++) {
                         if (stds.get(i).getStuID().equals(id.getText())) {
                             System.out.println("entered ID " + stds.get(i).getStuID());
-                            stds.get(i).setSvName(Home.svName);
-                            System.out.println(stds.get(i).getSvName());
+                         //  stds.get(i).setSvName(Home.svName);
+                       
                             //to modify the supervisor's attribute we need to reach to a specific position
                             //thus, random file is used.
-                            RandomAccessFile ra;
-                            /*    ra = new RandomAccessFile("student.txt", "rw");
-                               int record_size = stds.get(i).getRECORD_SIZE();
-                                ra.seek((i - 1) * record_size);                              
-                                System.out.println(ra.readLine());*/
- /* split = linesNo.get(i).split(",");
-                            System.out.println(split[7]);*/
+                            //***** WEDYAN HERE *****
+                            final int EOF = -1;
+                            try {
+                                RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
+                                while (ra.read()!= EOF) {
+                                ra.seek(13);
+                                System.out.println(ra.readUTF());
+                                System.out.println(ra.readUTF().equals(id.getText()));
+                                if(ra.readUTF().equals(id.getText())){
+                                ra.seek(70);
+                                ra.writeUTF("noor");}}
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (IOException ex) {
+                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 
                         }
                     }
