@@ -384,7 +384,28 @@ public class addStudent extends javax.swing.JFrame {
                           System.out.println(id.getText());
                          if (stds.get(i).getStuID().equals(id.getText())) {
                             System.out.println("entered ID " + stds.get(i).getStuID());
-                            stds.get(i).setSvName(Home.svName);
+                            stds.get(i).setSvName("noor");
+                               final int EOF = -1;
+                            try {
+                                RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
+                                while (ra.read()!= EOF) {
+                                ra.seek(13);
+                                System.out.println(ra.readUTF());
+                                System.out.println(ra.readUTF().equals(id.getText()));
+                                if(ra.readUTF().equals(id.getText())){
+                                ra.seek(70);
+                                ra.writeUTF("noor");
+                               
+                                
+                                }
+                                
+                                }
+                            }
+                                catch (FileNotFoundException ex) {
+                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (IOException ex) {
+                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             System.out.println(stds.get(i).getSvName());
                         } 
                     }
