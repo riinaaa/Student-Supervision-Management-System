@@ -10,14 +10,14 @@ package cpit305project;
  * @author mac
  */
 public class Student {
-  private String stuID;
-  private String stuName;
-  private double stuGPA;
-  private String natID;
-  private int hours;
-  private String stuStatus;
-  private String stuMajor;
-   public static final int name = 10;
+    private String stuID;
+    private String stuName;
+    private double stuGPA;
+    private String natID;
+    private int hours;
+    private String stuStatus;
+    private String stuMajor;
+    public static final int name = 10;
 
     public static int getName() {
         return name;
