@@ -62,8 +62,7 @@ public class Student {
         this.natID = natID;
         this.hours = hours;
         this.stuStatus = stuStatus;
-        this.stuMajor = stuMajor;
-     
+        this.stuMajor = stuMajor;    
         this.svName = svName;
     }
 

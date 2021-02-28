@@ -21,8 +21,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
-import static sun.jvm.hotspot.debugger.amd64.AMD64ThreadContext.CS;
-import static sun.tools.jconsole.Messages.IS;
+
 
 /**
  *
@@ -33,8 +32,11 @@ public class Supervisor {
   private String svName;
   private String natID;
 
-    Supervisor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Supervisor(String svID, String svName, String natID) {
+        this.svID = svID;
+        this.svName = svName;
+       
+        this.natID = natID;
     }
 
     
@@ -65,12 +67,12 @@ public class Supervisor {
         this.natID = natID;
     }
 
-    public Supervisor(String svID, String svName, String natID) {
-        this.svID = svID;
-        this.svName = svName;
-       
-        this.natID = natID;
-    }
+//    public Supervisor(String svID, String svName, String natID) {
+//        this.svID = svID;
+//        this.svName = svName;
+//       
+//        this.natID = natID;
+//    }
     
     public  void addStudent (String sv, String major, String id) throws IOException{
        if(major.equals("IT")){
