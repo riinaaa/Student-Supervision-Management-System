@@ -23,7 +23,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
-import static sun.jvm.hotspot.HelloWorld.e;
 
 /**
  *
@@ -43,6 +42,8 @@ public class addStudent extends javax.swing.JFrame {
     static Supervisor sv ;
     static ArrayList<String> linesNo = new ArrayList<>();
     static ArrayList<Student> stds;
+    ArrayList <Student> stuInfo = new ArrayList<>();
+    BufferedWriter bwSD ;//= new BufferedWriter (new FileWriter ("Student.txt"));
 
     /**
      * Creates new form addStudent
@@ -67,15 +68,15 @@ public class addStudent extends javax.swing.JFrame {
        //add them to the array
        stds.add(std1); stds.add(std2); stds.add(std3); stds.add(std4);stds.add(std5);stds.add(std6);
        //write them to the file
-       BufferedWriter bwSD = new BufferedWriter (new FileWriter ("Student.txt"));
+       bwSD = new BufferedWriter (new FileWriter ("Student.txt"));
         for (int i = 0; i < stds.size(); i++) {
-            bwSD.write("0, "+stds.get(i).getStuMajor() +"," + stds.get(i).getStuID() + "," +stds.get(i).getStuGPA()
+            bwSD.write(stds.get(i).getStuName()+","+stds.get(i).getStuMajor() +"," + stds.get(i).getStuID() + "," +stds.get(i).getStuGPA()
                   +","+stds.get(i).getHours()  +"," + stds.get(i).getNatID()+"," + stds.get(i).getStuStatus()+ "," + stds.get(i).getSvName()
-           +"\n" );
-            
+           +"\r\n" );            
         }
+        
         System.out.println("size of array " + stds.size());
-        bwSD.close();
+        bwSD.flush();
         System.out.println("before writing: " + ra.getFilePointer());
         ra.seek(1);
        
@@ -216,7 +217,7 @@ public class addStudent extends javax.swing.JFrame {
         addLayout.setVerticalGroup(
             addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addLayout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addContainerGap())
         );
@@ -338,9 +339,39 @@ public class addStudent extends javax.swing.JFrame {
             stuID = Integer.parseInt(id.getText());
             stuName = name.getText();
             brSD = new BufferedReader(new FileReader("Student.txt"));
+            /// here I should update Student Information 
+            while(brSD.ready()){
+               split = brSD.readLine().split(",");
+               String stuName = split[0];
+               String stuMajor = split[1];
+               String stuID= split[2];
+               double stuGPA=Double.parseDouble(split[3]);
+               int hours = Integer.parseInt(split[4]);
+               String natID = split[5];
+               String stuStatus = split[6];
+               String svName =split[7];
+               Student insStudent = new Student (stuID, stuName, stuGPA, natID,  hours,  stuStatus,  stuMajor,  svName);
+               stuInfo.add(insStudent) ;
+            }
+            for (int i = 0; i < stuInfo.size(); i++) {
+                if(stuInfo.get(i).getStuID().equalsIgnoreCase(stuID+"")){
+                    System.out.println("enter to iiiiiiiiiiiiiiiifffffffffff loop");
+                  stuInfo.get(i).setSvName("Test Supervisor Name");
+                  break;
+                }
+            }
+                   bwSD = new BufferedWriter (new FileWriter ("Student.txt"));
+            for (int i = 0; i < stuInfo.size(); i++) {
+            bwSD.write(stuInfo.get(i).getStuName()+","+stuInfo.get(i).getStuMajor() +"," + stuInfo.get(i).getStuID() + "," +stuInfo.get(i).getStuGPA()
+                  +","+stuInfo.get(i).getHours()  +"," + stuInfo.get(i).getNatID()+"," + stuInfo.get(i).getStuStatus()+ "," + stuInfo.get(i).getSvName()
+           +"\r\n" );            
+        }
+            bwSD.close();
         } catch (NumberFormatException ex) {
             System.out.println("the entered numbers is string not integer cannot be casted to integer");
         } catch (FileNotFoundException ex) {
+            Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
         } finally { //this code is so important it must be implemented
 
@@ -357,7 +388,7 @@ public class addStudent extends javax.swing.JFrame {
                 if (IT.isSelected() == true && CS.isSelected() == false && IS.isSelected() == false) {//it is IT
                     stuMajor = "IT";
                     System.out.println("entered IT");
-                    sv = new Supervisor();
+                     sv = new Supervisor("50","Test Supervisor","10025555");
                     try {
                         sv.addStudent(Home.svName, stuMajor, id.getText());
                     } catch (IOException ex) {
@@ -367,7 +398,7 @@ public class addStudent extends javax.swing.JFrame {
                 } else if (IT.isSelected() == false && CS.isSelected() == true && IS.isSelected() == false) {//CS
                     stuMajor = "CS";
                     System.out.println("entered CS");
-                    sv = new Supervisor();
+                     sv = new Supervisor("50","CS Supervisor","10025555");
                     try {
                         sv.addStudent(Home.svName, stuMajor, id.getText());
                     } catch (IOException ex) {
@@ -377,7 +408,7 @@ public class addStudent extends javax.swing.JFrame {
                 } else {//IS
                     System.out.println("entered IS");
                     stuMajor = "IS";
-                    sv = new Supervisor();
+                     sv = new Supervisor("50","Is Supervisor","10025555");
                     try {
                         sv.addStudent(Home.svName, stuMajor, id.getText());
                     } catch (IOException ex) {
@@ -387,7 +418,7 @@ public class addStudent extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_addMouseClicked
-
+    
     /**
      * @param args the command line arguments
      */
