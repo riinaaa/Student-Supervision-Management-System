@@ -40,6 +40,7 @@ public class addStudent extends javax.swing.JFrame {
     static String line4;
     static String line5;
     static String line6;
+    static Supervisor sv ;
     static ArrayList<String> linesNo = new ArrayList<>();
     static ArrayList<Student> stds;
 
@@ -73,6 +74,7 @@ public class addStudent extends javax.swing.JFrame {
            +"\n" );
             
         }
+        System.out.println("size of array " + stds.size());
         bwSD.close();
         System.out.println("before writing: " + ra.getFilePointer());
         ra.seek(1);
@@ -93,29 +95,49 @@ public class addStudent extends javax.swing.JFrame {
             ra.writeUTF(",");
             ra.writeUTF("null");
             ra.writeUTF("\n");
-
         }
+          
+
+        
         System.out.println("after writing: " + ra.getFilePointer());//375
-        raa.seek(1);
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.getFilePointer());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readDouble());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readInt());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.readUTF());
-        System.out.println(raa.getFilePointer());
+        ra.seek(1);
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.getFilePointer());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readDouble());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readInt());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.getFilePointer());
         
         
-    
+       /* ra.seek(13);//id position
+        System.out.println("13 is " +ra.readUTF().trim());
+         
+        ra.seek(89);//id position
+        System.out.println("89 is " +ra.readUTF().trim());
+          
+        ra.seek(165);//id position
+        System.out.println("165 is " +ra.readUTF().trim());
+
+        ra.seek(265);//id position
+        System.out.println("241 is " +ra.readUTF().trim());
+        
+        ra.seek(317);//sv
+        System.out.println("317 is " +ra.readUTF().trim());*/
+         
+        //supervisor seeks
+        //ra.seek(72);//id position
+        //System.out.println("70 is " +ra.readUTF().trim());
+
 
     }
 
@@ -335,79 +357,31 @@ public class addStudent extends javax.swing.JFrame {
                 if (IT.isSelected() == true && CS.isSelected() == false && IS.isSelected() == false) {//it is IT
                     stuMajor = "IT";
                     System.out.println("entered IT");
-                    //check is ID entered by the sv matches the student's to add the sv
-                    for (int i = 0; i < stds.size(); i++) {
-                        if (stds.get(i).getStuID().equals(id.getText())) {
-                            System.out.println("entered ID " + stds.get(i).getStuID());
-                         //  stds.get(i).setSvName(Home.svName);
-                       
-                            //to modify the supervisor's attribute we need to reach to a specific position
-                            //thus, random file is used.
-                            //***** WEDYAN HERE *****
-                            final int EOF = -1;
-                            try {
-                                RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
-                                while (ra.read()!= EOF) {
-                                ra.seek(13);
-                                System.out.println(ra.readUTF());
-                                System.out.println(ra.readUTF().equals(id.getText()));
-                                if(ra.readUTF().equals(id.getText())){
-                                ra.seek(70);
-                                ra.writeUTF("noor");}}
-                            } catch (FileNotFoundException ex) {
-                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
-                            } catch (IOException ex) {
-                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-                        }
+                    sv = new Supervisor();
+                    try {
+                        sv.addStudent(Home.svName, stuMajor, id.getText());
+                    } catch (IOException ex) {
+                        Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                 } else if (IT.isSelected() == false && CS.isSelected() == true && IS.isSelected() == false) {//CS
                     stuMajor = "CS";
-                     System.out.println("entered CS");
-                    //check is ID entered by the sv matches the student's to add the sv
-                    for (int i = 0; i < stds.size(); i++) {
-                      
-                        if (stds.get(i).getStuID().equals(id.getText())) {
-                            System.out.println("entered ID " + stds.get(i).getStuID());
-                            stds.get(i).setSvName(Home.svName);
-                            System.out.println(stds.get(i).getSvName());
-                        } 
+                    System.out.println("entered CS");
+                    sv = new Supervisor();
+                    try {
+                        sv.addStudent(Home.svName, stuMajor, id.getText());
+                    } catch (IOException ex) {
+                        Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
                 } else {//IS
                     System.out.println("entered IS");
                     stuMajor = "IS";
-                    //check is ID entered by the sv matches the student's to add the sv
-                    for (int i = 0; i < stds.size(); i++) {
-                          System.out.println(stds.get(i).getStuID());
-                          System.out.println(id.getText());
-                         if (stds.get(i).getStuID().equals(id.getText())) {
-                            System.out.println("entered ID " + stds.get(i).getStuID());
-                            stds.get(i).setSvName("noor");
-                               final int EOF = -1;
-                            try {
-                                RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
-                                while (ra.read()!= EOF) {
-                                ra.seek(13);
-                                System.out.println(ra.readUTF());
-                                System.out.println(ra.readUTF().equals(id.getText()));
-                                if(ra.readUTF().equals(id.getText())){
-                                ra.seek(70);
-                                ra.writeUTF("noor");
-                               
-                                
-                                }
-                                
-                                }
-                            }
-                                catch (FileNotFoundException ex) {
-                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
-                            } catch (IOException ex) {
-                                Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            System.out.println(stds.get(i).getSvName());
-                        } 
+                    sv = new Supervisor();
+                    try {
+                        sv.addStudent(Home.svName, stuMajor, id.getText());
+                    } catch (IOException ex) {
+                        Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
