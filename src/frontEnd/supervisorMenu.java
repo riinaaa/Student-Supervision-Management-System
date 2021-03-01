@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cpit305project;
+package frontEnd;
 
-import static cpit305project.Home.svName;
-import static cpit305project.Home.theID;
+import static frontEnd.Home.svName;
+import static frontEnd.Home.theID;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -92,7 +92,6 @@ public class supervisorMenu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 600));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
