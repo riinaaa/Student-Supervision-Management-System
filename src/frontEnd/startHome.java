@@ -5,6 +5,10 @@
  */
 package frontEnd;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author mac
@@ -34,6 +38,7 @@ public class startHome extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 600));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -92,8 +97,13 @@ public class startHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-       Home h = new Home ();
-       h.setVisible(true);
+       Home h;
+        try {
+            h = new Home ();       h.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(startHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
