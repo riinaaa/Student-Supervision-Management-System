@@ -32,6 +32,8 @@ public class Supervisor {
   private String svName;
   private String natID;
 
+  
+    
     public Supervisor(String svID, String svName, String natID) {
         this.svID = svID;
         this.svName = svName;

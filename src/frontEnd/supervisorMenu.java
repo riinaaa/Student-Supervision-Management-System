@@ -5,11 +5,15 @@
  */
 package frontEnd;
 
+import static frontEnd.Home.bwSD;
+import static frontEnd.Home.stuInfo;
 import static frontEnd.Home.svName;
 import static frontEnd.Home.theID;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +27,7 @@ public class supervisorMenu extends javax.swing.JFrame {
     /**
      * Creates new form startHome
      */
-    public supervisorMenu() {
+    public supervisorMenu(ArrayList <Student> stuInfo ,FileWriter bwSD  ) {
         initComponents(); 
         name.setText(Home.svName);
        setLocationRelativeTo(null);
@@ -235,7 +239,7 @@ public class supervisorMenu extends javax.swing.JFrame {
     private void addStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addStuMouseClicked
       addStudent add;
         try {
-            add = new addStudent();  add.setVisible(true);
+            add = new addStudent( stuInfo , bwSD  );  add.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(supervisorMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -273,7 +277,7 @@ public class supervisorMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new supervisorMenu().setVisible(true);
+                new supervisorMenu(stuInfo , bwSD).setVisible(true);
             }
         });
     }

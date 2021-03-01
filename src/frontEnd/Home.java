@@ -9,7 +9,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,15 +26,33 @@ public class Home extends javax.swing.JFrame {
     static int theID;
     static String thePass;
     static String svName;
-
+    static  ArrayList <Student> stuInfo= new ArrayList<>();
+    static FileWriter bwSD ;//= new BufferedWriter (new FileWriter ("Student.txt"));
     /**
      * Creates new form Home
      */
     public Home() throws FileNotFoundException, IOException {
         initComponents();
         setLocationRelativeTo(null);
-        
        
+        //stuInfo = new ArrayList<>();
+        BufferedReader brSD = new BufferedReader(new FileReader("Student.txt"));
+        String[] split;
+            /// here I should update Student Information 
+            while(brSD.ready()){
+               split = brSD.readLine().split(",");
+               String stuName = split[0];
+               String stuMajor = split[1];
+               String stuID= split[2];
+               double stuGPA=Double.parseDouble(split[3]);
+               int hours = Integer.parseInt(split[4]);
+               String natID = split[5];
+               String stuStatus = split[6];
+               String svName =split[7];
+               Student insStudent = new Student (stuID, stuName, stuGPA, natID,  hours,  stuStatus,  stuMajor,  svName);
+               stuInfo.add(insStudent) ;
+            }
+             bwSD = new FileWriter ("Student.txt");
     }
 
     /**
@@ -115,7 +135,7 @@ public class Home extends javax.swing.JFrame {
         );
         signinLayout.setVerticalGroup(
             signinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 58, Short.MAX_VALUE)
             .addGroup(signinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(signinLayout.createSequentialGroup()
                     .addGap(11, 11, 11)
@@ -254,7 +274,7 @@ public class Home extends javax.swing.JFrame {
         login log = new login(thePass, theID);
 
         if (login.isEmployee(theID) == true) {
-            supervisorMenu menSV = new supervisorMenu();
+            supervisorMenu menSV = new supervisorMenu(stuInfo , bwSD);
             menSV.setVisible(true);
 
         } else {

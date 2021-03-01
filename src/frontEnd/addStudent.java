@@ -5,6 +5,8 @@
  */
 package frontEnd;
 
+import static frontEnd.Home.bwSD;
+import static frontEnd.Home.stuInfo;
 import static frontEnd.Home.svName;
 import java.awt.Font;
 import java.io.BufferedReader;
@@ -28,7 +30,7 @@ import javax.swing.plaf.FontUIResource;
  *
  * @author mac
  */
-public class addStudent extends javax.swing.JFrame {
+public class addStudent extends javax.swing.JFrame  {
     static int stuID;
     static String stuMajor;
     static String stuName;
@@ -42,21 +44,22 @@ public class addStudent extends javax.swing.JFrame {
     static Supervisor sv ;
     static ArrayList<String> linesNo = new ArrayList<>();
     static ArrayList<Student> stds;
-    ArrayList <Student> stuInfo = new ArrayList<>();
-    BufferedWriter bwSD ;//= new BufferedWriter (new FileWriter ("Student.txt"));
+//    static final ArrayList <Student> stuInfo = new ArrayList<>();
+//    static FileWriter bwSD ;//= new BufferedWriter (new FileWriter ("Student.txt"));
 
     /**
      * Creates new form addStudent
      */
-    public addStudent() throws IOException {
+    public addStudent(ArrayList <Student> stuInfo ,FileWriter bwSD  ) throws IOException {
+        bwSD = new FileWriter ("Student.txt",true);
         initComponents();setLocationRelativeTo(null);
         System.out.println(Home.svName);
         //add students' info in a file without the supervisor's name because the sv's name will
         //be added after the supervisor adds the students
-        RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
-        RandomAccessFile raa = new RandomAccessFile("student1.txt", "r");
+//        RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
+//        RandomAccessFile raa = new RandomAccessFile("student1.txt", "r");
         //arraylist of objects -- size of students is unpredictable
-       stds = new ArrayList<>();
+       /*stds = new ArrayList<>();
        //declare student one object
        //(String stuID, String stuName, double stuGPA, String natID, int hours, String stuStatus, String stuMajor, String svName) {
        Student std1 = new Student("1807227","MarwaAhmed",4.44,"110922222", 75, "Active", "IT", null);
@@ -68,7 +71,7 @@ public class addStudent extends javax.swing.JFrame {
        //add them to the array
        stds.add(std1); stds.add(std2); stds.add(std3); stds.add(std4);stds.add(std5);stds.add(std6);
        //write them to the file
-       bwSD = new BufferedWriter (new FileWriter ("Student.txt"));
+       bwSD = new FileWriter ("Student.txt");//(new FileWriter ("Student.txt"));
         for (int i = 0; i < stds.size(); i++) {
             bwSD.write(stds.get(i).getStuName()+","+stds.get(i).getStuMajor() +"," + stds.get(i).getStuID() + "," +stds.get(i).getStuGPA()
                   +","+stds.get(i).getHours()  +"," + stds.get(i).getNatID()+"," + stds.get(i).getStuStatus()+ "," + stds.get(i).getSvName()
@@ -76,48 +79,48 @@ public class addStudent extends javax.swing.JFrame {
         }
         
         System.out.println("size of array " + stds.size());
-        bwSD.flush();
-        System.out.println("before writing: " + ra.getFilePointer());
-        ra.seek(1);
-       
-        for (int i = 0; i < stds.size(); i++) {
-            ra.writeUTF("0, ");
-            ra.writeUTF(stds.get(i).getStuMajor());
-            ra.writeUTF(",");
-            ra.writeUTF(stds.get(i).getStuID());
-            ra.writeUTF(",");
-            ra.writeDouble(stds.get(i).getStuGPA());
-            ra.writeUTF(",");
-            ra.writeInt(stds.get(i).getHours());
-            ra.writeUTF(",");
-            ra.writeUTF(stds.get(i).getNatID());
-            ra.writeUTF(",");
-            ra.writeUTF(stds.get(i).getStuStatus());
-            ra.writeUTF(",");
-            ra.writeUTF("null");
-            ra.writeUTF("\n");
-        }
+        bwSD.flush();*/
+//        System.out.println("before writing: " + ra.getFilePointer());
+//        ra.seek(1);
+//       
+//        for (int i = 0; i < stds.size(); i++) {
+//            ra.writeUTF("0, ");
+//            ra.writeUTF(stds.get(i).getStuMajor());
+//            ra.writeUTF(",");
+//            ra.writeUTF(stds.get(i).getStuID());
+//            ra.writeUTF(",");
+//            ra.writeDouble(stds.get(i).getStuGPA());
+//            ra.writeUTF(",");
+//            ra.writeInt(stds.get(i).getHours());
+//            ra.writeUTF(",");
+//            ra.writeUTF(stds.get(i).getNatID());
+//            ra.writeUTF(",");
+//            ra.writeUTF(stds.get(i).getStuStatus());
+//            ra.writeUTF(",");
+//            ra.writeUTF("null");
+//            ra.writeUTF("\n");
+//        }
           
 
         
-        System.out.println("after writing: " + ra.getFilePointer());//375
-        ra.seek(1);
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.getFilePointer());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readDouble());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readInt());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.readUTF());
-        System.out.println(ra.getFilePointer());
+//        System.out.println("after writing: " + ra.getFilePointer());//375
+//        ra.seek(1);
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.getFilePointer());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readDouble());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readInt());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.readUTF());
+//        System.out.println(ra.getFilePointer());
         
         
        /* ra.seek(13);//id position
@@ -295,7 +298,7 @@ public class addStudent extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -339,29 +342,29 @@ public class addStudent extends javax.swing.JFrame {
         try {
             stuID = Integer.parseInt(id.getText());
             stuName = name.getText();
-            brSD = new BufferedReader(new FileReader("Student.txt"));
-            /// here I should update Student Information 
-            while(brSD.ready()){
-               split = brSD.readLine().split(",");
-               String stuName = split[0];
-               String stuMajor = split[1];
-               String stuID= split[2];
-               double stuGPA=Double.parseDouble(split[3]);
-               int hours = Integer.parseInt(split[4]);
-               String natID = split[5];
-               String stuStatus = split[6];
-               String svName =split[7];
-               Student insStudent = new Student (stuID, stuName, stuGPA, natID,  hours,  stuStatus,  stuMajor,  svName);
-               stuInfo.add(insStudent) ;
-            }
+//            brSD = new BufferedReader(new FileReader("Student.txt"));
+//            /// here I should update Student Information 
+//            while(brSD.ready()){
+//               split = brSD.readLine().split(",");
+//               String stuName = split[0];
+//               String stuMajor = split[1];
+//               String stuID= split[2];
+//               double stuGPA=Double.parseDouble(split[3]);
+//               int hours = Integer.parseInt(split[4]);
+//               String natID = split[5];
+//               String stuStatus = split[6];
+//               String svName =split[7];
+//               Student insStudent = new Student (stuID, stuName, stuGPA, natID,  hours,  stuStatus,  stuMajor,  svName);
+//               stuInfo.add(insStudent) ;
+//            }
             for (int i = 0; i < stuInfo.size(); i++) {
                 if(stuInfo.get(i).getStuID().equalsIgnoreCase(stuID+"")){
                     System.out.println("enter to iiiiiiiiiiiiiiiifffffffffff loop");
-                  stuInfo.get(i).setSvName("Test Supervisor Name");
+                  stuInfo.get(i).setSvName(Home.svName);
                   break;
                 }
             }
-                   bwSD = new BufferedWriter (new FileWriter ("Student.txt"));
+               //    bwSD =  /*new BufferedWriter (*/new FileWriter ("Student.txt",true)/*)*/;
             for (int i = 0; i < stuInfo.size(); i++) {
             bwSD.write(stuInfo.get(i).getStuName()+","+stuInfo.get(i).getStuMajor() +"," + stuInfo.get(i).getStuID() + "," +stuInfo.get(i).getStuGPA()
                   +","+stuInfo.get(i).getHours()  +"," + stuInfo.get(i).getNatID()+"," + stuInfo.get(i).getStuStatus()+ "," + stuInfo.get(i).getSvName()
@@ -389,7 +392,7 @@ public class addStudent extends javax.swing.JFrame {
                 if (IT.isSelected() == true && CS.isSelected() == false && IS.isSelected() == false) {//it is IT
                     stuMajor = "IT";
                     System.out.println("entered IT");
-                     sv = new Supervisor("50","Test Supervisor","10025555");
+                     sv = new Supervisor("50",Home.svName,"10025555");
                     try {
                         sv.addStudent(Home.svName, stuMajor, id.getText());
                     } catch (IOException ex) {
@@ -399,7 +402,7 @@ public class addStudent extends javax.swing.JFrame {
                 } else if (IT.isSelected() == false && CS.isSelected() == true && IS.isSelected() == false) {//CS
                     stuMajor = "CS";
                     System.out.println("entered CS");
-                     sv = new Supervisor("50","CS Supervisor","10025555");
+                     sv = new Supervisor("50",Home.svName,"10025555");
                     try {
                         sv.addStudent(Home.svName, stuMajor, id.getText());
                     } catch (IOException ex) {
@@ -409,7 +412,7 @@ public class addStudent extends javax.swing.JFrame {
                 } else {//IS
                     System.out.println("entered IS");
                     stuMajor = "IS";
-                     sv = new Supervisor("50","Is Supervisor","10025555");
+                     sv = new Supervisor("50",Home.svName,"10025555");
                     try {
                         sv.addStudent(Home.svName, stuMajor, id.getText());
                     } catch (IOException ex) {
@@ -417,7 +420,7 @@ public class addStudent extends javax.swing.JFrame {
                     }
                 }
             }
-        }
+        } // Finally
     }//GEN-LAST:event_addMouseClicked
     
     /**
@@ -451,7 +454,7 @@ public class addStudent extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new addStudent().setVisible(true);
+                    new addStudent(stuInfo , bwSD).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
                 }
