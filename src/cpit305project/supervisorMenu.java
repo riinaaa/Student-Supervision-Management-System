@@ -25,6 +25,7 @@ public class supervisorMenu extends javax.swing.JFrame {
      */
     public supervisorMenu() {
         initComponents(); 
+        name.setText(Home.svName);
        setLocationRelativeTo(null);
         try {
             String id1 = Home.theID + " ";
