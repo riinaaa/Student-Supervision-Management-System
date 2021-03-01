@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cpit305project;
+package frontEnd;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -45,7 +45,6 @@ public class sdmenu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 600));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -55,8 +54,6 @@ public class sdmenu extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 0, 51));
         jLabel5.setText("Contact Supervisor");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/mac/NetBeansProjects/CPIT305project/contact-form-2.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -85,8 +82,6 @@ public class sdmenu extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(51, 0, 51));
         jLabel6.setText("Student Info");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/mac/NetBeansProjects/CPIT305project/info.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -109,8 +104,6 @@ public class sdmenu extends javax.swing.JFrame {
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 102));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/mac/NetBeansProjects/CPIT305project/book.png")); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 0, 51));

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cpit305project;
+package frontEnd;
 
-import static cpit305project.addStudent.stds;
-import static cpit305project.addStudent.stuID;
-import static cpit305project.addStudent.stuMajor;
-import static cpit305project.addStudent.stuName;
+import static frontEnd.addStudent.stds;
+import static frontEnd.addStudent.stuID;
+import static frontEnd.addStudent.stuMajor;
+import static frontEnd.addStudent.stuName;
 import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

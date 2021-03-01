@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cpit305project;
+package frontEnd;
 
 /**
  *
@@ -33,7 +33,6 @@ public class serverGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(870, 650));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -72,7 +71,7 @@ public class serverGUI extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(100, 80, 680, 470);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/gradient.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontEnd/gradient.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 870, 650);
 

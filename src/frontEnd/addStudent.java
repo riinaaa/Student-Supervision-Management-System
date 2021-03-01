@@ -3,9 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cpit305project;
+package frontEnd;
 
+import static frontEnd.Home.svName;
 import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
@@ -14,15 +28,118 @@ import javax.swing.plaf.FontUIResource;
  *
  * @author mac
  */
-public class studentInfo extends javax.swing.JFrame {
-static int stuID;
-static String stuMajor;
-static String stuName;
+public class addStudent extends javax.swing.JFrame {
+    static int stuID;
+    static String stuMajor;
+    static String stuName;
+    static String line;
+    static String line1;
+    static String line2;
+    static String line3;
+    static String line4;
+    static String line5;
+    static String line6;
+    static Supervisor sv ;
+    static ArrayList<String> linesNo = new ArrayList<>();
+    static ArrayList<Student> stds;
+    ArrayList <Student> stuInfo = new ArrayList<>();
+    BufferedWriter bwSD ;//= new BufferedWriter (new FileWriter ("Student.txt"));
+
     /**
-     * Creates new form studentInfo
+     * Creates new form addStudent
      */
-    public studentInfo() {
+    public addStudent() throws IOException {
         initComponents();setLocationRelativeTo(null);
+        System.out.println(Home.svName);
+        //add students' info in a file without the supervisor's name because the sv's name will
+        //be added after the supervisor adds the students
+        RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
+        RandomAccessFile raa = new RandomAccessFile("student1.txt", "r");
+        //arraylist of objects -- size of students is unpredictable
+       stds = new ArrayList<>();
+       //declare student one object
+       //(String stuID, String stuName, double stuGPA, String natID, int hours, String stuStatus, String stuMajor, String svName) {
+       Student std1 = new Student("1807227","MarwaAhmed",4.44,"110922222", 75, "Active", "IT", null);
+       Student std2 = new Student("1806443","SaraAhmed",4.60,"119829233", 96, "Active", "IT", null);
+       Student std3 = new Student("1802234","LeenaNour",4.80,"11092983", 34, "Active", "IS", null);
+       Student std4 = new Student("1807589","HindAsli",4.76,"11829273", 58, "Active", "CS", null);
+       Student std5 = new Student("1801236","WaadBunaider",4.22,"10028923", 27, "Active", "IS", null);
+       Student std6 = new Student("1809981","MaryamFahad",4.55,"11822193", 60, "Active", "IT", null);
+       //add them to the array
+       stds.add(std1); stds.add(std2); stds.add(std3); stds.add(std4);stds.add(std5);stds.add(std6);
+       //write them to the file
+       bwSD = new BufferedWriter (new FileWriter ("Student.txt"));
+        for (int i = 0; i < stds.size(); i++) {
+            bwSD.write(stds.get(i).getStuName()+","+stds.get(i).getStuMajor() +"," + stds.get(i).getStuID() + "," +stds.get(i).getStuGPA()
+                  +","+stds.get(i).getHours()  +"," + stds.get(i).getNatID()+"," + stds.get(i).getStuStatus()+ "," + stds.get(i).getSvName()
+           +"\r\n" );            
+        }
+        
+        System.out.println("size of array " + stds.size());
+        bwSD.flush();
+        System.out.println("before writing: " + ra.getFilePointer());
+        ra.seek(1);
+       
+        for (int i = 0; i < stds.size(); i++) {
+            ra.writeUTF("0, ");
+            ra.writeUTF(stds.get(i).getStuMajor());
+            ra.writeUTF(",");
+            ra.writeUTF(stds.get(i).getStuID());
+            ra.writeUTF(",");
+            ra.writeDouble(stds.get(i).getStuGPA());
+            ra.writeUTF(",");
+            ra.writeInt(stds.get(i).getHours());
+            ra.writeUTF(",");
+            ra.writeUTF(stds.get(i).getNatID());
+            ra.writeUTF(",");
+            ra.writeUTF(stds.get(i).getStuStatus());
+            ra.writeUTF(",");
+            ra.writeUTF("null");
+            ra.writeUTF("\n");
+        }
+          
+
+        
+        System.out.println("after writing: " + ra.getFilePointer());//375
+        ra.seek(1);
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.getFilePointer());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readDouble());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readInt());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.readUTF());
+        System.out.println(ra.getFilePointer());
+        
+        
+       /* ra.seek(13);//id position
+        System.out.println("13 is " +ra.readUTF().trim());
+         
+        ra.seek(89);//id position
+        System.out.println("89 is " +ra.readUTF().trim());
+          
+        ra.seek(165);//id position
+        System.out.println("165 is " +ra.readUTF().trim());
+
+        ra.seek(265);//id position
+        System.out.println("241 is " +ra.readUTF().trim());
+        
+        ra.seek(317);//sv
+        System.out.println("317 is " +ra.readUTF().trim());*/
+         
+        //supervisor seeks
+        //ra.seek(72);//id position
+        //System.out.println("70 is " +ra.readUTF().trim());
+
+
     }
 
     /**
@@ -34,6 +151,7 @@ static String stuName;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,14 +168,13 @@ static String stuName;
         IS = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 600));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
 
         jLabel1.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel1.setText("Enter student Info");
+        jLabel1.setText("Add Student Info");
 
         jLabel2.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 204, 255));
@@ -99,7 +216,7 @@ static String stuName;
         addLayout.setVerticalGroup(
             addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addLayout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addContainerGap())
         );
@@ -134,13 +251,15 @@ static String stuName;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel6))
@@ -152,30 +271,31 @@ static String stuName;
                                         .addGap(82, 82, 82)
                                         .addComponent(CS)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(IS))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(117, 117, 117)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 252, Short.MAX_VALUE))
+                                        .addComponent(IS))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(94, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(117, 117, 117)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(252, 252, 252))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(196, 213, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(537, 537, 537))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(301, 301, 301)
+                .addGap(287, 287, 287)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jLabel4)
                 .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,9 +312,9 @@ static String stuName;
                     .addComponent(IS))
                 .addGap(36, 36, 36)
                 .addComponent(jLabel7)
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addGap(131, 131, 131))
         );
 
         getContentPane().add(jPanel1);
@@ -207,15 +327,54 @@ static String stuName;
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
 
-    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
 
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        BufferedReader brSD = null;
+        String line = "";
+        String[] split;
         try {
             stuID = Integer.parseInt(id.getText());
             stuName = name.getText();
-
+            brSD = new BufferedReader(new FileReader("Student.txt"));
+            /// here I should update Student Information 
+            while(brSD.ready()){
+               split = brSD.readLine().split(",");
+               String stuName = split[0];
+               String stuMajor = split[1];
+               String stuID= split[2];
+               double stuGPA=Double.parseDouble(split[3]);
+               int hours = Integer.parseInt(split[4]);
+               String natID = split[5];
+               String stuStatus = split[6];
+               String svName =split[7];
+               Student insStudent = new Student (stuID, stuName, stuGPA, natID,  hours,  stuStatus,  stuMajor,  svName);
+               stuInfo.add(insStudent) ;
+            }
+            for (int i = 0; i < stuInfo.size(); i++) {
+                if(stuInfo.get(i).getStuID().equalsIgnoreCase(stuID+"")){
+                    System.out.println("enter to iiiiiiiiiiiiiiiifffffffffff loop");
+                  stuInfo.get(i).setSvName("Test Supervisor Name");
+                  break;
+                }
+            }
+                   bwSD = new BufferedWriter (new FileWriter ("Student.txt"));
+            for (int i = 0; i < stuInfo.size(); i++) {
+            bwSD.write(stuInfo.get(i).getStuName()+","+stuInfo.get(i).getStuMajor() +"," + stuInfo.get(i).getStuID() + "," +stuInfo.get(i).getStuGPA()
+                  +","+stuInfo.get(i).getHours()  +"," + stuInfo.get(i).getNatID()+"," + stuInfo.get(i).getStuStatus()+ "," + stuInfo.get(i).getSvName()
+           +"\r\n" );            
+        }
+            bwSD.close();
         } catch (NumberFormatException ex) {
             System.out.println("the entered numbers is string not integer cannot be casted to integer");
-        } finally { //this code is so important it must be implemented whether an exception is catched or not
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } finally { //this code is so important it must be implemented
+
             if (IT.isSelected() && CS.isSelected() == true || IT.isSelected() == true && IS.isSelected() == true || CS.isSelected() == true
                     && IS.isSelected() == true) {
                 UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
@@ -228,22 +387,38 @@ static String stuName;
             } else {
                 if (IT.isSelected() == true && CS.isSelected() == false && IS.isSelected() == false) {//it is IT
                     stuMajor = "IT";
-                    
+                    System.out.println("entered IT");
+                     sv = new Supervisor("50","Test Supervisor","10025555");
+                    try {
+                        sv.addStudent(Home.svName, stuMajor, id.getText());
+                    } catch (IOException ex) {
+                        Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } else if (IT.isSelected() == false && CS.isSelected() == true && IS.isSelected() == false) {//CS
                     stuMajor = "CS";
-                } else {//CS
-
+                    System.out.println("entered CS");
+                     sv = new Supervisor("50","CS Supervisor","10025555");
+                    try {
+                        sv.addStudent(Home.svName, stuMajor, id.getText());
+                    } catch (IOException ex) {
+                        Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                } else {//IS
+                    System.out.println("entered IS");
                     stuMajor = "IS";
+                     sv = new Supervisor("50","Is Supervisor","10025555");
+                    try {
+                        sv.addStudent(Home.svName, stuMajor, id.getText());
+                    } catch (IOException ex) {
+                        Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }
     }//GEN-LAST:event_addMouseClicked
-
-    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -261,20 +436,24 @@ static String stuName;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(studentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(studentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(studentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(studentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new studentInfo().setVisible(true);
+                try {
+                    new addStudent().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -284,6 +463,7 @@ static String stuName;
     private javax.swing.JRadioButton IS;
     private javax.swing.JRadioButton IT;
     private javax.swing.JPanel add;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
