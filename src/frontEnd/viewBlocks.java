@@ -6,6 +6,7 @@
 package frontEnd;
 
 import static frontEnd.scheduleInterface.*;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
@@ -18,32 +19,40 @@ public class viewBlocks extends javax.swing.JFrame {
 	 * Creates new form viewBlocks
 	 */
 	public viewBlocks() {
-		
+
 		initComponents();
 		switch (scheduleInterface.levelChosen) {
 			case "5th level":
-				block1Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b1.png"))); 
-				block2Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b2.png"))); 
+				blocksText.setText("Blocks of " + levelChosen);
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+
+
 				break;
 			case "6th level":
-				block1Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b1.png"))); 
-				block2Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b2.png"))); 
+				blocksText.setText("Blocks of " + levelChosen);
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
 				break;
 			case "7th level":
-				block1Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level7Block1.png"))); 
-				block2Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level7Block2.png"))); 
+				blocksText.setText("Blocks of " + levelChosen);
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level7Block1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level7Block2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
 				break;
 			case "8th level":
-				block1Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level8Block1.png"))); 
-				block2Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level8Block2.png"))); 
+				blocksText.setText("Blocks of " + levelChosen);
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level8Block1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level8Block2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
 				break;
 			case "9th level":
-				block1Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level9_1.png"))); 
-				block2Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level9_2.png"))); 
+				blocksText.setText("Blocks of " + levelChosen);
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level9_1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level9_2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
 				break;
 			case "10th level":
-				block1Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level10_1.png"))); 
-				block2Img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level10_2.png"))); 
+				blocksText.setText("Blocks of " + levelChosen);
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level10_1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level10_2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
 				break;
 			default:
 				break;
@@ -65,7 +74,7 @@ public class viewBlocks extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        blocksText = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -77,25 +86,18 @@ public class viewBlocks extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(block2Img, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 570, 300));
 
         jLabel1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 102));
         jLabel1.setText("Block Two");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 110, 50));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(726, 43, -1, -1));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 35, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel2.setText("Blocks");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, -1, -1));
+        blocksText.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
+        blocksText.setForeground(new java.awt.Color(255, 255, 102));
+        blocksText.setText("Blocks");
 
         jLabel3.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 102));
         jLabel3.setText("Block One");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 110, 50));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 102));
 
@@ -110,8 +112,6 @@ public class viewBlocks extends javax.swing.JFrame {
             .addGap(0, 620, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, -1));
-
         jPanel5.setBackground(new java.awt.Color(255, 255, 102));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -125,8 +125,56 @@ public class viewBlocks extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
-        jPanel1.add(block1Img, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 600, 300));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(blocksText)
+                .addGap(187, 187, 187)
+                .addComponent(jLabel4))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(block1Img, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(block2Img, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(blocksText)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel4)))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(120, 120, 120)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(block1Img, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(block2Img, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 960, 730);
@@ -172,8 +220,8 @@ public class viewBlocks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel block1Img;
     private javax.swing.JLabel block2Img;
+    private javax.swing.JLabel blocksText;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
