@@ -131,6 +131,9 @@ public class scheduleInterface extends javax.swing.JFrame {
     private void signinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinMouseClicked
         levelChosen=level.getSelectedItem().toString();
         System.out.println(levelChosen);
+		viewBlocks n = new viewBlocks();
+		n.setVisible(true);
+		this.dispose();
     }//GEN-LAST:event_signinMouseClicked
 
     /**
