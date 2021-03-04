@@ -27,6 +27,7 @@ public class supervisorMenu extends javax.swing.JFrame {
     /**
      * Creates new form startHome
      */
+    
     public supervisorMenu(ArrayList <Student> stuInfo ,FileWriter bwSD  ) {
         initComponents(); 
         name.setText(Home.svName);
@@ -73,6 +74,8 @@ public class supervisorMenu extends javax.swing.JFrame {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -170,6 +173,11 @@ public class supervisorMenu extends javax.swing.JFrame {
         name.setText("welcome back ");
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 0, 51));
@@ -245,6 +253,15 @@ public class supervisorMenu extends javax.swing.JFrame {
         }
     
     }//GEN-LAST:event_addStuMouseClicked
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+        try {
+            searchStudent sd = new searchStudent();
+            sd.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(supervisorMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanel4MouseClicked
 
     /**
      * @param args the command line arguments

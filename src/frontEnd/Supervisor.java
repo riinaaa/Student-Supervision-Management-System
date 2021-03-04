@@ -5,12 +5,15 @@
  */
 package frontEnd;
 
-import static frontEnd.addStudent.stds;
+import static frontEnd.Home.stuInfo;
+import static frontEnd.addStudent.bfSV;
+
 import static frontEnd.addStudent.stuID;
 import static frontEnd.addStudent.stuMajor;
 import static frontEnd.addStudent.stuName;
 import java.awt.Font;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -77,14 +80,16 @@ public class Supervisor {
 //    }
     
     public  void addStudent (String sv, String major, String id) throws IOException{
-       if(major.equals("IT")){
+    
+        if(major.equals("IT")){
                     System.out.println("entered IT");
                     //check is ID entered by the sv matches the student's to add the sv
-                    for (int i = 0; i < stds.size(); i++) {
-                        if (stds.get(i).getStuID().equals(id)) {
-                            System.out.println("entered ID " + stds.get(i).getStuID());
+                    for (int i = 0; i < stuInfo.size(); i++) {
+                        if (stuInfo.get(i).getStuID().equals(id)) {
+                            System.out.println("entered ID " + stuInfo.get(i).getStuID());
                             FileWriter fr = new FileWriter ("addstudent.txt");
                             fr.append(sv);
+                         
                             //stds.get(i).setSvName(Home.svName);
                        
                             //to modify the supervisor's attribute we need to reach to a specific position
@@ -112,12 +117,12 @@ public class Supervisor {
                     stuMajor = "CS";
                      System.out.println("entered CS");
                     //check is ID entered by the sv matches the student's to add the sv
-                    for (int i = 0; i < stds.size(); i++) {
+                    for (int i = 0; i < stuInfo.size(); i++) {
                       
-                        if (stds.get(i).getStuID().equals(id)) {
-                            System.out.println("entered ID " + stds.get(i).getStuID());
-                            stds.get(i).setSvName(Home.svName);
-                            System.out.println(stds.get(i).getSvName());
+                        if (stuInfo.get(i).getStuID().equals(id)) {
+                            System.out.println("entered ID " + stuInfo.get(i).getStuID());
+                            stuInfo.get(i).setSvName(Home.svName);
+                            System.out.println(stuInfo.get(i).getSvName());
                             UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
                            "serif", Font.BOLD, 16)));
                    JOptionPane.showMessageDialog(null, " Student Added Succesfully");
@@ -127,12 +132,12 @@ public class Supervisor {
                     System.out.println("entered IS");
                     stuMajor = "IS";
                     //check is ID entered by the sv matches the student's to add the sv
-                    for (int i = 0; i < stds.size(); i++) {
-                        System.out.println(stds.get(i).getStuID());
+                    for (int i = 0; i < stuInfo.size(); i++) {
+                        System.out.println(stuInfo.get(i).getStuID());
                         System.out.println(id);
-                        if (stds.get(i).getStuID().equals(id)) {
-                            System.out.println("entered ID " + stds.get(i).getStuID());
-                            stds.get(i).setSvName("noor");
+                        if (stuInfo.get(i).getStuID().equals(id)) {
+                            System.out.println("entered ID " + stuInfo.get(i).getStuID());
+                            stuInfo.get(i).setSvName("noor");
                             final int EOF = -1;
                             try {
                                 RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
@@ -157,7 +162,7 @@ public class Supervisor {
                             } catch (IOException ex) {
                                 Logger.getLogger(addStudent.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            System.out.println(stds.get(i).getSvName());
+                            System.out.println(stuInfo.get(i).getSvName());
                         } 
                     }
                 }
