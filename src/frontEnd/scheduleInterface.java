@@ -134,7 +134,7 @@ public class scheduleInterface extends javax.swing.JFrame {
                 .addComponent(signin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -146,6 +146,9 @@ public class scheduleInterface extends javax.swing.JFrame {
     private void signinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinMouseClicked
         levelChosen=level.getSelectedItem().toString();
         System.out.println(levelChosen);
+		viewBlocks n = new viewBlocks();
+		n.setVisible(true);
+		this.dispose();
     }//GEN-LAST:event_signinMouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
