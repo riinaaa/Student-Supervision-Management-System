@@ -167,7 +167,7 @@ public class Home extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(189, 189, 189)
+                .addGap(243, 243, 243)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)

@@ -5,17 +5,34 @@
  */
 package frontEnd;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author mac
  */
 public class serverGUI extends javax.swing.JFrame {
+     static Socket s;
+    static ServerSocket ss;
+    static DataInputStream in;
+    static DataOutputStream out;
+
 
     /**
      * Creates new form serverGUI
      */
     public serverGUI() {
         initComponents();setLocationRelativeTo(null);
+        name.setText(Home.svName);
     }
 
     /**
@@ -28,55 +45,137 @@ public class serverGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        messageA = new javax.swing.JTextArea();
+        messageF = new javax.swing.JTextField();
+        send = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(430, 560));
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 153)));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 71));
 
-        jLabel2.setFont(new java.awt.Font("Maku", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("enter your text here");
+        messageA.setBackground(new java.awt.Color(102, 102, 102));
+        messageA.setColumns(20);
+        messageA.setFont(new java.awt.Font(".SF NS Text", 0, 18)); // NOI18N
+        messageA.setForeground(new java.awt.Color(255, 204, 102));
+        messageA.setRows(5);
+        jScrollPane1.setViewportView(messageA);
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField1.setFont(new java.awt.Font("Maku", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setToolTipText("");
+        messageF.setBackground(new java.awt.Color(102, 102, 102));
+        messageF.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        messageF.setForeground(new java.awt.Color(255, 204, 102));
+        messageF.setText("enter your message");
+        messageF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                messageFMouseClicked(evt);
+            }
+        });
+
+        send.setBackground(new java.awt.Color(255, 204, 102));
+        send.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sendMouseClicked(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel5.setText("Send");
+
+        javax.swing.GroupLayout sendLayout = new javax.swing.GroupLayout(send);
+        send.setLayout(sendLayout);
+        sendLayout.setHorizontalGroup(
+            sendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sendLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel5)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+        sendLayout.setVerticalGroup(
+            sendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sendLayout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addContainerGap())
+        );
+
+        name.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        name.setForeground(new java.awt.Color(255, 204, 102));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(134, 134, 134)
+                .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(388, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(100, 80, 680, 470);
+        jPanel1.setBounds(0, 0, 435, 727);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontEnd/gradient.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 870, 650);
+        jPanel2.setBackground(new java.awt.Color(51, 51, 77));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 430, 620);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void messageFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_messageFMouseClicked
+        messageF.setText("");
+    }//GEN-LAST:event_messageFMouseClicked
+
+    private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
+    String mes = messageF.getText();
+         try {
+             out.writeUTF(mes);
+             
+         } catch (IOException ex) {
+             Logger.getLogger(serverGUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    messageF.setText(" ");
+    }//GEN-LAST:event_sendMouseClicked
 
     /**
      * @param args the command line arguments
@@ -111,12 +210,33 @@ public class serverGUI extends javax.swing.JFrame {
                 new serverGUI().setVisible(true);
             }
         });
+       String msg="";
+        try{
+            ss = new ServerSocket(1222);
+            s= ss.accept();
+            in = new DataInputStream(s.getInputStream());
+            out = new DataOutputStream(s.getOutputStream());
+            while(!msg.equals("exit")){
+                msg = in.readUTF();
+                messageA.setText(messageA.getText() + "\n Client " + msg);
+                 if(clientGUI.mes.equals("305")){
+                out.writeUTF("you can't");
+            }
+            }
+        }catch(Exception ex){
+            
+        }
+               
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private static javax.swing.JTextArea messageA;
+    private javax.swing.JTextField messageF;
+    private javax.swing.JLabel name;
+    private javax.swing.JPanel send;
     // End of variables declaration//GEN-END:variables
 }
