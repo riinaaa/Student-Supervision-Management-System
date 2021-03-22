@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  */
 public class clientGUI extends javax.swing.JFrame {
     static Socket s;
-    static String mes;
+    static String mes; 
     static DataInputStream in;
     static DataOutputStream out;
     /**
@@ -200,6 +200,7 @@ public class clientGUI extends javax.swing.JFrame {
             while(!msg.equals("exit")){
                 msg = in.readUTF();
                 messageA.setText(messageA.getText() + "\n Client " + msg);
+                
             }
         }catch(Exception ex){
             

@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  * @author mac
  */
 public class serverGUI extends javax.swing.JFrame {
-     static Socket s;
+    static Socket s;
     static ServerSocket ss;
     static DataInputStream in;
     static DataOutputStream out;
@@ -219,9 +219,6 @@ public class serverGUI extends javax.swing.JFrame {
             while(!msg.equals("exit")){
                 msg = in.readUTF();
                 messageA.setText(messageA.getText() + "\n Client " + msg);
-                 if(clientGUI.mes.equals("305")){
-                out.writeUTF("you can't");
-            }
             }
         }catch(Exception ex){
             

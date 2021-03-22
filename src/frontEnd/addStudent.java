@@ -384,13 +384,11 @@ public class addStudent extends javax.swing.JFrame  {
                 if(stuInfo.get(i).getStuID().equalsIgnoreCase(stuID+"")){
                     System.out.println("enter to iiiiiiiiiiiiiiiifffffffffff loop");
                   stuInfo.get(i).setSvName(Home.svName);
-                  
                   break;
                 }
             }
-               //    bwSD =  /*new BufferedWriter (*/new FileWriter ("Student.txt",true)/*)*/;
+               //bwSD =  /*new BufferedWriter (*/new FileWriter ("Student.txt",true)/*)*/;
             for (int i = 0; i < stuInfo.size(); i++) {
-         
             bwSD.write(stuInfo.get(i).getStuName()+","+stuInfo.get(i).getStuMajor() +"," + stuInfo.get(i).getStuID() + "," +stuInfo.get(i).getStuGPA()
                   +","+stuInfo.get(i).getHours()  +"," + stuInfo.get(i).getNatID()+"," + stuInfo.get(i).getStuStatus()+ "," + stuInfo.get(i).getSvName()
            +"\r\n" );            
