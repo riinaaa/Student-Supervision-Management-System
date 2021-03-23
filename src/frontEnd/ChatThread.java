@@ -24,7 +24,6 @@ public class ChatThread {
 
     }
     
-    @Override
     public void run() {
 
         try {
@@ -35,7 +34,7 @@ public class ChatThread {
 
             while (!msgin.trim().equalsIgnoreCase("BYE")) {
                 msgin = in.readUTF();
-                clientGUI.messageA.setText(n.getText() + "\n Customer : " + msgin);
+              //  clientGUI.messageA.setText(n.getText() + "\n Customer : " + msgin);
             }
 
         } catch (IOException ex) {

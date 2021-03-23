@@ -426,6 +426,7 @@ static BufferedReader bw;
     private void contactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMouseClicked
      serverGUI g = new serverGUI();
      g.setVisible(true);
+    
     }//GEN-LAST:event_contactMouseClicked
 
     /**

@@ -5,10 +5,6 @@
  */
 package frontEnd;
 
-import static frontEnd.serverGUI.in;
-import static frontEnd.serverGUI.out;
-import static frontEnd.serverGUI.s;
-import static frontEnd.serverGUI.ss;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -32,7 +28,7 @@ public class clientGUI extends javax.swing.JFrame {
      * Creates new form clientGUI
      */
     public clientGUI() {
-        initComponents();setLocationRelativeTo(null);
+        initComponents();
     }
 
     /**
@@ -50,21 +46,24 @@ public class clientGUI extends javax.swing.JFrame {
         messageF = new javax.swing.JTextField();
         send = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(750, 180));
         setPreferredSize(new java.awt.Dimension(430, 560));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 71));
 
         messageA.setBackground(new java.awt.Color(102, 102, 102));
         messageA.setColumns(20);
-        messageA.setFont(new java.awt.Font(".SF NS Text", 0, 18)); // NOI18N
+        messageA.setFont(new java.awt.Font(".SF NS Text", 0, 14)); // NOI18N
         messageA.setForeground(new java.awt.Color(255, 204, 102));
         messageA.setRows(5);
         jScrollPane1.setViewportView(messageA);
 
         messageF.setBackground(new java.awt.Color(102, 102, 102));
-        messageF.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        messageF.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         messageF.setForeground(new java.awt.Color(255, 204, 102));
         messageF.setText("enter your message");
         messageF.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,26 +100,35 @@ public class clientGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jTextPane1.setBackground(new java.awt.Color(102, 102, 102));
+        jTextPane1.setForeground(new java.awt.Color(102, 0, 51));
+        jScrollPane2.setViewportView(jTextPane1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(124, 124, 124)
                 .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2))
+                    .addComponent(messageF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -146,7 +154,8 @@ public class clientGUI extends javax.swing.JFrame {
          mes = messageF.getText();
         try {
             out.writeUTF(mes);
-           
+            jTextPane1.setText(jTextPane1.getText()+ " \n Student: " + mes+" ");
+            messageF.setText("");
         } catch (IOException ex) {
             Logger.getLogger(serverGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -197,9 +206,9 @@ public class clientGUI extends javax.swing.JFrame {
             s = new Socket("127.0.0.1",1222);
             in = new DataInputStream(s.getInputStream());
             out = new DataOutputStream(s.getOutputStream());
-            while(!msg.equals("exit")){
+            while(!in.readUTF().equals("bye")){
                 msg = in.readUTF();
-                messageA.setText(messageA.getText() + "\n Client " + msg);
+                jTextPane1.setText(jTextPane1.getText() + " \n Advisor:  " + msg);
                 
             }
         }catch(Exception ex){
@@ -212,6 +221,8 @@ public class clientGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private static javax.swing.JTextPane jTextPane1;
     private static javax.swing.JTextArea messageA;
     private javax.swing.JTextField messageF;
     private javax.swing.JPanel send;
