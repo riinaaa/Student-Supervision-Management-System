@@ -16,6 +16,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -249,6 +250,64 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_IDActionPerformed
 
+    
+    
+    
+    
+    
+    // tried this login but it made errors in other interfaces since there's dependant variables like bsWD in the "menus" so im stuck ^.^
+    
+//    
+//        String idInput = ID.getText();
+//        String passwordInput = password.getText();
+//        //we want to check if the data are correct
+//        int IDreturn = login.AuthLogin(idInput, passwordInput);
+//        if (IDreturn!=-1) {
+//            //Trainer
+//            if ((IDreturn + "").charAt(0)=='2') {
+//
+//                // basically will get the supervisor data
+////                for (int i = 0; i < GymSystem.trainersAr.size(); i++) {
+////                    if (GymSystem.trainersAr.get(i).getId() == IDreturn) {
+////                        GymSystem.trainer = GymSystem.trainersAr.get(i);
+//                        //break;
+//                   // }
+//               // } end of for loop
+//               
+//                supervisorMenu tmenu = new supervisorMenu();
+//                tmenu.setVisible(true);
+//                tmenu.setLocationRelativeTo(null);
+//                this.dispose();
+//            }
+//        //student
+//            else {
+//            //student's info
+////                for (int i = 0; i < GymSystem.membersAr.size(); i++) {
+////                   if (GymSystem.membersAr.get(i).getId() == IDreturn) {
+////                        GymSystem.member = GymSystem.membersAr.get(i);
+////                        break;
+////                    }
+////
+////                }
+//                sdmenu Mmenu = null;
+//            try {
+//                Mmenu = new sdmenu();
+//            } catch (IOException ex) {
+//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//                Mmenu.setVisible(true);
+//                Mmenu.setLocationRelativeTo(null);
+//                this.dispose();
+//            }
+//    
+//        }else{
+//        JOptionPane.showMessageDialog(null, "Wrong Password Or UserName");
+//        ID.setText("");
+//        password.setText("");
+//        }
+    
+    
+    
     private void signinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinMouseClicked
         theID = Integer.parseInt(ID.getText());
          String line[];
