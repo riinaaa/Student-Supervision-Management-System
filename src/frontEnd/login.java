@@ -95,14 +95,14 @@ public class login {
      */
     
     
-    public static int AuthLogin(String fileID, String pass) {
+    public static int AuthLogin(String guiID, String pass) {
 		try {
 			Scanner input = new Scanner(new File("AccountsInfo.txt"));
 			while (input.hasNext()) {
 				int ID = input.nextInt();
-				String User_Name = input.next();
+				String userID = input.next();
 				String Password = input.next();
-				if (User_Name.equalsIgnoreCase(fileID) && Password.equals(pass)) {
+				if (userID.equalsIgnoreCase(guiID) && Password.equals(pass)) {
 					return ID;
 				}
 			}
