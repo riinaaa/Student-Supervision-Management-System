@@ -129,7 +129,7 @@ public class clientGUI extends javax.swing.JFrame {
              mes = messageF.getText();
         try {
             out.writeUTF(mes);
-            messageA.setText(messageA.getText()+ " \n Student: " + mes+" ");
+            messageA.setText(messageA.getText()+ " \n Student: " + mes+"\n ");
             messageF.setText("");
         } catch (IOException ex) {
             Logger.getLogger(serverGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -180,7 +180,7 @@ public class clientGUI extends javax.swing.JFrame {
             out = new DataOutputStream(s.getOutputStream());            
             while (true){
                 msgin = in.readUTF();
-                 messageA.setText(messageA.getText()+ "\n Advisor :\t" + msgin);
+                 messageA.setText(messageA.getText()+ "\n Advisor :\t" + msgin + "\n");
                   if(msgin.equalsIgnoreCase("BYE")){ 
                      break;
                 }

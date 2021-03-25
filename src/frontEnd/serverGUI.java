@@ -247,7 +247,7 @@ public class serverGUI extends javax.swing.JFrame {
                         out = new DataOutputStream(s.getOutputStream());
                         while (true) {
                             msgin = in.readUTF();
-                            messageA.setText(messageA.getText() + "\n STUDENT: \t" + msgin);
+                            messageA.setText(messageA.getText() + "\n Student: \t" + msgin);
                             if (msgin.equalsIgnoreCase("BYE")) {
 
                                 break;
