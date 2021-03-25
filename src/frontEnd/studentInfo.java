@@ -203,10 +203,6 @@ static String stuName;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
-
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
 
         try {
@@ -217,32 +213,35 @@ static String stuName;
             System.out.println("the entered numbers is string not integer cannot be casted to integer");
         } finally { //this code is so important it must be implemented whether an exception is catched or not
             if (IT.isSelected() && CS.isSelected() == true || IT.isSelected() == true && IS.isSelected() == true || CS.isSelected() == true
-                    && IS.isSelected() == true) {
+                && IS.isSelected() == true) {
                 UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
-                        "serif", Font.BOLD, 16)));
-                JOptionPane.showMessageDialog(this, " You have to select one major");
-            } else if (IT.isSelected() == true && CS.isSelected() == true && IS.isSelected() == true) {
-                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
-                        "serif", Font.BOLD, 16)));
-                JOptionPane.showMessageDialog(this, " You have to select one major");
-            } else {
-                if (IT.isSelected() == true && CS.isSelected() == false && IS.isSelected() == false) {//it is IT
-                    stuMajor = "IT";
-                    
+                    "serif", Font.BOLD, 16)));
+        JOptionPane.showMessageDialog(this, " You have to select one major");
+        } else if (IT.isSelected() == true && CS.isSelected() == true && IS.isSelected() == true) {
+            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                "serif", Font.BOLD, 16)));
+    JOptionPane.showMessageDialog(this, " You have to select one major");
+    } else {
+        if (IT.isSelected() == true && CS.isSelected() == false && IS.isSelected() == false) {//it is IT
+            stuMajor = "IT";
 
-                } else if (IT.isSelected() == false && CS.isSelected() == true && IS.isSelected() == false) {//CS
-                    stuMajor = "CS";
-                } else {//CS
+        } else if (IT.isSelected() == false && CS.isSelected() == true && IS.isSelected() == false) {//CS
+            stuMajor = "CS";
+        } else {//CS
 
-                    stuMajor = "IS";
-                }
-            }
+            stuMajor = "IS";
+        }
+        }
         }
     }//GEN-LAST:event_addMouseClicked
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameActionPerformed
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idActionPerformed
 
     /**
      * @param args the command line arguments

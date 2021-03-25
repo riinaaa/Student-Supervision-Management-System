@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author mac
  */
-public class ChatThread {
+public class ChatThread extends Thread{
       Socket s;
 
     public ChatThread(Socket s) {
@@ -25,22 +25,23 @@ public class ChatThread {
     }
     
     public void run() {
-
+        System.out.println("running");
         try {
             String msgin = "";
-           
-           DataInputStream  in = new DataInputStream(s.getInputStream());
-           DataOutputStream out = new DataOutputStream(s.getOutputStream());
-
-            while (!msgin.trim().equalsIgnoreCase("BYE")) {
+            DataInputStream in = new DataInputStream(s.getInputStream());
+            DataOutputStream out = new DataOutputStream(s.getOutputStream());
+            System.out.println("entered try run");
+            while (!in.readUTF().equals("bye")) {
+                System.out.println("entered bye");
                 msgin = in.readUTF();
-              //  clientGUI.messageA.setText(n.getText() + "\n Customer : " + msgin);
+                clientGUI.messageA.setText(clientGUI.messageA.getText() + "\n Customer : " + msgin);
             }
+            s.close();
 
         } catch (IOException ex) {
             Logger.getLogger(ChatThread.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
 
     }
 }

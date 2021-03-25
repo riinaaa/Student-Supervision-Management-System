@@ -45,6 +45,7 @@ public class sdmenu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 640));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -77,6 +78,11 @@ public class sdmenu extends javax.swing.JFrame {
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 0, 51));
@@ -149,7 +155,7 @@ public class sdmenu extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(156, Short.MAX_VALUE)
+                .addContainerGap(186, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,10 +165,15 @@ public class sdmenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 710, 610);
+        jPanel1.setBounds(0, 0, 710, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+      studentInfoView v = new studentInfoView ();
+      v.setVisible(true);
+    }//GEN-LAST:event_jPanel3MouseClicked
 
     /**
      * @param args the command line arguments

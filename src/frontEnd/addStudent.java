@@ -173,7 +173,7 @@ public class addStudent extends javax.swing.JFrame  {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 600));
+        setPreferredSize(new java.awt.Dimension(700, 640));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -316,7 +316,7 @@ public class addStudent extends javax.swing.JFrame  {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(72, 72, 72))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -338,13 +338,13 @@ public class addStudent extends javax.swing.JFrame  {
                     .addComponent(IS))
                 .addGap(36, 36, 36)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addGap(88, 88, 88)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131))
+                .addGap(155, 155, 155))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 750, 610);
+        jPanel1.setBounds(0, 0, 750, 620);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

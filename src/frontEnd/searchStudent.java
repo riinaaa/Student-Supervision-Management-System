@@ -393,11 +393,11 @@ static BufferedReader bw;
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
-   BufferedReader bww;
-    String line = "";
-    try {
-        bww = new BufferedReader (new FileReader ("student.txt"));
-        while ((line = bww.readLine()) != null) {
+        BufferedReader bww;
+        String line = "";
+        try {
+            bww = new BufferedReader(new FileReader("student.txt"));
+            while ((line = bww.readLine()) != null) {
                 String ss[] = line.split(",");
                 System.out.println(line);
                 if (list.getSelectedValue().equals(ss[2])) {
@@ -410,16 +410,14 @@ static BufferedReader bw;
                     name.setText(ss[0]);
                     id.setText(ss[2]);
                 }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } catch (FileNotFoundException ex) {
-        Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
-    }
-      
-     catch (IOException ex) {
-        Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
-    
+
+
     
     }//GEN-LAST:event_OKMouseClicked
 
