@@ -305,7 +305,7 @@ public class addStudent extends javax.swing.JFrame  {
                                 .addGap(285, 285, 285)))))
                 .addGap(252, 252, 252))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(287, 287, 287)
+                .addGap(300, 300, 300)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -316,7 +316,7 @@ public class addStudent extends javax.swing.JFrame  {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(72, 72, 72))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -338,13 +338,13 @@ public class addStudent extends javax.swing.JFrame  {
                     .addComponent(IS))
                 .addGap(36, 36, 36)
                 .addComponent(jLabel7)
-                .addGap(88, 88, 88)
+                .addGap(53, 53, 53)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155))
+                .addGap(190, 190, 190))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 750, 620);
+        jPanel1.setBounds(0, 0, 750, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

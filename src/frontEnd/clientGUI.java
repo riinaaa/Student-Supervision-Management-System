@@ -129,7 +129,7 @@ public class clientGUI extends javax.swing.JFrame {
              mes = messageF.getText();
         try {
             out.writeUTF(mes);
-            messageA.setText(messageA.getText()+ " \n Student: " + mes+"\n ");
+            messageA.setText(messageA.getText()+ " \n Student: \t" + mes+"\n ");
             messageF.setText("");
         } catch (IOException ex) {
             Logger.getLogger(serverGUI.class.getName()).log(Level.SEVERE, null, ex);
