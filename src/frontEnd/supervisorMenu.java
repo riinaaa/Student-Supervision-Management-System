@@ -223,7 +223,7 @@ public class supervisorMenu extends javax.swing.JFrame {
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
         try {
-            searchStudent sd = new searchStudent();
+            searchStudent sd = new searchStudent( stuInfo , bwSD);
             sd.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(supervisorMenu.class.getName()).log(Level.SEVERE, null, ex);

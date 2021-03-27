@@ -135,7 +135,7 @@ public class Home extends javax.swing.JFrame {
         );
         signinLayout.setVerticalGroup(
             signinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 41, Short.MAX_VALUE)
+            .addGap(0, 54, Short.MAX_VALUE)
             .addGroup(signinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(signinLayout.createSequentialGroup()
                     .addGap(11, 11, 11)

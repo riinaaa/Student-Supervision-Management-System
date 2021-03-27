@@ -316,7 +316,7 @@ public class addStudent extends javax.swing.JFrame  {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(72, 72, 72))
                     .addGroup(jPanel1Layout.createSequentialGroup()
