@@ -5,41 +5,48 @@
  */
 package frontEnd;
 
+import static frontEnd.Home.bwSD;
+import static frontEnd.Home.stuInfo;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static frontEnd.Home.stuInfo;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import java.io.FileWriter;
+
 /**
  *
  * @author mac
  */
 public class searchStudent extends javax.swing.JFrame {
-static ArrayList<String> ids = new ArrayList<>();
-static String split [];
-static BufferedReader bw;
+
+    static ArrayList<String> ids = new ArrayList<>();
+    static String split[];
+    static BufferedReader bw;
+
     /**
      * Creates new form searchStudent
      */
-    public searchStudent() throws FileNotFoundException, IOException {
-       initComponents();setLocationRelativeTo(null);
-        bw = new BufferedReader (new FileReader ("student.txt"));
-        String line = "";
+    public searchStudent(ArrayList<Student> stuInfo, FileWriter bwSD) throws FileNotFoundException, IOException {
+        bwSD = new FileWriter ("Student.txt",true);
+        initComponents();
+        setLocationRelativeTo(null);
+        // bwSD = new FileWriter ("Student.txt");
+        //bw = new BufferedReader (new FileReader ("student.txt"));
+        //  String line = "";
         DefaultListModel dlm = new DefaultListModel();
-        while ((line = bw.readLine()) != null) {
-           split = line.split(",");
-            dlm.addElement(split[2]);
-              list.setModel(dlm);
-              ids.add(split[2]);
-            
-          
+        // while ((line = bw.readLine()) != null) {
+        for (int i = 0; i < stuInfo.size(); i++) {
+            //split = line.split(",");
+            dlm.addElement(stuInfo.get(i).getStuID());
+            list.setModel(dlm);
+            ids.add(stuInfo.get(i).getStuID());
         }
 
-      
+        //}
     }
 
     /**
@@ -263,7 +270,6 @@ static BufferedReader bw;
         });
 
         jLabel15.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Contact");
 
         javax.swing.GroupLayout contactLayout = new javax.swing.GroupLayout(contact);
@@ -294,7 +300,6 @@ static BufferedReader bw;
         });
 
         jLabel17.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("OK");
 
         javax.swing.GroupLayout OKLayout = new javax.swing.GroupLayout(OK);
@@ -388,43 +393,59 @@ static BufferedReader bw;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-       supervisorMenu sv = new supervisorMenu (null,null);
-       sv.setVisible(true);
+        supervisorMenu sv = new supervisorMenu(null, null);
+        sv.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
         BufferedReader bww;
         String line = "";
-        try {
-            bww = new BufferedReader(new FileReader("student.txt"));
-            while ((line = bww.readLine()) != null) {
-                String ss[] = line.split(",");
-                System.out.println(line);
-                if (list.getSelectedValue().equals(ss[2])) {
-                    gpa.setText(ss[3]);
-                    major.setText(ss[1]);
-                    natID.setText(ss[5]);
-                    advisor.setText(ss[7]);
-                    credits.setText(ss[4]);
-                    type.setText(ss[6]);
-                    name.setText(ss[0]);
-                    id.setText(ss[2]);
-                }
+        // bww = new BufferedReader (new FileReader ("student.txt"));
+        // while ((line = bww.readLine()) != null) {
+        System.out.println("1 - stuInfo size >>>>>>>>>>>> " + stuInfo.size());
+        for (int i = 0; i < stuInfo.size(); i++) {
+            // String ss[] = line.split(",");
+            //System.out.println(line);
+            if (list.getSelectedValue().equals(stuInfo.get(i).getStuID())) {
+                gpa.setText(stuInfo.get(i).getStuGPA() + "");
+                major.setText(stuInfo.get(i).getStuMajor() + "");
+                natID.setText(stuInfo.get(i).getNatID() + "");
+                advisor.setText(stuInfo.get(i).getSvName() + "");
+                credits.setText(stuInfo.get(i).getHours() + "");
+                type.setText(stuInfo.get(i).getStuMajor());
+                name.setText(stuInfo.get(i).getStuName());
+                id.setText(stuInfo.get(i).getStuID());
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("2- Ater the looooooooop size = " + stuInfo.size());
+
+        // }
+        try{
+        System.out.println("3- enter to *try* of the priented file in search ");
+        for (int i = 0; i < stuInfo.size(); i++) {
+            System.out.println(" 3.3 - enter to printed looooop to txt :  size is " + stuInfo.size());
+
+           // try {
+                bwSD.write(stuInfo.get(i).getStuName() + "," + stuInfo.get(i).getStuMajor() + "," + stuInfo.get(i).getStuID() + "," + stuInfo.get(i).getStuGPA()
+                        + "," + stuInfo.get(i).getHours() + "," + stuInfo.get(i).getNatID() + "," + stuInfo.get(i).getStuStatus() + "," + stuInfo.get(i).getSvName()
+                        + "\r\n");
+                bwSD.flush();
+         //   } catch (IOException ex) {
+            //    Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+           // }
+        }
+        //try {
+            bwSD.close();
         } catch (IOException ex) {
             Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
-    
     }//GEN-LAST:event_OKMouseClicked
 
     private void contactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMouseClicked
-     serverGUI g = new serverGUI();
-     g.setVisible(true);
-    
+        serverGUI g = new serverGUI();
+        g.setVisible(true);
     }//GEN-LAST:event_contactMouseClicked
 
     /**
@@ -458,7 +479,7 @@ static BufferedReader bw;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new searchStudent().setVisible(true);
+                    new searchStudent(stuInfo, bwSD).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
                 }
