@@ -53,7 +53,7 @@ public class startHome extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 102));
         jLabel2.setText("Supervision Management System");
 
-        jLabel3.setFont(new java.awt.Font("Serif", 2, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Serif", 2, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Clicke here to start");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,7 +89,7 @@ public class startHome extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);

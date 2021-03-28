@@ -101,7 +101,6 @@ public class searchStudent extends javax.swing.JFrame {
         menuBar1.add(menu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 650));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -255,7 +254,7 @@ public class searchStudent extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("Information");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/previous-3.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/back-2.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);

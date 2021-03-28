@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class Home extends javax.swing.JFrame {
 
-    static int theID;
+    static String theID;
     static String thePass;
     static String svName;
     static String sdName;
@@ -309,34 +309,53 @@ public class Home extends javax.swing.JFrame {
     
     
     private void signinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinMouseClicked
-        theID = Integer.parseInt(ID.getText());
+        theID = ID.getText();
          String line[];
         int read=0;
         String ll;
+        String lll;
+        String line2[];
         BufferedReader fr = null;
+        BufferedReader frr = null;
+        login l = new login();
+        if(l.isEmployee(ID.getText())==true){
+            System.out.println("true emp");
         try {
             fr = new BufferedReader(new FileReader("supervisor.txt"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Scanner sc = new Scanner ("supervisor.txt");
-        try {
-            while((ll=fr.readLine())!=null) {
-                
+            while ((ll = fr.readLine()) != null) {
                 line = ll.split(",");
-                if(line[1].equals(ID.getText())){
-                    svName=line[2];
-                }
                 System.out.println(line[2]);
-                
+                if (line[1].equals(ID.getText())) {
+                    svName = line[2];
+                }
+            
             }
-        } catch (IOException ex) {
+            }catch (FileNotFoundException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }   catch (IOException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            try {
+                frr = new BufferedReader(new FileReader("student.txt"));
+                   System.out.println("true stu");
+                while ((lll = frr.readLine()) != null) {
+                    line2 = lll.split(",");
+                    if (line2[1].equals(ID.getText())){
+                        sdName = line2[2];
+                    }
+                    System.out.println(line2[2]);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        } 
+    
         thePass = password.getText();
-        login log = new login(thePass, theID);
+        login log = new login();
 
-        if (login.isEmployee(theID) == true) {
+        if (log.isEmployee(ID.getText()) == true) {
             supervisorMenu menSV = new supervisorMenu(stuInfo , bwSD);
             menSV.setVisible(true);
 
@@ -400,7 +419,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ID;
+    public static javax.swing.JTextField ID;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
