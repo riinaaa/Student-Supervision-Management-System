@@ -24,13 +24,12 @@ import javax.swing.JOptionPane;
  */
 public class Home extends javax.swing.JFrame {
 
-    static int theID;
+    static String theID;
     static String thePass;
     static String svName;
     static String sdName;
     static  ArrayList <Student> stuInfo= new ArrayList<>();
     static FileWriter bwSD ;//= new BufferedWriter (new FileWriter ("Student.txt"));
-    Student insStudent;
     /**
      * Creates new form Home
      */
@@ -52,38 +51,11 @@ public class Home extends javax.swing.JFrame {
                String natID = split[5];
                String stuStatus = split[6];
                String svName =split[7];
-                insStudent = new Student (stuID, stuName, stuGPA, natID,  hours,  stuStatus,  stuMajor,  svName);
+               Student insStudent = new Student (stuID, stuName, stuGPA, natID,  hours,  stuStatus,  stuMajor,  svName);
                stuInfo.add(insStudent) ;
             }
              bwSD = new FileWriter ("Student.txt");
-             
-                      String line[];
-        int read=0;
-        String ll;
-        BufferedReader fr = null;
-        try {
-            fr = new BufferedReader(new FileReader("supervisor.txt"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Scanner sc = new Scanner ("supervisor.txt");
-        try {
-            while((ll=fr.readLine())!=null) {
-                
-                line = ll.split(",");
-                if(line[1].equals(ID.getText())){
-                    svName=line[2];
-                }
-                System.out.println(line[2]);
-                
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -285,93 +257,110 @@ public class Home extends javax.swing.JFrame {
     
     // tried this login but it made errors in other interfaces since there's dependant variables like bsWD in the "menus" so im stuck ^.^
     
-
+//    
+//        String idInput = ID.getText();
+//        String passwordInput = password.getText();
+//        //we want to check if the data are correct
+//        int IDreturn = login.AuthLogin(idInput, passwordInput);
+//        if (IDreturn!=-1) {
+//            //Trainer
+//            if ((IDreturn + "").charAt(0)=='2') {
+//
+//                // basically will get the supervisor data
+////                for (int i = 0; i < GymSystem.trainersAr.size(); i++) {
+////                    if (GymSystem.trainersAr.get(i).getId() == IDreturn) {
+////                        GymSystem.trainer = GymSystem.trainersAr.get(i);
+//                        //break;
+//                   // }
+//               // } end of for loop
+//               
+//                supervisorMenu tmenu = new supervisorMenu();
+//                tmenu.setVisible(true);
+//                tmenu.setLocationRelativeTo(null);
+//                this.dispose();
+//            }
+//        //student
+//            else {
+//            //student's info
+////                for (int i = 0; i < GymSystem.membersAr.size(); i++) {
+////                   if (GymSystem.membersAr.get(i).getId() == IDreturn) {
+////                        GymSystem.member = GymSystem.membersAr.get(i);
+////                        break;
+////                    }
+////
+////                }
+//                sdmenu Mmenu = null;
+//            try {
+//                Mmenu = new sdmenu();
+//            } catch (IOException ex) {
+//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//                Mmenu.setVisible(true);
+//                Mmenu.setLocationRelativeTo(null);
+//                this.dispose();
+//            }
+//    
+//        }else{
+//        JOptionPane.showMessageDialog(null, "Wrong Password Or UserName");
+//        ID.setText("");
+//        password.setText("");
+//        }
     
     
     
     private void signinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinMouseClicked
+        theID = ID.getText();
+         String line[];
+        int read=0;
+        String ll;
+        BufferedReader fr = null;
+        try {
+            fr = new BufferedReader(new FileReader("supervisor.txt"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scanner sc = new Scanner ("supervisor.txt");
+        try {
+            while((ll=fr.readLine())!=null) {
+                
+                line = ll.split(",");
+                if(line[1].equals(ID.getText())){
+                    svName=line[2];
+                }
+                System.out.println(line[2]);
+                
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        thePass = password.getText();
+        login log = new login(thePass, Integer.parseInt(theID));
 
-    
-        String idInput = ID.getText();
-        String passwordInput = password.getText();
-        //we want to check if the data are correct
-        int IDreturn = login.AuthLogin(idInput, passwordInput);
+        
+        int IDreturn = login.AuthLogin(thePass, theID);
         if (IDreturn!=-1) {
-            //Trainer
-            if ((IDreturn + "").charAt(0)=='2') {
+                    if (login.isEmployee(Integer.parseInt(theID)) == true) {
             supervisorMenu menSV = new supervisorMenu(stuInfo , bwSD);
             menSV.setVisible(true);
-                menSV.setLocationRelativeTo(null);
-                this.dispose();
-            }
-        //student
-            else {
-                for (int i = 0; i < stuInfo.size(); i++) {
-                   if (stuInfo.get(i).getId() == IDreturn) {
-                        insStudent = stuInfo.get(i);
-                        break;
-                    }
 
-                }
-                sdmenu Mmenu = null;
+        } else {
+            sdmenu menSD;
             try {
-                Mmenu = new sdmenu();
+                menSD = new sdmenu();
+                menSD.setVisible(true);
             } catch (IOException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
-                Mmenu.setVisible(true);
-                Mmenu.setLocationRelativeTo(null);
-                this.dispose();
-            }
-    
-        }else{
+            
+        }
+
+
+        }
+                else{
         JOptionPane.showMessageDialog(null, "Wrong Password Or UserName");
         ID.setText("");
         password.setText("");
         }
-
-
-//        theID = Integer.parseInt(ID.getText());
-//         String line[];
-//        int read=0;
-//        String ll;
-//        BufferedReader fr = null;
-//        try {
-//            fr = new BufferedReader(new FileReader("supervisor.txt"));
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        Scanner sc = new Scanner ("supervisor.txt");
-//        try {
-//            while((ll=fr.readLine())!=null) {
-//                
-//                line = ll.split(",");
-//                if(line[1].equals(ID.getText())){
-//                    svName=line[2];
-//                }
-//                System.out.println(line[2]);
-//                
-//            }
-//        } catch (IOException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        thePass = password.getText();
-//        login log = new login(thePass, theID);
-//
-//        if (login.isEmployee(theID) == true) {
-//            supervisorMenu menSV = new supervisorMenu(stuInfo , bwSD);
-//            menSV.setVisible(true);
-//
-//        } else {
-//            sdmenu menSD;
-//            try {
-//                menSD = new sdmenu();
-//                menSD.setVisible(true);
-//            } catch (IOException ex) {
-//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//        }
     }//GEN-LAST:event_signinMouseClicked
 
     private void IDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IDMouseClicked
