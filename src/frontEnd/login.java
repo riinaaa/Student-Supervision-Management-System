@@ -5,8 +5,11 @@
  */
 package frontEnd;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -91,16 +94,20 @@ public class login {
      */
     
     
-    public static int AuthLogin(String guiID, String pass) {
+    public static int AuthLogin(String pass, String guiID) throws IOException {
+        String line[];
+        String ll;
+   
 		try {
-			Scanner input = new Scanner(new File("AccountsInfo.txt"));
-			while (input.hasNext()) {
-				int ID = input.nextInt();
-				String userID = input.next();
-				String Password = input.next();
-				if (userID.equalsIgnoreCase(guiID) && Password.equals(pass)) {
-					return ID;
-				}
+               BufferedReader bf = new BufferedReader(new FileReader("AccountsInfo.txt"));
+                    while ((ll=bf.readLine())!=null) {
+                        line = ll.split(",");
+                        System.out.println(line[0] + "," + line[1] + "");
+                        String userID = line[0];
+                        String Password = line[1];                  
+                        if (userID.equalsIgnoreCase(guiID.trim()) && Password.equals(pass.trim())) {
+                            return Integer.parseInt(guiID);
+                        }
 			}
 			return -1;
 		} catch (FileNotFoundException ex) {

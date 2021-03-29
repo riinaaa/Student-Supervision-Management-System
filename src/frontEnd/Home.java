@@ -5,6 +5,7 @@
  */
 package frontEnd;
 
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,13 +18,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 /**
  *
  * @author mac
  */
 public class Home extends javax.swing.JFrame {
-
+    static int IDreturn;
     static String theID;
     static String thePass;
     static String svName;
@@ -329,18 +332,19 @@ public class Home extends javax.swing.JFrame {
                         svName = line[2];
                     }
 
-                    int IDreturn = login.AuthLogin(thePass, theID);
-                    if (IDreturn != -1) {
-                        if (login.isEmployee(theID) == true) {
-                            supervisorMenu menSV = new supervisorMenu(stuInfo, bwSD);
-                            menSV.setVisible(true);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Wrong Password Or UserName");
-                            ID.setText("");
-                            password.setText("");
-                        }
-                    }
                 }
+                IDreturn = login.AuthLogin(password.getText(), ID.getText());
+                if (IDreturn != -1) {
+                    supervisorMenu menSV = new supervisorMenu(stuInfo, bwSD);
+                    menSV.setVisible(true);
+                } else {
+                    UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                            "serif", Font.BOLD, 16)));
+                    JOptionPane.showMessageDialog(this, " Wrong Password or Username");
+                    ID.setText("");
+                    password.setText("");
+                }
+
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -355,21 +359,33 @@ public class Home extends javax.swing.JFrame {
                     if (line2[1].equals(ID.getText())) {
                         sdName = line2[2];
                     }
-                    sdmenu menSD;
-                    try {
+
+                }
+                sdmenu menSD;
+                try {
+                    if (IDreturn != -1) {
                         menSD = new sdmenu();
                         menSD.setVisible(true);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } else {
+                        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                                "serif", Font.BOLD, 16)));
+                        JOptionPane.showMessageDialog(this, " Wrong Password or Username");
+                        ID.setText("");
+                        password.setText("");
                     }
 
-                    System.out.println(line2[2]);
-                }
+
+                
             } catch (IOException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
-        } 
+
+        }   catch (FileNotFoundException ex) { 
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        }
     
     }//GEN-LAST:event_signinMouseClicked
 
