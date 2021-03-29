@@ -131,15 +131,13 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="contact" alignment="0" max="32767" attributes="0"/>
-                              <Component id="delete" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="contact" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="add" min="-2" max="-2" attributes="0"/>
                       <Component id="update" min="-2" max="-2" attributes="0"/>
+                      <Component id="delete" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -504,7 +502,7 @@
                       <Component id="jLabel16" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabel15" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel15" alignment="1" pref="32" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
