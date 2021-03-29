@@ -313,54 +313,64 @@ public class Home extends javax.swing.JFrame {
          String line[];
         int read=0;
         String ll;
+        String lll;
+        String line2[];
         BufferedReader fr = null;
+        BufferedReader frr = null;
+        login l = new login();
+        if(l.isEmployee(ID.getText())==true){
+            System.out.println("true emp");
         try {
-            fr = new BufferedReader(new FileReader("supervisor.txt"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Scanner sc = new Scanner ("supervisor.txt");
-        try {
-            while((ll=fr.readLine())!=null) {
-                
-                line = ll.split(",");
-                if(line[1].equals(ID.getText())){
-                    svName=line[2];
+                fr = new BufferedReader(new FileReader("supervisor.txt"));
+                while ((ll = fr.readLine()) != null) {
+                    line = ll.split(",");
+                    System.out.println(line[2]);
+                    if (line[1].equals(ID.getText())) {
+                        svName = line[2];
+                    }
+
+                    int IDreturn = login.AuthLogin(thePass, theID);
+                    if (IDreturn != -1) {
+                        if (login.isEmployee(theID) == true) {
+                            supervisorMenu menSV = new supervisorMenu(stuInfo, bwSD);
+                            menSV.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Wrong Password Or UserName");
+                            ID.setText("");
+                            password.setText("");
+                        }
+                    }
                 }
-                System.out.println(line[2]);
-                
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        thePass = password.getText();
-        login log = new login(thePass, Integer.parseInt(theID));
-
-        
-        int IDreturn = login.AuthLogin(thePass, theID);
-        if (IDreturn!=-1) {
-                    if (login.isEmployee(Integer.parseInt(theID)) == true) {
-            supervisorMenu menSV = new supervisorMenu(stuInfo , bwSD);
-            menSV.setVisible(true);
-
-        } else {
-            sdmenu menSD;
-            try {
-                menSD = new sdmenu();
-                menSD.setVisible(true);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        }
+        } else {
+            try {
+                frr = new BufferedReader(new FileReader("student.txt"));
+                System.out.println("true stu");
+                while ((lll = frr.readLine()) != null) {
+                    line2 = lll.split(",");
+                    if (line2[1].equals(ID.getText())) {
+                        sdName = line2[2];
+                    }
+                    sdmenu menSD;
+                    try {
+                        menSD = new sdmenu();
+                        menSD.setVisible(true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
-
-        }
-                else{
-        JOptionPane.showMessageDialog(null, "Wrong Password Or UserName");
-        ID.setText("");
-        password.setText("");
-        }
+                    System.out.println(line2[2]);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        } 
+    
     }//GEN-LAST:event_signinMouseClicked
 
     private void IDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IDMouseClicked
@@ -411,7 +421,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ID;
+    public static javax.swing.JTextField ID;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

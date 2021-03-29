@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class login {
   
     private String password;
-    private int ID;
+    private String ID;
     
     /**
      *
@@ -49,7 +49,7 @@ public class login {
      *
      * @return from user input in the mainHome interface 
      */
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
@@ -57,7 +57,7 @@ public class login {
      *
      * @param ID  set user id 
      */
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -73,11 +73,7 @@ public class login {
      * @param password of the student 
      * @param ID of the employee
      */
-    public login( String password, int ID) {
-      
-        this.password = password;
-        this.ID = ID;
-    }
+   
 
     /**
      *this method checks if the email the student entered contains these letteres to verify its a KAU email
@@ -180,15 +176,13 @@ public class login {
      * @throws FileNotFoundException
      */
     
-    public static boolean isEmployee(int ID) {
-        String IDD = ID+ " ";
-     if(IDD.startsWith("2"))
+    public static boolean isEmployee(String ID) {
+     if(ID.startsWith("2"))
          return true;
      return false;
 }
-    public static  boolean isStudent (int ID){
-          String IDD = ID+ " ";
-     if(IDD.startsWith("1"))
+    public static boolean isStudent (String ID){
+     if(ID.startsWith("1"))
          return true;
      return false;
     }
