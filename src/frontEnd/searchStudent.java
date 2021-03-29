@@ -52,7 +52,7 @@ public class searchStudent extends javax.swing.JFrame {
         String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
 
         // (3) create connection
-        con = DriverManager.getConnection(ConnectionURL, "root", "");
+        con = DriverManager.getConnection(ConnectionURL, "root", "ManarInKorea2022");
 
         // (4) create statment object
         st = con.createStatement();
@@ -571,6 +571,7 @@ public class searchStudent extends javax.swing.JFrame {
                 String i = r.getString("ID");
                 if (list.getSelectedValue().equals(i)) {
                     String sql = "DELETE FROM STUDENT WHERE ID =" + id.getText();
+
                     int delete = st.executeUpdate(sql);
                     if (delete == 1) {
                         gpa.setText("");
