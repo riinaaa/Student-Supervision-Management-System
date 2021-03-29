@@ -321,29 +321,48 @@ public class Home extends javax.swing.JFrame {
         if(l.isEmployee(ID.getText())==true){
             System.out.println("true emp");
         try {
-            fr = new BufferedReader(new FileReader("supervisor.txt"));
-            while ((ll = fr.readLine()) != null) {
-                line = ll.split(",");
-                System.out.println(line[2]);
-                if (line[1].equals(ID.getText())) {
-                    svName = line[2];
+                fr = new BufferedReader(new FileReader("supervisor.txt"));
+                while ((ll = fr.readLine()) != null) {
+                    line = ll.split(",");
+                    System.out.println(line[2]);
+                    if (line[1].equals(ID.getText())) {
+                        svName = line[2];
+                    }
+
+                    int IDreturn = login.AuthLogin(thePass, theID);
+                    if (IDreturn != -1) {
+                        if (login.isEmployee(theID) == true) {
+                            supervisorMenu menSV = new supervisorMenu(stuInfo, bwSD);
+                            menSV.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Wrong Password Or UserName");
+                            ID.setText("");
+                            password.setText("");
+                        }
+                    }
                 }
-            
-            }
-            }catch (FileNotFoundException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }   catch (IOException ex) {
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             try {
                 frr = new BufferedReader(new FileReader("student.txt"));
-                   System.out.println("true stu");
+                System.out.println("true stu");
                 while ((lll = frr.readLine()) != null) {
                     line2 = lll.split(",");
-                    if (line2[1].equals(ID.getText())){
+                    if (line2[1].equals(ID.getText())) {
                         sdName = line2[2];
                     }
+                    sdmenu menSD;
+                    try {
+                        menSD = new sdmenu();
+                        menSD.setVisible(true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     System.out.println(line2[2]);
                 }
             } catch (IOException ex) {
@@ -352,23 +371,6 @@ public class Home extends javax.swing.JFrame {
         
         } 
     
-        thePass = password.getText();
-        login log = new login();
-
-        if (log.isEmployee(ID.getText()) == true) {
-            supervisorMenu menSV = new supervisorMenu(stuInfo , bwSD);
-            menSV.setVisible(true);
-
-        } else {
-            sdmenu menSD;
-            try {
-                menSD = new sdmenu();
-                menSD.setVisible(true);
-            } catch (IOException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
     }//GEN-LAST:event_signinMouseClicked
 
     private void IDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IDMouseClicked
