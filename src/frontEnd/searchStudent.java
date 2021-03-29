@@ -27,6 +27,7 @@ import java.sql.Statement;
  * @author mac
  */
 public class searchStudent extends javax.swing.JFrame {
+
     static Connection con;
     static ArrayList<String> ids = new ArrayList<>();
     static String split[];
@@ -49,21 +50,21 @@ public class searchStudent extends javax.swing.JFrame {
         con = DriverManager.getConnection(ConnectionURL, "root", "");
 
         // (4) create statment object
-         st = con.createStatement();
+        st = con.createStatement();
         setLocationRelativeTo(null);
         // bwSD = new FileWriter ("Student.txt");
         //bw = new BufferedReader (new FileReader ("student.txt"));
         //  String line = "";
         DefaultListModel dlm = new DefaultListModel();
 
-         res = st.executeQuery("SELECT ID FROM STUDENT ");
+        res = st.executeQuery("SELECT ID FROM STUDENT ");
         while (res.next()) {
             String i = res.getString("ID");
             System.out.println(i);
             dlm.addElement(i);
             list.setModel(dlm);
         }
-      
+
     }
 
     /**
@@ -115,7 +116,7 @@ public class searchStudent extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         delete = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        deleteStu = new javax.swing.JLabel();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -390,8 +391,13 @@ public class searchStudent extends javax.swing.JFrame {
             }
         });
 
-        jLabel21.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
-        jLabel21.setText("DELETE");
+        deleteStu.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        deleteStu.setText("DELETE");
+        deleteStu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteStuMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout deleteLayout = new javax.swing.GroupLayout(delete);
         delete.setLayout(deleteLayout);
@@ -403,13 +409,13 @@ public class searchStudent extends javax.swing.JFrame {
                 .addGap(170, 170, 170))
             .addGroup(deleteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel21)
+                .addComponent(deleteStu)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         deleteLayout.setVerticalGroup(
             deleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deleteLayout.createSequentialGroup()
-                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(deleteStu, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -499,7 +505,7 @@ public class searchStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-     
+
 
     }//GEN-LAST:event_addMouseClicked
 
@@ -509,7 +515,7 @@ public class searchStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_contactMouseClicked
 
     private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
-    
+
 
     }//GEN-LAST:event_updateMouseClicked
 
@@ -518,10 +524,10 @@ public class searchStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteMouseClicked
 
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-       ResultSet r ;
+        ResultSet r;
         try {
             r = st.executeQuery("SELECT * FROM STUDENT ");
-             while (r.next()) {
+            while (r.next()) {
                 String i = r.getString("ID");
                 if (list.getSelectedValue().equals(i)) {
                     gpa.setText(r.getString("GPA"));
@@ -532,14 +538,45 @@ public class searchStudent extends javax.swing.JFrame {
                     type.setText(r.getString("TYPE"));
                     name.setText(r.getString("NAME"));
                     id.setText(r.getString("ID"));
-                    
+
                 }
-             }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_listMouseClicked
+
+    private void deleteStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteStuMouseClicked
+        ResultSet r;
+        try {
+            r = st.executeQuery("SELECT * FROM STUDENT ");
+            while (r.next()) {
+                String i = r.getString("ID");
+                if (list.getSelectedValue().equals(i)) {
+                    String sql = "DELETE FROM person WHERE ID =" + id.getText();
+                    int delete = st.executeUpdate(sql);
+                    if (delete == 1) {
+                        gpa.setText("");
+                        major.setText("");
+                        natID.setText("");
+                        advisor.setText("");
+                        credits.setText("");
+                        type.setText("");
+                        name.setText("");
+                        id.setText("");
+                    } else {
+                        System.out.println("Student is not deleted.");
+                    }
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_deleteStuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -582,7 +619,7 @@ public class searchStudent extends javax.swing.JFrame {
                 }
             }
         });
-            con.close();
+        con.close();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -591,6 +628,7 @@ public class searchStudent extends javax.swing.JFrame {
     private javax.swing.JPanel contact;
     private javax.swing.JTextField credits;
     private javax.swing.JPanel delete;
+    private javax.swing.JLabel deleteStu;
     private javax.swing.JTextField gpa;
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
@@ -606,7 +644,6 @@ public class searchStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
