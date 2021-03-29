@@ -30,7 +30,7 @@ public class DATABSESCODE {
             String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
 
             // (3) create connection
-            con = DriverManager.getConnection(ConnectionURL, "root", "ManarInKorea2022");
+            con = DriverManager.getConnection(ConnectionURL, "root", "");
 
             // (4) create statment object
             Statement st = con.createStatement();
