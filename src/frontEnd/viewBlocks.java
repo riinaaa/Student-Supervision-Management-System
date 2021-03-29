@@ -24,35 +24,35 @@ public class viewBlocks extends javax.swing.JFrame {
 		switch (scheduleInterface.levelChosen) {
 			case "5th level":
 				blocksText.setText("Blocks of " + levelChosen);
-				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
-				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b2.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
 
 
 				break;
 			case "6th level":
 				blocksText.setText("Blocks of " + levelChosen);
-				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
-				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
 				break;
 			case "7th level":
 				blocksText.setText("Blocks of " + levelChosen);
-				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level7Block1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
-				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level7Block2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level7Block1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level7Block2.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
 				break;
 			case "8th level":
 				blocksText.setText("Blocks of " + levelChosen);
-				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level8Block1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
-				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level8Block2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level8Block1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level8Block2.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
 				break;
 			case "9th level":
 				blocksText.setText("Blocks of " + levelChosen);
-				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level9_1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
-				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level9_2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level9_1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level9_2.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
 				break;
 			case "10th level":
 				blocksText.setText("Blocks of " + levelChosen);
-				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level10_1.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
-				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level10_2.png")).getImage().getScaledInstance(580, 300, Image.SCALE_SMOOTH)));
+				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level10_1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level10_2.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
 				break;
 			default:
 				break;
@@ -130,29 +130,31 @@ public class viewBlocks extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(440, 440, 440)
-                .addComponent(blocksText)
-                .addGap(187, 187, 187)
-                .addComponent(jLabel4))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(440, 440, 440)
+                        .addComponent(blocksText)
+                        .addGap(187, 187, 187)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)))
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(block1Img, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(block2Img, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(90, 90, 90)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(109, 109, 109)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(block1Img, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                            .addComponent(block2Img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,9 +177,10 @@ public class viewBlocks extends javax.swing.JFrame {
                                 .addGap(13, 13, 13)
                                 .addComponent(jLabel4)))
                         .addGap(23, 23, 23)
-                        .addComponent(block1Img, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(block2Img, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(block1Img, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(block2Img, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)))
                 .addGap(40, 40, 40))
         );
 
