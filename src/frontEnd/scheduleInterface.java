@@ -15,7 +15,10 @@ public class scheduleInterface extends javax.swing.JFrame {
      */
     static String levelChosen;
     public scheduleInterface() {
+        
         initComponents();setLocationRelativeTo(null);
+        
+        
        
     }
 
