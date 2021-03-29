@@ -176,12 +176,12 @@ public class login {
      * @throws FileNotFoundException
      */
     
-    public boolean isEmployee(String ID) {
+    public static boolean isEmployee(String ID) {
      if(ID.startsWith("2"))
          return true;
      return false;
 }
-    public boolean isStudent (String ID){
+    public static boolean isStudent (String ID){
      if(ID.startsWith("1"))
          return true;
      return false;
