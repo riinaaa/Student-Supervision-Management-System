@@ -18,6 +18,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -43,6 +45,7 @@ public class addStudent extends javax.swing.JFrame  {
     static String line5;
     static String line6;
     static Supervisor sv ;
+    static Connection connection;
     static ArrayList<String> linesNo = new ArrayList<>();
   //  static ArrayList<Student> stds;
 //    static final ArrayList <Student> stuInfo = new ArrayList<>();
@@ -55,6 +58,8 @@ public class addStudent extends javax.swing.JFrame  {
         bwSD = new FileWriter ("Student.txt",true);
         initComponents();setLocationRelativeTo(null);
         System.out.println(Home.svName);
+        boolean b = connect();
+        System.out.println("Response of DB connection: " + b);
         //add students' info in a file without the supervisor's name because the sv's name will
         //be added after the supervisor adds the students
 //        RandomAccessFile ra = new RandomAccessFile("student1.txt", "rw");
@@ -142,7 +147,6 @@ public class addStudent extends javax.swing.JFrame  {
         //supervisor seeks
         //ra.seek(72);//id position
         //System.out.println("70 is " +ra.readUTF().trim());
-
 
     }
 
@@ -274,14 +278,9 @@ public class addStudent extends javax.swing.JFrame  {
                                 .addGap(51, 51, 51)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel2)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addGap(4, 4, 4)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel3))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,7 +289,11 @@ public class addStudent extends javax.swing.JFrame  {
                                                 .addGap(82, 82, 82)
                                                 .addComponent(CS)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(IS))))))))
+                                                .addComponent(IS))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(jLabel2)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,7 +307,7 @@ public class addStudent extends javax.swing.JFrame  {
                                 .addGap(285, 285, 285)))))
                 .addGap(252, 252, 252))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(287, 287, 287)
+                .addGap(277, 277, 277)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -364,21 +367,8 @@ public class addStudent extends javax.swing.JFrame  {
         try {
             stuID = Integer.parseInt(id.getText());
             stuName = name.getText();
-//            brSD = new BufferedReader(new FileReader("Student.txt"));
-//            /// here I should update Student Information 
-//            while(brSD.ready()){
-//               split = brSD.readLine().split(",");
-//               String stuName = split[0];
-//               String stuMajor = split[1];
-//               String stuID= split[2];
-//               double stuGPA=Double.parseDouble(split[3]);
-//               int hours = Integer.parseInt(split[4]);
-//               String natID = split[5];
-//               String stuStatus = split[6];
-//               String svName =split[7];
-//               Student insStudent = new Student (stuID, stuName, stuGPA, natID,  hours,  stuStatus,  stuMajor,  svName);
-//               stuInfo.add(insStudent) ;
-//            }
+      //supervisor added this student under his supervision 
+      
             for (int i = 0; i < stuInfo.size(); i++) {
                 if(stuInfo.get(i).getStuID().equalsIgnoreCase(stuID+"")){
                     System.out.println("enter to iiiiiiiiiiiiiiiifffffffffff loop");
@@ -386,7 +376,7 @@ public class addStudent extends javax.swing.JFrame  {
                   break;
                 }
             }
-               //bwSD =  /*new BufferedWriter (*/new FileWriter ("Student.txt",true)/*)*/;
+           
             for (int i = 0; i < stuInfo.size(); i++) {
             bwSD.write(stuInfo.get(i).getStuName()+","+stuInfo.get(i).getStuMajor() +"," + stuInfo.get(i).getStuID() + "," +stuInfo.get(i).getStuGPA()
                   +","+stuInfo.get(i).getHours()  +"," + stuInfo.get(i).getNatID()+"," + stuInfo.get(i).getStuStatus()+ "," + stuInfo.get(i).getSvName()
@@ -450,7 +440,30 @@ public class addStudent extends javax.swing.JFrame  {
         supervisorMenu sv = new supervisorMenu (null,null);
         sv.setVisible(true);
     }//GEN-LAST:event_jLabel8MouseClicked
-    
+        public boolean connect()
+{
+      try
+        {
+            // (1) load  JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            // (2) set the path for the database
+            String ConnectionURL = "jdbc:mysql://localhost:3306/sys";
+            
+            // (3) create connection
+            connection = DriverManager.getConnection(ConnectionURL,"root","ManarInKorea2022") ;
+        }
+         catch(Exception exception)
+        {
+            System.out.println("This is DB exception:"+exception);
+             return false ;
+        }
+
+        if(connection != null)
+            return true ;
+        else
+            return false ;
+    }
     /**
      * @param args the command line arguments
      */

@@ -19,7 +19,6 @@ public class viewBlocks extends javax.swing.JFrame {
 	 * Creates new form viewBlocks
 	 */
     public viewBlocks() {
-
         initComponents();
         setLocationRelativeTo(null);
         this.setSize(794, 710);
@@ -30,13 +29,11 @@ public class viewBlocks extends javax.swing.JFrame {
 				blocksText.setText("Blocks of " + levelChosen);
 				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
 				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level5_b2.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
-
-
 				break;
 			case "6th level":
 				blocksText.setText("Blocks of " + levelChosen);
 				block1Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
-				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b1.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
+				block2Img.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/blocks/level6_b2.png")).getImage().getScaledInstance(438, 266, Image.SCALE_SMOOTH)));
 				break;
 			case "7th level":
 				blocksText.setText("Blocks of " + levelChosen);

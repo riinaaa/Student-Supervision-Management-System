@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -100,7 +101,6 @@ public class supervisorMenu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 640));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -118,9 +118,9 @@ public class supervisorMenu extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 0, 51));
-        jLabel7.setText("  Add Students");
+        jLabel7.setText("view Information");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/plus.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/info-2.png"))); // NOI18N
 
         javax.swing.GroupLayout addStuLayout = new javax.swing.GroupLayout(addStu);
         addStu.setLayout(addStuLayout);
@@ -253,6 +253,10 @@ public class supervisorMenu extends javax.swing.JFrame {
             searchStudent sd = new searchStudent( stuInfo , bwSD);
             sd.setVisible(true);
         } catch (IOException ex) {
+            Logger.getLogger(supervisorMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(supervisorMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(supervisorMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel4MouseClicked

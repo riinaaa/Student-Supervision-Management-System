@@ -16,37 +16,54 @@ import java.util.logging.Logger;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import java.io.FileWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author mac
  */
 public class searchStudent extends javax.swing.JFrame {
-
+    static Connection con;
     static ArrayList<String> ids = new ArrayList<>();
     static String split[];
     static BufferedReader bw;
+    static ResultSet res;
+    static Statement st;
 
     /**
      * Creates new form searchStudent
      */
-    public searchStudent(ArrayList<Student> stuInfo, FileWriter bwSD) throws FileNotFoundException, IOException {
-        bwSD = new FileWriter ("Student.txt",true);
+    public searchStudent(ArrayList<Student> stuInfo, FileWriter bwSD) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+        bwSD = new FileWriter("Student.txt", true);
         initComponents();
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        // (2) set the path for the database
+        String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
+
+        // (3) create connection
+        con = DriverManager.getConnection(ConnectionURL, "root", "ManarInKorea2022");
+
+        // (4) create statment object
+         st = con.createStatement();
         setLocationRelativeTo(null);
         // bwSD = new FileWriter ("Student.txt");
         //bw = new BufferedReader (new FileReader ("student.txt"));
         //  String line = "";
         DefaultListModel dlm = new DefaultListModel();
-        // while ((line = bw.readLine()) != null) {
-        for (int i = 0; i < stuInfo.size(); i++) {
-            //split = line.split(",");
-            dlm.addElement(stuInfo.get(i).getStuID());
-            list.setModel(dlm);
-            ids.add(stuInfo.get(i).getStuID());
-        }
 
-        //}
+         res = st.executeQuery("SELECT ID FROM STUDENT ");
+        while (res.next()) {
+            String i = res.getString("ID");
+            System.out.println(i);
+            dlm.addElement(i);
+            list.setModel(dlm);
+        }
+      
     }
 
     /**
@@ -90,9 +107,15 @@ public class searchStudent extends javax.swing.JFrame {
         contact = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        OK = new javax.swing.JPanel();
+        add = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        update = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        delete = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -101,7 +124,7 @@ public class searchStudent extends javax.swing.JFrame {
         menuBar1.add(menu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 640));
+        setPreferredSize(new java.awt.Dimension(880, 640));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -121,6 +144,11 @@ public class searchStudent extends javax.swing.JFrame {
             String[] strings = { "1", "2", "3", "4" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(list);
 
@@ -289,37 +317,101 @@ public class searchStudent extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        OK.setBackground(new java.awt.Color(255, 204, 255));
-        OK.addMouseListener(new java.awt.event.MouseAdapter() {
+        add.setBackground(new java.awt.Color(255, 204, 255));
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OKMouseClicked(evt);
+                addMouseClicked(evt);
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel17.setText("OK");
+        jLabel17.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jLabel17.setText("ADD");
 
-        javax.swing.GroupLayout OKLayout = new javax.swing.GroupLayout(OK);
-        OK.setLayout(OKLayout);
-        OKLayout.setHorizontalGroup(
-            OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OKLayout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+        javax.swing.GroupLayout addLayout = new javax.swing.GroupLayout(add);
+        add.setLayout(addLayout);
+        addLayout.setHorizontalGroup(
+            addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel17)
-                .addGap(87, 87, 87))
-        );
-        OKLayout.setVerticalGroup(
-            OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OKLayout.createSequentialGroup()
+                .addGap(145, 145, 145))
+            .addGroup(addLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel17)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addLayout.setVerticalGroup(
+            addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addLayout.createSequentialGroup()
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 2, Short.MAX_VALUE))
+        );
+
+        update.setBackground(new java.awt.Color(255, 204, 255));
+        update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateMouseClicked(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jLabel19.setText("UPDATE");
+
+        javax.swing.GroupLayout updateLayout = new javax.swing.GroupLayout(update);
+        update.setLayout(updateLayout);
+        updateLayout.setHorizontalGroup(
+            updateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109))
+        );
+        updateLayout.setVerticalGroup(
+            updateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+            .addGroup(updateLayout.createSequentialGroup()
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
+        );
+
+        delete.setBackground(new java.awt.Color(255, 204, 255));
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        jLabel21.setText("DELETE");
+
+        javax.swing.GroupLayout deleteLayout = new javax.swing.GroupLayout(delete);
+        delete.setLayout(deleteLayout);
+        deleteLayout.setHorizontalGroup(
+            deleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel22)
+                .addGap(170, 170, 170))
+            .addGroup(deleteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel21)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        deleteLayout.setVerticalGroup(
+            deleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteLayout.createSequentialGroup()
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -341,9 +433,14 @@ public class searchStudent extends javax.swing.JFrame {
                 .addGap(366, 366, 366))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(106, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OK, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,11 +476,15 @@ public class searchStudent extends javax.swing.JFrame {
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addComponent(jLabel7)
-                .addContainerGap(84, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(contact, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(delete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(169, 169, 169)
+                        .addComponent(jLabel7))
+                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -397,61 +498,53 @@ public class searchStudent extends javax.swing.JFrame {
         sv.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
-        BufferedReader bww;
-        String line = "";
-        // bww = new BufferedReader (new FileReader ("student.txt"));
-        // while ((line = bww.readLine()) != null) {
-        System.out.println("1 - stuInfo size >>>>>>>>>>>> " + stuInfo.size());
-        for (int i = 0; i < stuInfo.size(); i++) {
-            // String ss[] = line.split(",");
-            //System.out.println(line);
-            if (list.getSelectedValue().equals(stuInfo.get(i).getStuID())) {
-                gpa.setText(stuInfo.get(i).getStuGPA() + "");
-                major.setText(stuInfo.get(i).getStuMajor() + "");
-                natID.setText(stuInfo.get(i).getNatID() + "");
-                advisor.setText(stuInfo.get(i).getSvName() + "");
-                credits.setText(stuInfo.get(i).getHours() + "");
-                type.setText(stuInfo.get(i).getStuMajor());
-                name.setText(stuInfo.get(i).getStuName());
-                id.setText(stuInfo.get(i).getStuID());
-            }
-        }
-        System.out.println("2- Ater the looooooooop size = " + stuInfo.size());
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+     
 
-        // }
-        try{
-        System.out.println("3- enter to *try* of the priented file in search ");
-        for (int i = 0; i < stuInfo.size(); i++) {
-            System.out.println(" 3.3 - enter to printed looooop to txt :  size is " + stuInfo.size());
-
-           // try {
-                bwSD.write(stuInfo.get(i).getStuName() + "," + stuInfo.get(i).getStuMajor() + "," + stuInfo.get(i).getStuID() + "," + stuInfo.get(i).getStuGPA()
-                        + "," + stuInfo.get(i).getHours() + "," + stuInfo.get(i).getNatID() + "," + stuInfo.get(i).getStuStatus() + "," + stuInfo.get(i).getSvName()
-                        + "\r\n");
-                bwSD.flush();
-         //   } catch (IOException ex) {
-            //    Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
-           // }
-        }
-        //try {
-            bwSD.close();
-        } catch (IOException ex) {
-            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-    }//GEN-LAST:event_OKMouseClicked
+    }//GEN-LAST:event_addMouseClicked
 
     private void contactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMouseClicked
         serverGUI g = new serverGUI();
         g.setVisible(true);
     }//GEN-LAST:event_contactMouseClicked
 
+    private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
+    
+
+    }//GEN-LAST:event_updateMouseClicked
+
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteMouseClicked
+
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+       ResultSet r ;
+        try {
+            r = st.executeQuery("SELECT * FROM STUDENT ");
+             while (r.next()) {
+                String i = r.getString("ID");
+                if (list.getSelectedValue().equals(i)) {
+                    gpa.setText(r.getString("GPA"));
+                    major.setText(r.getString("MAJOR"));
+                    natID.setText(r.getString("NATID"));
+                    advisor.setText(r.getString("ADVISOR"));
+                    credits.setText(r.getString("CREDITS"));
+                    type.setText(r.getString("TYPE"));
+                    name.setText(r.getString("NAME"));
+                    id.setText(r.getString("ID"));
+                    
+                }
+             }
+        } catch (SQLException ex) {
+            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_listMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -482,16 +575,22 @@ public class searchStudent extends javax.swing.JFrame {
                     new searchStudent(stuInfo, bwSD).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
+            con.close();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel OK;
+    private javax.swing.JPanel add;
     private javax.swing.JTextField advisor;
     private javax.swing.JPanel contact;
     private javax.swing.JTextField credits;
+    private javax.swing.JPanel delete;
     private javax.swing.JTextField gpa;
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
@@ -504,7 +603,11 @@ public class searchStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -523,5 +626,6 @@ public class searchStudent extends javax.swing.JFrame {
     private javax.swing.JTextField name;
     private javax.swing.JTextField natID;
     private javax.swing.JTextField type;
+    private javax.swing.JPanel update;
     // End of variables declaration//GEN-END:variables
 }
