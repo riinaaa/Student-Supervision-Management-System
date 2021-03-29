@@ -34,7 +34,6 @@ public class DATABSESCODE {
 
             // (4) create statment object
             Statement st = con.createStatement();
-
             // (5) execute sql statment
             String sql = "CREATE TABLE STUDENT (ID INTEGER NOT NULL,"
                     + " NAME VARCHAR(50), MAJOR VARCHAR(10),"

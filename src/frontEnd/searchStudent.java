@@ -7,6 +7,7 @@ package frontEnd;
 
 import static frontEnd.Home.bwSD;
 import static frontEnd.Home.stuInfo;
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,6 +22,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 /**
  *
@@ -35,6 +39,7 @@ public class searchStudent extends javax.swing.JFrame {
     static ResultSet res;
     static Statement st;
     DefaultListModel dlm;
+
     /**
      * Creates new form searchStudent
      */
@@ -55,7 +60,6 @@ public class searchStudent extends javax.swing.JFrame {
         // bwSD = new FileWriter ("Student.txt");
         //bw = new BufferedReader (new FileReader ("student.txt"));
         //  String line = "";
-        DefaultListModel dlm = new DefaultListModel();
         updateList();
         /*res = st.executeQuery("SELECT ID FROM STUDENT ");
         while (res.next()) {
@@ -66,19 +70,18 @@ public class searchStudent extends javax.swing.JFrame {
         }*/
 
     }
-    public void updateList () throws SQLException{
-    res = st.executeQuery("SELECT ID FROM STUDENT ");
+
+    public void updateList() throws SQLException {
+        DefaultListModel dlm = new DefaultListModel();
+        res = st.executeQuery("SELECT ID FROM STUDENT ");
         while (res.next()) {
             String i = res.getString("ID");
             System.out.println(i);
             dlm.addElement(i);
             list.setModel(dlm);
         }
-    
+
     }
-        
-        
-        
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -117,7 +120,7 @@ public class searchStudent extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         add = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
+        addStu = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         update = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -336,8 +339,13 @@ public class searchStudent extends javax.swing.JFrame {
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
-        jLabel17.setText("ADD");
+        addStu.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        addStu.setText("ADD");
+        addStu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addStuMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout addLayout = new javax.swing.GroupLayout(add);
         add.setLayout(addLayout);
@@ -349,13 +357,13 @@ public class searchStudent extends javax.swing.JFrame {
                 .addGap(145, 145, 145))
             .addGroup(addLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17)
+                .addComponent(addStu)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addLayout.setVerticalGroup(
             addLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addLayout.createSequentialGroup()
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addStu, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 2, Short.MAX_VALUE))
         );
@@ -562,7 +570,7 @@ public class searchStudent extends javax.swing.JFrame {
             while (r.next()) {
                 String i = r.getString("ID");
                 if (list.getSelectedValue().equals(i)) {
-                    String sql = "DELETE FROM person WHERE ID =" + id.getText();
+                    String sql = "DELETE FROM STUDENT WHERE ID =" + id.getText();
                     int delete = st.executeUpdate(sql);
                     if (delete == 1) {
                         gpa.setText("");
@@ -586,6 +594,26 @@ public class searchStudent extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_deleteStuMouseClicked
+
+    private void addStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addStuMouseClicked
+        try {
+            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                        "serif", Font.BOLD, 16)));
+            while (true) {
+                if (id.getText() != null && name.getText() != null && major.getText() != null && gpa.getText() != null && natID.getText() != null && type.getText() != null && advisor.getText() != null) {
+                    st.executeUpdate("INSERT INTO STUDENT" + " VALUES(" + Integer.parseInt(id.getText()) + ",'" + name.getText() + "','" + major.getText() + "', " + Double.parseDouble(gpa.getText()) + ", '" + natID.getText() + "','" + type.getText() + "','" + advisor.getText() + "'," + Integer.parseInt(credits.getText()) + ")");
+                    updateList();
+                    JOptionPane.showMessageDialog(this, " Student added successfully");                   
+                    break;
+                }                
+                JOptionPane.showMessageDialog(this, "Please enter all fields information");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_addStuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -633,6 +661,7 @@ public class searchStudent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel add;
+    private javax.swing.JLabel addStu;
     private javax.swing.JTextField advisor;
     private javax.swing.JPanel contact;
     private javax.swing.JTextField credits;
@@ -648,7 +677,6 @@ public class searchStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
