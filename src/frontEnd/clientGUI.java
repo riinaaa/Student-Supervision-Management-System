@@ -48,8 +48,7 @@ public class clientGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         messageA = new javax.swing.JTextArea();
         messageF = new javax.swing.JTextField();
-        send = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,13 +56,13 @@ public class clientGUI extends javax.swing.JFrame {
 
         messageA.setBackground(new java.awt.Color(102, 102, 102));
         messageA.setColumns(20);
-        messageA.setFont(new java.awt.Font(".SF NS Text", 0, 18)); // NOI18N
+        messageA.setFont(new java.awt.Font(".SF NS Text", 0, 14)); // NOI18N
         messageA.setForeground(new java.awt.Color(255, 204, 102));
         messageA.setRows(5);
         jScrollPane1.setViewportView(messageA);
 
         messageF.setBackground(new java.awt.Color(102, 102, 102));
-        messageF.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        messageF.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         messageF.setForeground(new java.awt.Color(255, 204, 102));
         messageF.setText("enter your message");
         messageF.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -72,59 +71,39 @@ public class clientGUI extends javax.swing.JFrame {
             }
         });
 
-        send.setBackground(new java.awt.Color(255, 204, 102));
-        send.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel6.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/send-mail.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sendMouseClicked(evt);
+                jLabel6MouseClicked(evt);
             }
         });
-
-        jLabel5.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 0, 51));
-        jLabel5.setText("Send");
-
-        javax.swing.GroupLayout sendLayout = new javax.swing.GroupLayout(send);
-        send.setLayout(sendLayout);
-        sendLayout.setHorizontalGroup(
-            sendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sendLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel5)
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
-        sendLayout.setVerticalGroup(
-            sendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sendLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addContainerGap())
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
+                .addGap(47, 47, 47))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,22 +120,21 @@ public class clientGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
-         mes = messageF.getText();
+    private void messageFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_messageFMouseClicked
+        messageF.setText("");
+    }//GEN-LAST:event_messageFMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        String mes = messageF.getText();
         try {
             out.writeUTF(mes);
-           
+            messageA.setText(messageA.getText() + "\n Student: \t" + mes + "\n");
+            messageF.setText("");
         } catch (IOException ex) {
             Logger.getLogger(serverGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         messageF.setText(" ");
-
-
-    }//GEN-LAST:event_sendMouseClicked
-
-    private void messageFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_messageFMouseClicked
-        messageF.setText("");
-    }//GEN-LAST:event_messageFMouseClicked
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,7 +176,7 @@ public class clientGUI extends javax.swing.JFrame {
             out = new DataOutputStream(s.getOutputStream());
             while(!msg.equals("exit")){
                 msg = in.readUTF();
-                messageA.setText(messageA.getText() + "\n Client " + msg);
+                messageA.setText(messageA.getText() + "\n Advisor: " + msg);
                 
             }
         }catch(Exception ex){
@@ -208,11 +186,10 @@ public class clientGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTextArea messageA;
     private javax.swing.JTextField messageF;
-    private javax.swing.JPanel send;
     // End of variables declaration//GEN-END:variables
 }
