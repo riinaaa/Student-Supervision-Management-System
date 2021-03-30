@@ -92,7 +92,7 @@ public class DATABSESCODE {
             // create statment object
             Statement st = con.createStatement();
             // execute sql statment
-            String sql = "CREATE TABLE advisor "
+            String sql = "CREATE TABLE ADVISOR "
                     + "(id INTEGER not NULL, "
                     + " name VARCHAR(100), "
                     + " natID VARCHAR(100), "
@@ -102,15 +102,13 @@ public class DATABSESCODE {
 
             st.executeUpdate(sql);
 
-            st.executeUpdate("INSERT INTO advisor" + " VALUES(1,'Abeer','10092029','050693920','9-7-1989')");
-            st.executeUpdate("INSERT INTO advisor" + " VALUES(2,'Linda','10089211','054324552','9-7-1988')");
-            st.executeUpdate("INSERT INTO advisor" + " VALUES(3,'Felwa','10291019','055553356','9-7-1985')");
-            st.executeUpdate("INSERT INTO advisor" + " VALUES(4,'Wafaa','10345615','057543674','9-7-1975')");
-            st.executeUpdate("INSERT INTO advisor" + " VALUES(5,'Doaa','100926211','050625567','9-7-1984')");
-            st.executeUpdate("INSERT INTO advisor" + " VALUES(6,'Soaad','10887394','055636566','9-7-1983')");
-            st.executeUpdate("INSERT INTO advisor" + " VALUES(7,'Noor','113934933','052556772','9-7-1977')");
-            st.executeUpdate("INSERT INTO advisor" + " VALUES(8,'Nada','106637883','059048325','9-7-1988')");
-            st.executeUpdate("INSERT INTO advisor" + " VALUES(9,'Reem','102838977','050577648','9-7-1981')");
+            st.executeUpdate("INSERT INTO ADVISOR" + " VALUES(227635,'Noor','10092029','050693920','9-7-1989')");
+            st.executeUpdate("INSERT INTO ADVISOR" + " VALUES(221330,'Felwa','10089211','054324552','9-7-1988')");
+            st.executeUpdate("INSERT INTO ADVISOR" + " VALUES(231278,'Wafaa','10345615','057543674','9-7-1975')");
+            st.executeUpdate("INSERT INTO ADVISOR" + " VALUES(251489,'Doaa','100926211','050625567','9-7-1984')");
+            st.executeUpdate("INSERT INTO ADVISOR" + " VALUES(261821,'Soaad','10887394','055636566','9-7-1983')");
+            st.executeUpdate("INSERT INTO ADVISOR" + " VALUES(229089,'Afraa','106637883','059048325','9-7-1988')");
+            st.executeUpdate("INSERT INTO ADVISOR" + " VALUES(212635,'Nada','102838977','050577648','9-7-1981')");
             System.out.println("1 row affected");
 
             //close connection
