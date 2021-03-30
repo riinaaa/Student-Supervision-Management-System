@@ -6,7 +6,9 @@
 package frontEnd;
 
 import java.awt.Dimension;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -22,7 +24,7 @@ public class startHome extends javax.swing.JFrame {
      */
     public startHome() {
        initComponents();
-     
+     setLocationRelativeTo(null);
        
        
     }
@@ -116,7 +118,7 @@ public class startHome extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(60, 50, 500, 300);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/Screen Shot 2021-03-24 at 8.00.00 PM.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/start-yellow.png"))); // NOI18N
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 800, 640);
@@ -129,6 +131,10 @@ public class startHome extends javax.swing.JFrame {
             Home hm = new Home ();
             hm.setVisible(true);
         } catch (IOException ex) {
+            Logger.getLogger(startHome.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(startHome.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(startHome.class.getName()).log(Level.SEVERE, null, ex);
         }
        
