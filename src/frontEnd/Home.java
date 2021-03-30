@@ -5,6 +5,8 @@
  */
 package frontEnd;
 
+import static frontEnd.searchStudent.con;
+import static frontEnd.searchStudent.st;
 import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,6 +14,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -36,10 +41,39 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    public Home() throws FileNotFoundException, IOException {
+    public Home() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
         initComponents();
         setLocationRelativeTo(null);
-       
+        
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        // (2) set the path for the database
+        String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
+
+        // (3) create connection
+        con = DriverManager.getConnection(ConnectionURL, "root", "");
+
+        // (4) create statment object
+        st = con.createStatement();
+        setLocationRelativeTo(null);
+        
+       /*  login l = new login();
+        if (l.isEmployee(ID.getText()) == true) {
+        }else{
+                 ResultSet r;
+        try {
+            r = st.executeQuery("SELECT * FROM STUDENT ");
+            while (r.next()) {
+                String i = r.getString("ID");
+                if (ID.getText().equals(i)) {
+               
+
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }*/
         //stuInfo = new ArrayList<>();
         BufferedReader brSD = new BufferedReader(new FileReader("Student.txt"));
         String[] split;
@@ -371,6 +405,10 @@ public class Home extends javax.swing.JFrame {
                 try {
                     new Home().setVisible(true);
                 } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
