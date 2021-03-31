@@ -58,21 +58,13 @@ public class searchStudent extends javax.swing.JFrame {
         // (4) create statment object
         st = con.createStatement();
         setLocationRelativeTo(null);
-        // bwSD = new FileWriter ("Student.txt");
-        //bw = new BufferedReader (new FileReader ("student.txt"));
-        //  String line = "";
+        
         updateList();
-        /*res = st.executeQuery("SELECT ID FROM STUDENT ");
-        while (res.next()) {
-            String i = res.getString("ID");
-            System.out.println(i);
-            dlm.addElement(i);
-            list.setModel(dlm);
-        }*/
+    
 
     }
 
-    public void updateList() throws SQLException {
+    public  void updateList() throws SQLException {
         DefaultListModel dlm = new DefaultListModel();
         res = st.executeQuery("SELECT ID FROM STUDENT ");
         while (res.next()) {
@@ -140,6 +132,7 @@ public class searchStudent extends javax.swing.JFrame {
         menuBar1.add(menu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(880, 660));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -171,7 +164,7 @@ public class searchStudent extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(list);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 216, 206, 329));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 216, 200, 329));
 
         jLabel3.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 102));
@@ -314,7 +307,7 @@ public class searchStudent extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 19, 72, 84));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 72, 84));
 
         contact.setBackground(new java.awt.Color(255, 204, 255));
         contact.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -331,7 +324,7 @@ public class searchStudent extends javax.swing.JFrame {
         contactLayout.setHorizontalGroup(
             contactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contactLayout.createSequentialGroup()
-                .addContainerGap(198, Short.MAX_VALUE)
+                .addContainerGap(190, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addGap(67, 67, 67)
                 .addComponent(jLabel16)
@@ -418,7 +411,7 @@ public class searchStudent extends javax.swing.JFrame {
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
-        jPanel1.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 563, 73, -1));
+        jPanel1.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 563, 70, -1));
 
         clear.setBackground(new java.awt.Color(255, 204, 255));
         clear.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -505,6 +498,7 @@ public class searchStudent extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         supervisorMenu sv = new supervisorMenu(null, null);
         sv.setVisible(true);
+     
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
@@ -515,6 +509,7 @@ public class searchStudent extends javax.swing.JFrame {
     private void contactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMouseClicked
         serverGUI g = new serverGUI();
         g.setVisible(true);
+      
     }//GEN-LAST:event_contactMouseClicked
 
     
@@ -541,6 +536,8 @@ public class searchStudent extends javax.swing.JFrame {
             
             ps.executeUpdate();
             ps.close();
+              UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                            "serif", Font.BOLD, 16)));
             JOptionPane.showMessageDialog(null,"The student was updated succesfully");
             
             
@@ -597,7 +594,8 @@ public class searchStudent extends javax.swing.JFrame {
                 String i = r.getString("ID");
                 if (list.getSelectedValue().equals(i)) {
                     String sql = "DELETE FROM STUDENT WHERE ID =" + id.getText();
-
+  UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                            "serif", Font.BOLD, 16)));
                     int delete = st.executeUpdate(sql);
                     if (delete == 1) {
                         gpa.setText("");
@@ -696,9 +694,7 @@ public class searchStudent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel add;
-    private javax.swing.JPanel add1;
     private javax.swing.JLabel addStu;
-    private javax.swing.JLabel addStu1;
     private javax.swing.JTextField advisor;
     private javax.swing.JPanel clear;
     private javax.swing.JPanel contact;
@@ -720,7 +716,6 @@ public class searchStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;

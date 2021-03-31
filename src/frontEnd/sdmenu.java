@@ -7,6 +7,7 @@ package frontEnd;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,6 +58,11 @@ public class sdmenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 0, 51));
@@ -127,6 +133,11 @@ public class sdmenu extends javax.swing.JFrame {
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 0, 51));
@@ -210,9 +221,26 @@ public class sdmenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-    studentInfoView v = new studentInfoView();
-    v.setVisible(true);
+    studentInfoView v;
+        try {
+            v = new studentInfoView();   v.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(sdmenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(sdmenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
     }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+      scheduleInterface sd = new scheduleInterface ();
+      sd.setVisible(true);
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+       serverGUI ser = new serverGUI();
+       ser.setVisible(true);
+    }//GEN-LAST:event_jPanel2MouseClicked
 
     /**
      * @param args the command line arguments

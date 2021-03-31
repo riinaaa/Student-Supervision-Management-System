@@ -101,6 +101,7 @@ public class supervisorMenu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 640));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -239,12 +240,15 @@ public class supervisorMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addStuMouseClicked
-      addStudent add;
+      advisorInfoView add;
         try {
-            add = new addStudent( stuInfo , bwSD  );  add.setVisible(true);
-        } catch (IOException ex) {
+            add = new advisorInfoView(); add.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(supervisorMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(supervisorMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
+     
     
     }//GEN-LAST:event_addStuMouseClicked
 
