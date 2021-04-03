@@ -1,7 +1,5 @@
 
-THE LEVEL : 6th
-
-THE SUBJECTS : 
+THE,LEVEL,6th,THE,SUBJECTS : 
 CPIT250,INSTRUCTOR : Abeer Makky 
 CPIT240,INSTRUCTOR : Sara Ahmed 
 CPIT260,INSTRUCTOR : Shireen Saifudain 
@@ -9,9 +7,7 @@ CPIT285,INSTRUCTOR : Wafaa Shalash
 
 ------------------------------------
 ------------------------------------
-THE LEVEL : 8th
-
-THE SUBJECTS : 
+THE,LEVEL,8th,THE ,UBJECTS : 
 CPIT305,INSTRUCTOR : Abeer Hakeem 
 CPIT425,INSTRUCTOR : Manal Bayousef
 CPIT252,INSTRUCTOR : Nada Almani
