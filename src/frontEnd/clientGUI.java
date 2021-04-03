@@ -193,7 +193,7 @@ public class clientGUI extends javax.swing.JFrame {
             out = new DataOutputStream(s.getOutputStream());
             while(!msg.equals("exit")){
                 msg = in.readUTF();
-                messageA.setText(messageA.getText() + "\n Advisor: " + msg);
+                messageA.setText(messageA.getText() + "\n Advisor: \t" + msg);
                 
             }
         }catch(Exception ex){

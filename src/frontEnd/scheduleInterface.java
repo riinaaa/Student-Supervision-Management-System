@@ -6,6 +6,7 @@
 package frontEnd;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,11 +20,9 @@ public class scheduleInterface extends javax.swing.JFrame {
      */
     static String levelChosen;
     public scheduleInterface() {
+    initComponents();setLocationRelativeTo(null);
         
-        initComponents();setLocationRelativeTo(null);
-        
-        
-       
+   
     }
 
     /**
@@ -156,9 +155,14 @@ public class scheduleInterface extends javax.swing.JFrame {
     private void signinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinMouseClicked
         levelChosen=level.getSelectedItem().toString();
         System.out.println(levelChosen);
-		viewBlocks n = new viewBlocks();
-		n.setVisible(true);
+		viewBlocks n;
+        try {
+            n = new viewBlocks();n.setVisible(true);
 		this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(scheduleInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		
     }//GEN-LAST:event_signinMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

@@ -25,6 +25,7 @@ public class startHome extends javax.swing.JFrame {
     public startHome() {
        initComponents();
      setLocationRelativeTo(null);
+     
        
        
     }
@@ -61,7 +62,7 @@ public class startHome extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Serif", 2, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Clicke here to start");
+        jLabel3.setText("Click here to start");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);

@@ -8,7 +8,9 @@ package frontEnd;
 import static frontEnd.scheduleInterface.*;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -20,7 +22,7 @@ public class viewBlocks extends javax.swing.JFrame {
 	/**
 	 * Creates new form viewBlocks
 	 */
-    public viewBlocks() {
+    public viewBlocks() throws IOException {
         initComponents();
         setLocationRelativeTo(null);
         this.setSize(794, 710);
@@ -60,8 +62,34 @@ public class viewBlocks extends javax.swing.JFrame {
 			default:
 				break;
 		}
-
-		
+                 System.out.println(Integer.parseInt(Character.toString(levelChosen.charAt(0)))==5);
+        System.out.println(Character.toString(levelChosen.charAt(0)));
+     Schedule schedule = new Schedule();
+     ArrayList<String> subjects = new ArrayList<>();
+     subjects.add("CPIT210");
+     subjects.add("CPCS204");
+     subjects.add("CPIT250");
+     subjects.add("CPIT240");
+     subjects.add("CPIT260");
+     subjects.add("CPIT285");
+     subjects.add("CPIT251");
+     subjects.add("CPIT280");
+     subjects.add("CPIT380");
+     subjects.add("CPIT370");
+     subjects.add("CPIT305");
+     subjects.add("CPIT425");
+     subjects.add("CPIT252");
+     subjects.add("CPIT470");
+     subjects.add("CPIT435");
+     subjects.add("CPIS428");
+     subjects.add("CPIT405");
+     subjects.add("CPIT345");
+     subjects.add("CPIT499");
+     subjects.add("CPIT498");
+     subjects.add("CPIT330");
+     subjects.add("CPIT340");
+     schedule.writeToAFile(subjects,20, Integer.parseInt(Character.toString(levelChosen.charAt(0))));
+       
 		
 	}
 
@@ -244,7 +272,11 @@ public class viewBlocks extends javax.swing.JFrame {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new viewBlocks().setVisible(true);
+                            try {
+                                new viewBlocks().setVisible(true);
+                            } catch (IOException ex) {
+                                Logger.getLogger(viewBlocks.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 			}
 		});
 	}

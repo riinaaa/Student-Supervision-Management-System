@@ -20,7 +20,6 @@ import java.util.logging.Logger;
  * @author mac
  */
 public class studentInfoView extends javax.swing.JFrame {
-
     /**
      * Creates new form studentInfoView
      */
@@ -350,7 +349,7 @@ public class studentInfoView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField major;
     private javax.swing.JTextField name;
-    private javax.swing.JTextField natID;
+    public static javax.swing.JTextField natID;
     private javax.swing.JTextField type;
     // End of variables declaration//GEN-END:variables
 }

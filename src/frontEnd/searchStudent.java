@@ -623,17 +623,17 @@ public class searchStudent extends javax.swing.JFrame {
     private void addStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addStuMouseClicked
         try {
             UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
-                        "serif", Font.BOLD, 16)));
+                    "serif", Font.BOLD, 16)));
             while (true) {
                 if (id.getText() != null && name.getText() != null && major.getText() != null && gpa.getText() != null && natID.getText() != null && type.getText() != null && advisor.getText() != null) {
                     st.executeUpdate("INSERT INTO STUDENT" + " VALUES(" + Integer.parseInt(id.getText()) + ",'" + name.getText() + "','" + major.getText() + "', " + Double.parseDouble(gpa.getText()) + ", '" + natID.getText() + "','" + type.getText() + "','" + advisor.getText() + "'," + Integer.parseInt(credits.getText()) + ")");
                     updateList();
-                    JOptionPane.showMessageDialog(this, " Student added successfully");                   
+                    JOptionPane.showMessageDialog(this, " Student added successfully");
                     break;
-                }                
+                }
                 JOptionPane.showMessageDialog(this, "Please enter all fields information");
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
