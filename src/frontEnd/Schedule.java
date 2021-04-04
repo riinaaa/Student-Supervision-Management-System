@@ -84,95 +84,94 @@ public class Schedule {
         BufferedWriter out = new BufferedWriter(f);
         System.out.println(level);
         if (level == 5) {
-            out.write("\n"+"------------------------------------"+ "\n");
-            out.write("\n"+"THE LEVEL : " + level + "th" +"\n");
-            out.write("\n"+"THE SUBJECTS : " + "\n");
+          
+            out.write("THE,LEVEL," + level + "th" +",");
+            out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT210")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Doaa Sinnari " +"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Doaa Sinnari " +",");
                 } else {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Abeer Alhothali "+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Abeer Alhothali "+"");
                 }
             }
-            out.write("\n"+"------------------------------------"+ "\n");
+        
         } else if (level == 6) {
-              out.write("\n"+"THE LEVEL : " + level + "th" +"\n");
+              out.write("\n"+"THE,LEVEL," + level + "th" +",");
       
-            out.write("\n"+"THE SUBJECTS : " + "\n");
+            out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT250")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Abeer Makky " +"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Abeer Makky " +",");
                 } else if (subjects.get(i).equals("CPIT260")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Shireen Saifudain " +"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Shireen Saifudain " +",");
                 } else if (subjects.get(i).equals("CPIT240")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Sara Ahmed "+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Sara Ahmed "+",");
                 } else if (subjects.get(i).equals("CPIT285")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Wafaa Shalash "+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Wafaa Shalash "+"");
                 }
             }
-           out.write("\n"+"------------------------------------"+ "\n");
         } else if (level == 7) {
-              out.write("\n"+"THE LEVEL : " + level + "th" +"\n");
+              out.write("\n"+"THE LEVEL," + level + "th" +",");
 
-            out.write("\n"+"THE SUBJECTS : " + "\n");
+            out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT251")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Doaa Sinnari"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Doaa Sinnari"+",");
                 } else if (subjects.get(i).equals("CPIT280")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Felwa Kareem"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Felwa Kareem"+",");
                 } else if (subjects.get(i).equals("CPIT380")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Soaad Baawidan"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Soaad Baawidan"+",");
                 } else if (subjects.get(i).equals("CPIT370")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Lina Mohasain"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Lina Mohasain"+"");
                 }
             }
-           out.write("\n"+"------------------------------------ "+ "\n");
+           
         } else if (level == 8) {
-              out.write("\n"+"THE LEVEL : " + level + "th" +"\n");
-            out.write("\n"+"THE SUBJECTS : " + "\n");
+              out.write("\n"+"THE LEVEL," + level + "th" +",");
+            out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT305")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Abeer Hakeem " +"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Abeer Hakeem" +",");
                 } else if (subjects.get(i).equals("CPIT425")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Manal Bayousef" +"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Manal Bayousef" +",");
                 } else if (subjects.get(i).equals("CPIT252")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Nada Almani"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Nada Almani"+",");
                 } else if (subjects.get(i).equals("CPIT330")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Hanan Alotaibi"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Hanan Alotaibi"+"");
                 }
             }
-            out.write("\n"+"------------------------------------"+ "\n");
+           
         } else if (level == 9) {
-              out.write("\n"+"THE LEVEL : " + level + "th" +"\n");
-            out.write("\n"+"THE SUBJECTS : " + "\n");
+              out.write("\n"+"THE LEVEL," + level + "th" +",");
+            out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT340")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Noor Bajunaid"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Noor Bajunaid"+",");
                 } else if (subjects.get(i).equals("CPIT470")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Afraa Attiah"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Afraa Attiah"+",");
                 } else if (subjects.get(i).equals("CPIT405")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Wafaa Alsaggaf"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Wafaa Alsaggaf"+",");
                 } else if (subjects.get(i).equals("CPIT345")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Felwa Kareem"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Felwa Kareem"+"");
                 }
             }
-            out.write("\n"+"------------------------------------"+ "\n");
+         
         } else {
-              out.write("\n"+"THE LEVEL : " + 10 + "th" +"\n");
-            out.write("\n"+"THE SUBJECTS : " + "\n");
+              out.write("\n"+"THE LEVEL," + 10 + "th" +",");
+            out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT435")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Wafaa Shalash"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Wafaa Shalash"+",");
                 } else if (subjects.get(i).equals("CPIS428")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Asmaa Rasheed"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Asmaa Rasheed"+",");
                 } else if (subjects.get(i).equals("CPIT455")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Monairah Taileb"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Monairah Taileb"+",");
                 } else if (subjects.get(i).equals("CPIT340")) {
-                    out.write(subjects.get(i) + "," + "INSTRUCTOR : Noor Bajunaid"+"\n");
+                    out.write(subjects.get(i) + "," + "INSTRUCTOR,Noor Bajunaid"+"");
                 }
             }
         }
-        out.write("------------------------------------");
+       
         out.close();
     }
 }
