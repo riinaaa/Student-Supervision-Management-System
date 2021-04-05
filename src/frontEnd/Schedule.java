@@ -24,7 +24,7 @@ public class Schedule {
     private int block;
     private ArrayList<String> instreuctors; 
     private ArrayList<String> subjects ;
-
+ private int level;
     public ArrayList<String> getInstreuctors() {
         return instreuctors;
     }
@@ -40,7 +40,7 @@ public class Schedule {
     public void setSubjects(ArrayList<String> subjects) {
         this.subjects = subjects;
     }
-    private int level;
+   
 
     public Schedule() {
     }

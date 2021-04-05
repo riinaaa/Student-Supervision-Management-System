@@ -17,43 +17,7 @@ public class Student {
     private int hours;
     private String stuStatus;
     private String stuMajor;
-    public static final int name = 10;
-
-    public static int getName() {
-        return name;
-    }
-
-    public static int getId() {
-        return id;
-    }
-
-    public static int getGpa() {
-        return gpa;
-    }
-
-    public static int getMajor() {
-        return major;
-    }
-
-    public static int getHourss() {
-        return hourss;
-    }
-
-    public static int getSvname() {
-        return svname;
-    }
-   public static final int id = 4;
-   public static final int gpa = 4;
-    public static final int major = 10;
-   public static final int hourss = 4;
-   public static final int svname = 10;
-
-    public static int getRECORD_SIZE() {
-        return RECORD_SIZE;
-    }
-   public static final int RECORD_SIZE = (name + id + gpa+ major+hourss+svname) + 1;  
-  
-    private String svName;
+    private String advisorName;
 
     public Student(String stuID, String stuName, double stuGPA, String natID, int hours, String stuStatus, String stuMajor, String svName) {
         this.stuID = stuID;
@@ -63,20 +27,17 @@ public class Student {
         this.hours = hours;
         this.stuStatus = stuStatus;
         this.stuMajor = stuMajor;    
-        this.svName = svName;
+        this.advisorName = svName;
     }
 
     public String getSvName() {
-        return svName;
+        return advisorName;
     }
 
     public void setSvName(String svName) {
-        this.svName = svName;
+        this.advisorName = svName;
     }
   
-
-    
-
     public String getStuID() {
         return stuID;
     }

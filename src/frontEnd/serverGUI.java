@@ -247,9 +247,8 @@ public class serverGUI extends javax.swing.JFrame {
                 new serverGUI().setVisible(true);
             }
         });
-
+                   //runnable
         try {
-
             ss = new ServerSocket(1222);
             while (true) {
                 //**********************************
@@ -257,26 +256,25 @@ public class serverGUI extends javax.swing.JFrame {
                 Runnable rubObj = () -> {
                     try {
                         String msgin = "";
-
+                        //Multiclients, multithreaded and io streams
                         in = new DataInputStream(s.getInputStream());
                         out = new DataOutputStream(s.getOutputStream());
                         while (true) {
                             msgin = in.readUTF();
                             messageA.setText(messageA.getText() + "\n Student: \t" + msgin);
-                            if (msgin.equalsIgnoreCase("BYE")) {
-
+                            if (msgin.equalsIgnoreCase("Thank you")) {
                                 break;
                             }
                         }
                     } catch (IOException ex) {
-                        System.out.println("Inner Catch: " + ex.getMessage());
+                        System.out.println(ex.getMessage());
                     }
-                };//end runnable
+                };//ending runnable
                 
                 Thread thread = new Thread(rubObj);
                 System.out.println("Student: " + thread.getName());
                 thread.start();
-            }//end of outer while
+            }
         } catch (UnknownHostException e) {
             System.err.println("Host not found");
         } catch (java.net.ConnectException e) {
@@ -285,40 +283,7 @@ public class serverGUI extends javax.swing.JFrame {
             System.err.println(e.getMessage());
         }
     
-    
-    
-      /*  ss = new ServerSocket(1222);
-        System.out.println("Server waiting Connection...");
-        while (true) {
-            s = ss.accept();
-            Runnable rubObj = () -> {
-                ChatThread t = new ChatThread(s);
-                Thread d = new Thread(t);
-                d.start();
-
-            };
-            Thread thread = new Thread(rubObj);
-            // System.out.println("Student: " + thread.getName());
-            thread.start();
-        }*/
-
-
-        /*  String msg="";
-        try{
-            ss = new ServerSocket(1222);
-            s= ss.accept();
-            in = new DataInputStream(s.getInputStream());
-            out = new DataOutputStream(s.getOutputStream());
-            while(!in.readUTF().equals("bye")){
-                msg = in.readUTF();
-                jTextPane1.setText(jTextPane1.getText() + "\n Student: " + msg);
-            }
-            
-           
-        }catch(Exception ex){
-            
-        }*/
-        
+   
         
            
     }

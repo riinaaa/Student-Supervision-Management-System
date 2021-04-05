@@ -44,54 +44,11 @@ public class Home extends javax.swing.JFrame {
     public Home() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
         initComponents();
         setLocationRelativeTo(null);
-        
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        // (2) set the path for the database
-        String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
-
-        // (3) create connection
-        con = DriverManager.getConnection(ConnectionURL, "root", "");
-
-        // (4) create statment object
-        st = con.createStatement();
-        setLocationRelativeTo(null);
-        
-       /*  login l = new login();
-        if (l.isEmployee(ID.getText()) == true) {
-        }else{
-                 ResultSet r;
-        try {
-            r = st.executeQuery("SELECT * FROM STUDENT ");
-            while (r.next()) {
-                String i = r.getString("ID");
-                if (ID.getText().equals(i)) {
-               
-
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }*/
-        //stuInfo = new ArrayList<>();
+       
+      
         BufferedReader brSD = new BufferedReader(new FileReader("Student.txt"));
         String[] split;
-            /// here I should update Student Information 
-            while(brSD.ready()){
-               split = brSD.readLine().split(",");
-               String stuName = split[0];
-               String stuMajor = split[1];
-               String stuID= split[2];
-               double stuGPA=Double.parseDouble(split[3]);
-               int hours = Integer.parseInt(split[4]);
-               String natID = split[5];
-               String stuStatus = split[6];
-               String svName =split[7];
-               Student insStudent = new Student (stuID, stuName, stuGPA, natID,  hours,  stuStatus,  stuMajor,  svName);
-               stuInfo.add(insStudent) ;
-            }
-             bwSD = new FileWriter ("Student.txt");
+    
     }
 
     /**
@@ -297,8 +254,8 @@ public class Home extends javax.swing.JFrame {
         String line2[];
         BufferedReader fr = null;
         BufferedReader frr = null;
-        login l = new login();
-        if (l.isEmployee(ID.getText()) == true) {
+        login log = new login();
+        if (log.isEmployee(ID.getText()) == true) {
             System.out.println("true emp");
             try {
                 fr = new BufferedReader(new FileReader("supervisor.txt"));
@@ -310,6 +267,7 @@ public class Home extends javax.swing.JFrame {
                     }
 
                 }
+                
                 IDreturn = login.AuthLogin(password.getText(), ID.getText());
                 if (IDreturn != -1) {
                     supervisorMenu menSV = new supervisorMenu(stuInfo, bwSD);
@@ -327,18 +285,24 @@ public class Home extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
+        } else if (log.isStudent(ID.getText())==true){
             try {
                 frr = new BufferedReader(new FileReader("student.txt"));
                 System.out.println("true stu");
                 while ((lll = frr.readLine()) != null) {
                     line2 = lll.split(",");
-                    if (line2[1].equals(ID.getText())) {
-                        sdName = line2[2];
+                    System.out.println(line2[3]);
+                    System.out.println(ID.getText());
+                    if (line2[3].equals(ID.getText())) {
+                        sdName = line2[0] + " " + line2[1];
+                        svName = line2[8];
+                        System.out.println(sdName);
+                        System.out.println(line2[8]);
                     }
 
                 }
                 sdmenu menSD;
+                   IDreturn = login.AuthLogin(password.getText(), ID.getText());
                 try {
                     if (IDreturn != -1) {
                         menSD = new sdmenu();

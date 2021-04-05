@@ -111,7 +111,6 @@ public class viewBlocks extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         block1Img = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("blocks");
@@ -166,15 +165,6 @@ public class viewBlocks extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 0));
-        jButton1.setForeground(new java.awt.Color(51, 0, 51));
-        jButton1.setText("Subject Info");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -202,8 +192,6 @@ public class viewBlocks extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(blocksText)
                         .addGap(364, 364, 364)
@@ -230,9 +218,7 @@ public class viewBlocks extends javax.swing.JFrame {
                                 .addGap(57, 57, 57))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(blocksText)
-                                    .addComponent(jButton1))
+                                .addComponent(blocksText)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -255,16 +241,6 @@ public class viewBlocks extends javax.swing.JFrame {
       sd = new scheduleInterface ();
       sd.setVisible(true);
     }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            subjectsInfo sub = new subjectsInfo();
-            sub.setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(viewBlocks.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -309,7 +285,6 @@ public class viewBlocks extends javax.swing.JFrame {
     private javax.swing.JLabel block1Img;
     private javax.swing.JLabel block2Img;
     private javax.swing.JLabel blocksText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

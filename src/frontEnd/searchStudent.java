@@ -53,7 +53,7 @@ public class searchStudent extends javax.swing.JFrame {
         String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
 
         // (3) create connection
-        con = DriverManager.getConnection(ConnectionURL, "root", "1234");
+        con = DriverManager.getConnection(ConnectionURL, "root", "");
 
         // (4) create statment object
         st = con.createStatement();
@@ -645,7 +645,36 @@ public class searchStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteStu1MouseClicked
 
     private void delete1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete1MouseClicked
-        // TODO add your handling code here:
+           ResultSet r;
+        try {
+            r = st.executeQuery("SELECT * FROM STUDENT ");
+            while (r.next()) {
+                String i = r.getString("ID");
+                if (list.getSelectedValue().equals(i)) {
+                    String sql = "DELETE FROM STUDENT WHERE ID =" + id.getText();
+  UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                            "serif", Font.BOLD, 16)));
+                    int delete = st.executeUpdate(sql);
+                    if (delete == 1) {
+                        gpa.setText("");
+                        major.setText("");
+                        natID.setText("");
+                        advisor.setText("");
+                        credits.setText("");
+                        type.setText("");
+                        name.setText("");
+                        id.setText("");
+                        updateList();
+                          JOptionPane.showMessageDialog(this, " Student is deleted successfully");
+                    } else {
+                         JOptionPane.showMessageDialog(this, " Student is not deleted successfully");
+                    }
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_delete1MouseClicked
 
     /**

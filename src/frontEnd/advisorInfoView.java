@@ -24,8 +24,8 @@ public class advisorInfoView extends javax.swing.JFrame {
      * Creates new form advisorInfoView
      */
     public advisorInfoView() throws SQLException, ClassNotFoundException {
-        initComponents();
-         Class.forName("com.mysql.cj.jdbc.Driver");
+        initComponents();setLocationRelativeTo(null);
+          Class.forName("com.mysql.cj.jdbc.Driver");
 
         // (2) set the path for the database
         String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
@@ -87,7 +87,7 @@ public class advisorInfoView extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
 
-        jLabel1.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 102));
         jLabel1.setText("View Information");
 

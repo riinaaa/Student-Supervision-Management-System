@@ -25,7 +25,7 @@ public class studentInfoView extends javax.swing.JFrame {
      */
     public studentInfoView() throws SQLException, ClassNotFoundException {
         initComponents();setLocationRelativeTo(null);
-        Class.forName("com.mysql.cj.jdbc.Driver");
+      Class.forName("com.mysql.cj.jdbc.Driver");
 
         // (2) set the path for the database
         String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
@@ -96,7 +96,7 @@ public class studentInfoView extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
 
-        jLabel1.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 102));
         jLabel1.setText("View Information");
 
@@ -240,13 +240,17 @@ public class studentInfoView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel1))
-                .addGap(233, 233, 233))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(407, 407, 407))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

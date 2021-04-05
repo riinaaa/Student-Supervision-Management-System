@@ -22,8 +22,8 @@ import javax.swing.plaf.FontUIResource;
  * @author mac
  */
 public class Advisor {
-    private String svID;
-    private String svName;
+    private String advisorID;
+    private String advisorName;
     private String natID;
 
      
@@ -34,27 +34,25 @@ public class Advisor {
     }
 
     public Advisor(String svID, String svName, String natID) {
-        this.svID = svID;
-        this.svName = svName;
+        this.advisorID = svID;
+        this.advisorName = svName;
         this.natID = natID;
     }
 
-    
-
-    public String getSvID() {
-        return svID;
+    public String getAdvisorID() {
+        return advisorID;
     }
 
-    public void setSvID(String svID) {
-        this.svID = svID;
+    public void setAdvisorID(String advisorID) {
+        this.advisorID = advisorID;
     }
 
-    public String getSvName() {
-        return svName;
+    public String getAdvisorName() {
+        return advisorName;
     }
 
-    public void setSvName(String svName) {
-        this.svName = svName;
+    public void setAdvisorName(String advisorName) {
+        this.advisorName = advisorName;
     }
 
    
