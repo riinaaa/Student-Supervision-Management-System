@@ -72,9 +72,9 @@ public class login {
 
     /**
      *
-     * @param email of the student
-     * @param password of the student 
-     * @param ID of the employee
+     * 
+     * @param password of the user 
+     * @param ID of the user
      */
    
 

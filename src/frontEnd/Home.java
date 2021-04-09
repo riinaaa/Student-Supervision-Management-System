@@ -45,7 +45,6 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
        
-      
         BufferedReader brSD = new BufferedReader(new FileReader("Student.txt"));
         String[] split;
     
@@ -258,12 +257,12 @@ public class Home extends javax.swing.JFrame {
         if (log.isEmployee(ID.getText()) == true) {
             System.out.println("true emp");
             try {
-                fr = new BufferedReader(new FileReader("supervisor.txt"));
+                fr = new BufferedReader(new FileReader("advisor.txt"));
                 while ((ll = fr.readLine()) != null) {
                     line = ll.split(",");
                     System.out.println(line[2]);
                     if (line[1].equals(ID.getText())) {
-                        svName = line[2];
+                        svName = line[2]; //assigning the advisor's name from reading from the advisor's file 
                     }
 
                 }
@@ -294,7 +293,7 @@ public class Home extends javax.swing.JFrame {
                     System.out.println(line2[3]);
                     System.out.println(ID.getText());
                     if (line2[3].equals(ID.getText())) {
-                        sdName = line2[0] + " " + line2[1];
+                        sdName = line2[0] + " " + line2[1];//assigning student's first & last name from the file student
                         svName = line2[8];
                         System.out.println(sdName);
                         System.out.println(line2[8]);

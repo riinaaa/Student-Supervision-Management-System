@@ -66,34 +66,4 @@ public class Advisor {
     }
 
     
-    public  void addStudent (String id,String name, String major, double gpa,String natiD,String type, String advisor,String credits) throws IOException, ClassNotFoundException, SQLException{
-   /*  Class.forName("com.mysql.cj.jdbc.Driver");
-       // (2) set the path for the database
-        String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
-
-        // (3) create connection
-        con = DriverManager.getConnection(ConnectionURL, "root", "");
-
-        // (4) create statment object
-        st = con.createStatement();
-       
-        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
-                "serif", Font.BOLD, 16)));
-        while (true) {
-            if (id!= null && name != null && major!= null && gpa!= null && natID!= null && type != null && advisor!= null) {
-                st.executeUpdate("INSERT INTO STUDENT" + " VALUES(" + Integer.parseInt(id) + ",'" + name + "','" + major + "', " + Double.parseDouble(gpa) + ", '" + natID+ "','" + type + "','" + advisor + "'," + Integer.parseInt(credits) + ")");
-                //updateList();
-                JOptionPane.showMessageDialog(this, " Student added successfully");
-                break;
-            }
-            JOptionPane.showMessageDialog(this, "Please enter all fields information");
-        }    */    
-                
-    }
-    public void updateStudent (String id){
-        
-    }
-    public void deleteStudent(String id){
-        
-    }
 }

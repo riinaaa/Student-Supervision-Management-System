@@ -24,7 +24,7 @@ public class Schedule {
     private int block;
     private ArrayList<String> instreuctors; 
     private ArrayList<String> subjects ;
- private int level;
+    private int level;
     public ArrayList<String> getInstreuctors() {
         return instreuctors;
     }
@@ -84,20 +84,18 @@ public class Schedule {
         BufferedWriter out = new BufferedWriter(f);
         System.out.println(level);
         if (level == 5) {
-          
             out.write("THE,LEVEL," + level + "th" +",");
             out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT210")) {
                     out.write(subjects.get(i) + "," + "INSTRUCTOR,Doaa Sinnari " +",");
-                } else {
+                } else { //subject will be CPCS204
                     out.write(subjects.get(i) + "," + "INSTRUCTOR,Abeer Alhothali "+"");
                 }
             }
         
         } else if (level == 6) {
-              out.write("\n"+"THE,LEVEL," + level + "th" +",");
-      
+            out.write("\n"+"THE,LEVEL," + level + "th" +",");
             out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT250")) {
@@ -111,8 +109,7 @@ public class Schedule {
                 }
             }
         } else if (level == 7) {
-              out.write("\n"+"THE LEVEL," + level + "th" +",");
-
+            out.write("\n"+"THE LEVEL," + level + "th" +",");
             out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT251")) {
@@ -127,7 +124,7 @@ public class Schedule {
             }
            
         } else if (level == 8) {
-              out.write("\n"+"THE LEVEL," + level + "th" +",");
+            out.write("\n"+"THE LEVEL," + level + "th" +",");
             out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT305")) {
@@ -142,7 +139,7 @@ public class Schedule {
             }
            
         } else if (level == 9) {
-              out.write("\n"+"THE LEVEL," + level + "th" +",");
+            out.write("\n"+"THE LEVEL," + level + "th" +",");
             out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT340")) {
@@ -157,7 +154,7 @@ public class Schedule {
             }
          
         } else {
-              out.write("\n"+"THE LEVEL," + 10 + "th" +",");
+            out.write("\n"+"THE LEVEL," + 10 + "th" +",");
             out.write(","+"THE SUBJECTS,");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT435")) {
