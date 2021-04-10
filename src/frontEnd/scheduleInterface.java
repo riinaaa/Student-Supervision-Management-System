@@ -152,6 +152,7 @@ public class scheduleInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        //when send button is clicked the student's choice "which block" the wanted will be sent to the view blocks form and show them
     private void signinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinMouseClicked
         levelChosen=level.getSelectedItem().toString();
         System.out.println(levelChosen);

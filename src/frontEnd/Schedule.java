@@ -78,7 +78,7 @@ public class Schedule {
     }
 
    
-    //----------------------------------------------------------------------------------------------------------------
+    //----------------------------------this will print each block info(courses and instructors) to file---------------------------------------------
     public void writeToAFile(ArrayList<String> subjects, int no, int level) throws FileNotFoundException, IOException{
         FileWriter f = new FileWriter("blocks.txt",true);
         BufferedWriter out = new BufferedWriter(f);

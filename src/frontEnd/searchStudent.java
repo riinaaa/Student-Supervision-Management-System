@@ -58,13 +58,13 @@ public class searchStudent extends javax.swing.JFrame {
         // (4) create statment object
         st = con.createStatement();
         setLocationRelativeTo(null);
-        
+
         updateList();
-    
 
     }
 
-    public  void updateList() throws SQLException {
+    // updating the list so in case of updating/deleting to the student's info
+    public void updateList() throws SQLException {
         DefaultListModel dlm = new DefaultListModel();
         res = st.executeQuery("SELECT ID FROM STUDENT ");
         while (res.next()) {
@@ -498,7 +498,7 @@ public class searchStudent extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         supervisorMenu sv = new supervisorMenu(null, null);
         sv.setVisible(true);
-     
+
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
@@ -506,25 +506,26 @@ public class searchStudent extends javax.swing.JFrame {
 
     }//GEN-LAST:event_addMouseClicked
 
+    // contact the chosen student button will open the serverGUI
     private void contactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMouseClicked
         serverGUI g;
         try {
-            g = new serverGUI();  g.setVisible(true);
+            g = new serverGUI();
+            g.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
-      
+
+
     }//GEN-LAST:event_contactMouseClicked
 
-    
-    //update here
+    // the supervisor can update the student's info then clicking the update button to update the DB as well
     private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
-        
-            double gppa = Double.valueOf(gpa.getText());
-            int idd = Integer.valueOf(id.getText());
-            int cred = Integer.valueOf(credits.getText());
-          
+
+        double gppa = Double.valueOf(gpa.getText());
+        int idd = Integer.valueOf(id.getText());
+        int cred = Integer.valueOf(credits.getText());
+
         try {
             Statement st = con.createStatement();
             String query = "update STUDENT set ID=?, Name=?, Major=?, GPA=?, NATID=?, type=?, advisor=?, CREDITS=? where ID=?";
@@ -538,35 +539,34 @@ public class searchStudent extends javax.swing.JFrame {
             ps.setString(7, advisor.getText());
             ps.setInt(8, cred);
             ps.setString(9, list.getSelectedValue());
-            
+
             ps.executeUpdate();
             ps.close();
-              UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
-                            "serif", Font.BOLD, 16)));
-            JOptionPane.showMessageDialog(null,"The student was updated succesfully");
-            
-            
+            UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                    "serif", Font.BOLD, 16)));
+            JOptionPane.showMessageDialog(null, "The student was updated succesfully");
+
         } catch (SQLException ex) {
             Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 
     }//GEN-LAST:event_updateMouseClicked
 
-    
-    //clear
+    //clear the form to make it easier for adding new students
     private void clearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseClicked
-                        gpa.setText(null);
-                        major.setText(null);
-                        natID.setText(null);
-                        advisor.setText(null);
-                        credits.setText(null);
-                        type.setText(null);
-                        name.setText(null);
-                        id.setText(null);   
+        gpa.setText(null);
+        major.setText(null);
+        natID.setText(null);
+        advisor.setText(null);
+        credits.setText(null);
+        type.setText(null);
+        name.setText(null);
+        id.setText(null);
 
     }//GEN-LAST:event_clearMouseClicked
 
+    // this will show student's information that the supervisor chose
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         ResultSet r;
         try {
@@ -590,7 +590,7 @@ public class searchStudent extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_listMouseClicked
-
+    // deleting a specific student from the supervisor's list
     private void deleteStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteStuMouseClicked
         ResultSet r;
         try {
@@ -599,7 +599,7 @@ public class searchStudent extends javax.swing.JFrame {
                 String i = r.getString("ID");
                 if (list.getSelectedValue().equals(i)) {
                     String sql = "DELETE FROM STUDENT WHERE ID =" + id.getText();
-  UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                    UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
                             "serif", Font.BOLD, 16)));
                     int delete = st.executeUpdate(sql);
                     if (delete == 1) {
@@ -625,6 +625,7 @@ public class searchStudent extends javax.swing.JFrame {
 
     }//GEN-LAST:event_deleteStuMouseClicked
 
+    // the supervisor will add a new student's and fill the information form
     private void addStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addStuMouseClicked
         try {
             UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
@@ -650,14 +651,14 @@ public class searchStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteStu1MouseClicked
 
     private void delete1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete1MouseClicked
-           ResultSet r;
+        ResultSet r;
         try {
             r = st.executeQuery("SELECT * FROM STUDENT ");
             while (r.next()) {
                 String i = r.getString("ID");
                 if (list.getSelectedValue().equals(i)) {
                     String sql = "DELETE FROM STUDENT WHERE ID =" + id.getText();
-  UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                    UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
                             "serif", Font.BOLD, 16)));
                     int delete = st.executeUpdate(sql);
                     if (delete == 1) {
@@ -670,9 +671,9 @@ public class searchStudent extends javax.swing.JFrame {
                         name.setText("");
                         id.setText("");
                         updateList();
-                          JOptionPane.showMessageDialog(this, " Student is deleted successfully");
+                        JOptionPane.showMessageDialog(this, " Student is deleted successfully");
                     } else {
-                         JOptionPane.showMessageDialog(this, " Student is not deleted successfully");
+                        JOptionPane.showMessageDialog(this, " Student is not deleted successfully");
                     }
                     break;
                 }
