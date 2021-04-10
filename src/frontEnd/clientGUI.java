@@ -23,6 +23,7 @@ import java.util.logging.Logger;
  *
  * @author mac
  */
+//this interface is a chat interface where the student can send messages to their advisors
 public class clientGUI extends javax.swing.JFrame {
     static Socket s;
     static String mes; 
@@ -33,7 +34,8 @@ public class clientGUI extends javax.swing.JFrame {
      */
     public clientGUI() {
         initComponents();
-        name.setText(Home.sdNam);
+        name.setText(Home.sdNam);//setting the student's name from the Home interface which stores the student's name
+           //becuase it has the login info... once the login is successed, the student's name is stored.
     }
 
     /**
@@ -142,10 +144,10 @@ public class clientGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_messageFMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        String mes = messageF.getText();
+        String mes = messageF.getText(); //get the message the student typed
         try {
-            out.writeUTF(mes);
-            messageA.setText(messageA.getText() + "\n Student: \t" + mes + "\n");
+            out.writeUTF(mes);//write it in a stream to be visible to the advisor
+            messageA.setText(messageA.getText() + "\n Student: \t" + mes + "\n"); //write the message by the student in the message area
             messageF.setText("");
         } catch (IOException ex) {
             Logger.getLogger(serverGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -189,11 +191,12 @@ public class clientGUI extends javax.swing.JFrame {
         String msg="";
         try{
             s = new Socket("127.0.0.1",1222);
-            in = new DataInputStream(s.getInputStream());
+            in = new DataInputStream(s.getInputStream()); 
             out = new DataOutputStream(s.getOutputStream());
             while(!msg.equals("exit")){
                 msg = in.readUTF();
-                messageA.setText(messageA.getText() + "\n Advisor: \t" + msg);
+                messageA.setText(messageA.getText() + "\n Advisor: \t" + msg);//getting the advisor's messages from the stream
+                //and print it in the message ares
                 
             }
         }catch(Exception ex){

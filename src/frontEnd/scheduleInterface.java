@@ -18,6 +18,9 @@ public class scheduleInterface extends javax.swing.JFrame {
     /**
      * Creates new form scheduleInterface
      */
+    /*
+    This interface lets the student to select a specific level (semester) to further display the blocks in this selected level
+    */
     static String levelChosen;
     public scheduleInterface() {
     initComponents();setLocationRelativeTo(null);
@@ -154,10 +157,12 @@ public class scheduleInterface extends javax.swing.JFrame {
 
         //when send button is clicked the student's choice "which block" the wanted will be sent to the view blocks form and show them
     private void signinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinMouseClicked
-        levelChosen=level.getSelectedItem().toString();
+        levelChosen=level.getSelectedItem().toString(); //get the student's selected level 
         System.out.println(levelChosen);
 		viewBlocks n;
         try {
+            //based on the student's selected level, the viewBlocks interface will be visible and it will show
+            //the blocks of the selected nlevel by the student
             n = new viewBlocks();n.setVisible(true);
 		this.dispose();
         } catch (IOException ex) {
@@ -167,6 +172,7 @@ public class scheduleInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_signinMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+      //this is the back button which will go back to the menu interface
         sdmenu sv;
         try {
             sv = new sdmenu (); 

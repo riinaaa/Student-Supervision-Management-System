@@ -1,6 +1,0 @@
-MarwaAhmed,IT,1807227,4.44,75,110922222,Active,Felwa
-SaraAhmed,IT,1806443,4.6,96,119829233,Active,Afraa
-LeenaNour,IS,1802234,4.8,34,11092983,Active,null
-HindAsli,CS,1807589,4.76,58,11829273,Active,null
-WaadBunaider,IS,1801236,4.22,27,10028923,Active,Afraa
-MaryamFahad,IT,1809981,4.55,60,11822193,Active,Noor

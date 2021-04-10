@@ -21,18 +21,7 @@ public class login {
     private String password;
     private String ID;
 
-    /**
-     *
-     * @return from user input in the mainHome interface
-     */
-    /**
-     *
-     * @param email from user input in the mainHome interface
-     */
-    /**
-     *
-     * @return from user input in the mainHome interface
-     */
+
     public String getPassword() {
         return password;
     }
@@ -47,7 +36,7 @@ public class login {
 
     /**
      *
-     * @return from user input in the mainHome interface
+     * @return from user input in the Home interface
      */
     public String getID() {
         return ID;

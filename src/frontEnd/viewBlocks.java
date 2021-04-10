@@ -26,8 +26,9 @@ public class viewBlocks extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.setSize(794, 710);
-        //this.setResizable(false);
-
+    
+//based on the student's level choice...from the scheduleInterface interface.. the blocks will be printed
+//blocks as images in the BLOCK folder inside this project
 		switch (scheduleInterface.levelChosen) {
 			case "5th level":
 				blocksText.setText("Blocks of " + levelChosen);
@@ -62,9 +63,11 @@ public class viewBlocks extends javax.swing.JFrame {
 			default:
 				break;
 		}
-                 System.out.println(Integer.parseInt(Character.toString(levelChosen.charAt(0)))==5);
-        System.out.println(Character.toString(levelChosen.charAt(0)));
-     Schedule schedule = new Schedule();
+       //to print blocks report in a file. we used the schedule class that has a method to write to a file
+       //firstly, we need to add all the courses in an arraylist and send this arraylist to the schedule class
+       //the schedule class will check if the courses in the arraylist equal the courses in the level the student selected
+       //and will then write it to a file with the courses' info : instructors anf block number
+     Schedule schedulle = new Schedule();
      ArrayList<String> subjects = new ArrayList<>();
      subjects.add("CPIT210");
      subjects.add("CPCS204");
@@ -88,7 +91,7 @@ public class viewBlocks extends javax.swing.JFrame {
      subjects.add("CPIT498");
      subjects.add("CPIT330");
      subjects.add("CPIT340");
-     schedule.writeToAFile(subjects,20, Integer.parseInt(Character.toString(levelChosen.charAt(0))));
+     schedulle.writeToAFile(subjects,20, Integer.parseInt(Character.toString(levelChosen.charAt(0))));
        
 		
 	}

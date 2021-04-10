@@ -22,8 +22,8 @@ public class sdmenu extends javax.swing.JFrame {
      */
     public sdmenu() throws IOException {
         initComponents();setLocationRelativeTo(null);
-       
-           name.setText(Home.sdNam);
+           name.setText(Home.sdNam); //setting the student's name from the Home interface which stores the student's name
+           //becuase it has the login info... once the login is successed, the student's name is stored.
     }
 
     /**
