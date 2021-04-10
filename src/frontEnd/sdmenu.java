@@ -23,7 +23,7 @@ public class sdmenu extends javax.swing.JFrame {
     public sdmenu() throws IOException {
         initComponents();setLocationRelativeTo(null);
        
-           name.setText(Home.sdName);
+           name.setText(Home.sdNam);
     }
 
     /**

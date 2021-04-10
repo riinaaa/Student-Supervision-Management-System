@@ -7,7 +7,7 @@ package frontEnd;
 
 import static frontEnd.Home.bwSD;
 import static frontEnd.Home.stuInfo;
-import static frontEnd.Home.svName;
+import static frontEnd.Home.svNam;
 import static frontEnd.Home.theID;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,7 +31,7 @@ public class supervisorMenu extends javax.swing.JFrame {
     
     public supervisorMenu(ArrayList <Student> stuInfo ,FileWriter bwSD  ) {
         initComponents(); 
-        name2.setText(Home.svName);
+        name2.setText(Home.svNam);
        setLocationRelativeTo(null);
         try {
             String id1 = Home.theID + " ";
@@ -44,24 +44,24 @@ public class supervisorMenu extends javax.swing.JFrame {
                             id1 = Home.theID + " ";
                             System.out.println(id1);
                             if (line[1].trim().equals(id1.trim())) {
-                                svName = line[2];
-                                name2.setText(svName);
+                                svNam = line[2];
+                                name2.setText(svNam);
                             }
                             break;
                         case "2":
                             id1 = Home.theID + " ";
                             String[] line1 = read.next().split(",");
                             if (line1[1].trim().equals(id1.trim())) {
-                                svName = line1[2];
-                                name2.setText(svName);
+                                svNam = line1[2];
+                                name2.setText(svNam);
                             }
                             break;
                         case "3":
                             id1 = Home.theID + " ";
                             String[] line2 = read.next().split(",");
                             if (line2[1].equals(id1.trim())) {
-                                svName = line2[2];
-                                name2.setText(svName);
+                                svNam = line2[2];
+                                name2.setText(svNam);
                             }
                             break;
 

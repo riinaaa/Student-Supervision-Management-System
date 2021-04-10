@@ -41,21 +41,15 @@ public class serverGUI extends javax.swing.JFrame {
     static ServerSocket ss;
     static DataInputStream in;
     static DataOutputStream out;
-    static ArrayList<String> ids;
-    static ArrayList<String> names;
+  
 
     /**
      * Creates new form serverGUI
      */
     public serverGUI() throws FileNotFoundException, IOException {
         initComponents();
-       // name.setText(Home.svName);
-        BufferedReader bf = new BufferedReader(new FileReader("LogginTracking.txt"));
-        BufferedReader bfa = new BufferedReader(new FileReader("advisor.txt"));
-        String line = "";
-        String lineA = "";
-        String splitA[]; //advisor's file
-     
+        name.setText(Home.svNam);
+   
         
 
     }

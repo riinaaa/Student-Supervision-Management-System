@@ -33,7 +33,7 @@ public class clientGUI extends javax.swing.JFrame {
      */
     public clientGUI() {
         initComponents();
-        name.setText(Home.sdName);
+        name.setText(Home.sdNam);
     }
 
     /**

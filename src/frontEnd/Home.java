@@ -39,8 +39,8 @@ public class Home extends javax.swing.JFrame {
     static int IDreturn;
     static String theID;
     static String thePass;
-    static String svName;
-    static String sdName;
+    static String svNam;
+    static String sdNam;
     static PrintWriter print;
     static  ArrayList <Student> stuInfo= new ArrayList<>();
     static FileWriter bwSD ;
@@ -51,8 +51,10 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         FileWriter writer = new FileWriter("logginTracking.txt",true);//write loggin info into a file with the date of loggin in
-         print = new PrintWriter(writer);
+        print = new PrintWriter(writer);
      
+        BufferedReader brSD = new BufferedReader(new FileReader("Students.txt"));
+        String[] split;
     }
 
     /**
@@ -251,23 +253,23 @@ public class Home extends javax.swing.JFrame {
    
     private void signinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signinMouseClicked
         theID = ID.getText();
-        String line[];
+        String lineAD[];
         int read = 0;
-        String ll;
-        String lll;
-        String line2[];
-        BufferedReader fr = null;
-        BufferedReader frr = null;
+        String adRead;
+        String sdRead;
+        String lineSD[];
+        BufferedReader bfrAD = null;
+        BufferedReader bfrSD = null;
         login log = new login();
         if (log.isEmployee(ID.getText()) == true) {
             System.out.println("true emp");
             try {
-                fr = new BufferedReader(new FileReader("advisor.txt"));
-                while ((ll = fr.readLine()) != null) {
-                    line = ll.split(",");
-                    System.out.println(line[2]);
-                    if (line[1].equals(ID.getText())) {
-                        svName = line[2]; //assigning the advisor's name from reading from the advisor's file 
+                bfrAD = new BufferedReader(new FileReader("advisor.txt"));
+                while ((adRead = bfrAD.readLine()) != null) {
+                    lineAD = adRead.split(",");
+                    System.out.println(lineAD[2]);
+                    if (lineAD[1].equals(ID.getText())) {
+                        svNam = lineAD[2]; //assigning the advisor's name from reading from the advisor's file 
                       
                     }
 
@@ -277,7 +279,7 @@ public class Home extends javax.swing.JFrame {
                 if (IDreturn != -1) {
                     print.print(ID.getText());
                     print.print(",");
-                    print.print(svName);
+                    print.print(svNam);
                     Calendar calendar = Calendar.getInstance();
                     SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     System.out.println(formatter.format(calendar.getTime()));
@@ -300,17 +302,17 @@ public class Home extends javax.swing.JFrame {
             }
         } else if (log.isStudent(ID.getText())==true){
             try {
-                frr = new BufferedReader(new FileReader("student.txt"));
+                bfrSD = new BufferedReader(new FileReader("students.txt"));
                 System.out.println("true stu");
-                while ((lll = frr.readLine()) != null) {
-                    line2 = lll.split(",");
-                    System.out.println(line2[3]);
+                while ((sdRead = bfrSD.readLine()) != null) {
+                    lineSD = sdRead.split(",");
+                    System.out.println(lineSD[3] + " index 3");
                     System.out.println(ID.getText());
-                    if (line2[3].equals(ID.getText())) {
-                        sdName = line2[0] + " " + line2[1];//assigning student's first & last name from the file student
-                        svName = line2[8];
-                        System.out.println(sdName);
-                        System.out.println(line2[8]);
+                    if (lineSD[3].equals(ID.getText())) {
+                        sdNam = lineSD[0] + " " + lineSD[1];//assigning student's first & last name from the file student
+                        svNam = lineSD[8];
+                        System.out.println(sdNam);
+                        System.out.println(lineSD[8]);
                     }
 
                 }
@@ -321,7 +323,7 @@ public class Home extends javax.swing.JFrame {
                         print.println("\n");
                         print.print(ID.getText());
                         print.print(",");
-                        print.print(sdName);
+                        print.print(sdNam);
                         Calendar calendar = Calendar.getInstance();
                         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                         System.out.println(formatter.format(calendar.getTime()));
