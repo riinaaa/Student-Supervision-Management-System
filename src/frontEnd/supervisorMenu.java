@@ -35,7 +35,7 @@ public class supervisorMenu extends javax.swing.JFrame {
        setLocationRelativeTo(null);
         try {
             String id1 = Home.theID + " ";
-                File file = new File("supervisor.txt");
+                File file = new File("advisor.txt");
                 Scanner read = new Scanner(file);
                 while (read.hasNext()) {
                     switch (read.next()) {

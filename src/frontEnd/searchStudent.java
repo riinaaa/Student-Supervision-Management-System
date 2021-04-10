@@ -507,8 +507,13 @@ public class searchStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_addMouseClicked
 
     private void contactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMouseClicked
-        serverGUI g = new serverGUI();
-        g.setVisible(true);
+        serverGUI g;
+        try {
+            g = new serverGUI();  g.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
       
     }//GEN-LAST:event_contactMouseClicked
 

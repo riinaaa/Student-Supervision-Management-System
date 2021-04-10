@@ -7,15 +7,19 @@ package frontEnd;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,16 +41,23 @@ public class serverGUI extends javax.swing.JFrame {
     static ServerSocket ss;
     static DataInputStream in;
     static DataOutputStream out;
-
+    static ArrayList<String> ids;
+    static ArrayList<String> names;
 
     /**
      * Creates new form serverGUI
      */
-    public serverGUI() {
+    public serverGUI() throws FileNotFoundException, IOException {
         initComponents();
-        //setLocationRelativeTo(null);
-        name.setText(Home.svName);
-  
+       // name.setText(Home.svName);
+        BufferedReader bf = new BufferedReader(new FileReader("LogginTracking.txt"));
+        BufferedReader bfa = new BufferedReader(new FileReader("advisor.txt"));
+        String line = "";
+        String lineA = "";
+        String splitA[]; //advisor's file
+     
+        
+
     }
 
     /**
@@ -244,7 +255,11 @@ public class serverGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new serverGUI().setVisible(true);
+                try {
+                    new serverGUI().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(serverGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
                    //runnable

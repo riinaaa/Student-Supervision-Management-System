@@ -33,7 +33,6 @@ public class clientGUI extends javax.swing.JFrame {
      */
     public clientGUI() {
         initComponents();
-        //setLocationRelativeTo(null);
         name.setText(Home.sdName);
     }
 

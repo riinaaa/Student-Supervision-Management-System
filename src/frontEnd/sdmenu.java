@@ -53,6 +53,7 @@ public class sdmenu extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 647));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -247,8 +248,13 @@ public class sdmenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-       serverGUI ser = new serverGUI();
-       ser.setVisible(true);
+       serverGUI ser;
+        try {
+            ser = new serverGUI();  ser.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(sdmenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
        clientGUI cl = new clientGUI ();
        cl.setVisible(true);
        

@@ -9,15 +9,20 @@ import static frontEnd.searchStudent.con;
 import static frontEnd.searchStudent.st;
 import java.awt.Font;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,18 +41,18 @@ public class Home extends javax.swing.JFrame {
     static String thePass;
     static String svName;
     static String sdName;
+    static PrintWriter print;
     static  ArrayList <Student> stuInfo= new ArrayList<>();
-    static FileWriter bwSD ;//= new BufferedWriter (new FileWriter ("Student.txt"));
+    static FileWriter bwSD ;
     /**
      * Creates new form Home
      */
     public Home() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
         initComponents();
         setLocationRelativeTo(null);
-       
-        BufferedReader brSD = new BufferedReader(new FileReader("Student.txt"));
-        String[] split;
-    
+        FileWriter writer = new FileWriter("logginTracking.txt",true);//write loggin info into a file with the date of loggin in
+         print = new PrintWriter(writer);
+     
     }
 
     /**
@@ -74,7 +79,7 @@ public class Home extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 640));
+        setPreferredSize(new java.awt.Dimension(700, 647));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -263,12 +268,21 @@ public class Home extends javax.swing.JFrame {
                     System.out.println(line[2]);
                     if (line[1].equals(ID.getText())) {
                         svName = line[2]; //assigning the advisor's name from reading from the advisor's file 
+                      
                     }
 
                 }
                 
                 IDreturn = login.AuthLogin(password.getText(), ID.getText());
                 if (IDreturn != -1) {
+                    print.print(ID.getText());
+                    print.print(",");
+                    print.print(svName);
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                    System.out.println(formatter.format(calendar.getTime()));
+                    print.print(",");
+                    print.print(calendar.getTime());
                     supervisorMenu menSV = new supervisorMenu(stuInfo, bwSD);
                     menSV.setVisible(true);
                 } else {
@@ -304,6 +318,15 @@ public class Home extends javax.swing.JFrame {
                    IDreturn = login.AuthLogin(password.getText(), ID.getText());
                 try {
                     if (IDreturn != -1) {
+                        print.println("\n");
+                        print.print(ID.getText());
+                        print.print(",");
+                        print.print(sdName);
+                        Calendar calendar = Calendar.getInstance();
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                        System.out.println(formatter.format(calendar.getTime()));
+                        print.print(",");
+                        print.print(calendar.getTime());
                         menSD = new sdmenu();
                         menSD.setVisible(true);
                     } else {
@@ -324,7 +347,7 @@ public class Home extends javax.swing.JFrame {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+print.close();
     }//GEN-LAST:event_signinMouseClicked
 
     private void IDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IDMouseClicked
