@@ -22,11 +22,12 @@ import javax.swing.plaf.FontUIResource;
  * @author mac
  */
 public class Advisor {
+  
     private String advisorID;
     private String advisorName;
     private String natID;
 
-     
+     //---- ALL ADVISOR' INFO IN THIS CLASS -----
 
       
     public Advisor() {

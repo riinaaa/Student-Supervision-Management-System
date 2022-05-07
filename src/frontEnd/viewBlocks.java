@@ -67,7 +67,7 @@ public class viewBlocks extends javax.swing.JFrame {
        //firstly, we need to add all the courses in an arraylist and send this arraylist to the schedule class
        //the schedule class will check if the courses in the arraylist equal the courses in the level the student selected
        //and will then write it to a file with the courses' info : instructors anf block number
-     Schedule schedulle = new Schedule();
+     Schedule schedule = new Schedule();
      ArrayList<String> subjects = new ArrayList<>();
      subjects.add("CPIT210");
      subjects.add("CPCS204");
@@ -91,7 +91,7 @@ public class viewBlocks extends javax.swing.JFrame {
      subjects.add("CPIT498");
      subjects.add("CPIT330");
      subjects.add("CPIT340");
-     schedulle.writeToAFile(subjects,20, Integer.parseInt(Character.toString(levelChosen.charAt(0))));
+     schedule.writeToAFile(subjects,20, Integer.parseInt(Character.toString(levelChosen.charAt(0))));
        
 		
 	}

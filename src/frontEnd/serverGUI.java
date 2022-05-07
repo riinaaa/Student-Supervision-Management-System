@@ -3,55 +3,77 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//WORKABLE
 package frontEnd;
 
-import java.awt.BorderLayout;
-import java.awt.Image;
-import java.io.BufferedReader;
+import static frontEnd.Home.ID;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JTextPane;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 
 /**
  *
  * @author mac
  */
 public class serverGUI extends javax.swing.JFrame {
+
     static Socket s;
     static ServerSocket ss;
     static DataInputStream in;
     static DataOutputStream out;
-  
 
     /**
      * Creates new form serverGUI
+     *
+     * @throws java.io.FileNotFoundException
      */
     public serverGUI() throws FileNotFoundException, IOException {
+        this.setSize(435, 538);
+        this.setBounds(435, 100, 545, 80);
+       
         initComponents();
+      
         name.setText(Home.svNam);
-   
-        
+          /**
+         * by using runnable object, the advisor can communicate with multiple
+         * students at the same time
+         */
+      
 
+        Runnable rubObj = () -> { //defining the runnable object
+
+            //while (true) { //while server still running to accept clients to chat with
+            //server accepts clients request of communicating
+            try {
+                String msgin = "";
+                //Multiclients, multithreaded and io streams
+
+                ss = new ServerSocket(1222);
+                s = ss.accept();
+                in = new DataInputStream(s.getInputStream());
+                out = new DataOutputStream(s.getOutputStream());
+                while (true) {
+                    msgin = in.readUTF();//to read messages from the client
+                    messageA.setText(messageA.getText() + "\n Student: \t" + msgin); //write from the stream what the student sent
+                    if (msgin.equalsIgnoreCase("Thank you")) {
+                        break;
+                    }
+                }
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        };
+
+        Thread thread = new Thread(rubObj);
+        System.out.println("Student: " + thread.getName());
+        thread.start();
+        
+       
     }
 
     /**
@@ -73,13 +95,14 @@ public class serverGUI extends javax.swing.JFrame {
         name = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         jScrollPane3.setViewportView(jTextPane2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(250, 180));
-        setPreferredSize(new java.awt.Dimension(435, 560));
+        setPreferredSize(new java.awt.Dimension(435, 545));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 71));
@@ -133,6 +156,13 @@ public class serverGUI extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/user.png"))); // NOI18N
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/back.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,21 +170,21 @@ public class serverGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(73, 73, 73))))
+                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(111, 111, 111)
+                                .addComponent(jLabel1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,22 +193,23 @@ public class serverGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(417, 417, 417)
-                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(201, Short.MAX_VALUE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 449, 727);
+        jPanel1.setBounds(0, 0, 506, 727);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 77));
 
@@ -204,20 +235,31 @@ public class serverGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_messageFMouseClicked
 
     private void sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMouseClicked
-    
+
     }//GEN-LAST:event_sendMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        /**
+         * messageF is what the advisor (server) entered to send to the student
+         * (client) messageA is the textarea the advisor's message will be
+         * printed in
+         */
         String mes = messageF.getText();
         try {
             out.writeUTF(mes);
             messageA.setText(messageA.getText() + "\n Advisor: \t" + mes + "\n");
             messageF.setText("");
+
         } catch (IOException ex) {
             Logger.getLogger(serverGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         messageF.setText(" ");
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        supervisorMenu sv = new supervisorMenu(null, null);
+        sv.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -247,6 +289,7 @@ public class serverGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        ss = new ServerSocket(1222);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -256,49 +299,13 @@ public class serverGUI extends javax.swing.JFrame {
                 }
             }
         });
-                   //runnable
-        try {
-            ss = new ServerSocket(1222);
-            while (true) {
-                //**********************************
-                s = ss.accept();
-                Runnable rubObj = () -> {
-                    try {
-                        String msgin = "";
-                        //Multiclients, multithreaded and io streams
-                        in = new DataInputStream(s.getInputStream());
-                        out = new DataOutputStream(s.getOutputStream());
-                        while (true) {
-                            msgin = in.readUTF();
-                            messageA.setText(messageA.getText() + "\n Student: \t" + msgin);
-                            if (msgin.equalsIgnoreCase("Thank you")) {
-                                break;
-                            }
-                        }
-                    } catch (IOException ex) {
-                        System.out.println(ex.getMessage());
-                    }
-                };//ending runnable
-                
-                Thread thread = new Thread(rubObj);
-                System.out.println("Student: " + thread.getName());
-                thread.start();
-            }
-        } catch (UnknownHostException e) {
-            System.err.println("Host not found");
-        } catch (java.net.ConnectException e) {
-            System.err.println("There are no connection at this port");
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
-    
-   
-        
-           
+      
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

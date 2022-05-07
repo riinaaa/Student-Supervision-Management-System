@@ -35,6 +35,13 @@ import javax.swing.plaf.FontUIResource;
  *
  * @author mac
  */
+/**
+ * 
+ * @author Manar Mamdouh Hennawi - 1807473
+ *  @author Rina Alfarsi - 1808311
+ *  @author Wadyan Alafif - 1807345
+ *  @author Norah Eyssa Alharbi - 1808227
+ */
 public class Home extends javax.swing.JFrame {
     static int IDreturn;
     static String theID;
@@ -44,17 +51,30 @@ public class Home extends javax.swing.JFrame {
     static PrintWriter print;
     static  ArrayList <Student> stuInfo= new ArrayList<>();
     static FileWriter bwSD ;
+    static ThreadOne t1;
+    static ThreadTwo t2;
     /**
      * Creates new form Home
      */
+     /*
+     STARTHOME IS OUR SYSTEM'S FIRST PAGE
+     */
+    
+    
     public Home() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
         initComponents();
         setLocationRelativeTo(null);
         FileWriter writer = new FileWriter("logginTracking.txt",true);//write loggin info into a file with the date of loggin in
         print = new PrintWriter(writer);
-     
+        this.setSize(700, 647);
         BufferedReader brSD = new BufferedReader(new FileReader("Students.txt"));
         String[] split;
+        
+         t1 = new ThreadOne(); //first thread will write in the file loggingtracking
+         t2 = new ThreadTwo(); //second thread will display the menu for the student or advisor
+         //these two thread are connected together yet each one oerformas diff task at the same time.
+         // at the same time, once the login is successed. the menu will be displayed 
+         //and loggin info will be written to the file
     }
 
     /**
@@ -137,7 +157,7 @@ public class Home extends javax.swing.JFrame {
         );
         signinLayout.setVerticalGroup(
             signinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 41, Short.MAX_VALUE)
+            .addGap(0, 54, Short.MAX_VALUE)
             .addGroup(signinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(signinLayout.createSequentialGroup()
                     .addGap(11, 11, 11)
@@ -261,33 +281,33 @@ public class Home extends javax.swing.JFrame {
         BufferedReader bfrAD = null;
         BufferedReader bfrSD = null;
         login log = new login();
+        //first-- we need to check if the user entered our system is an advisor(employee) or a student
+        //by using the method isEmployee from the login class
         if (log.isEmployee(ID.getText()) == true) {
-            System.out.println("true emp");
+            System.out.println("true emp");//print when its an employee to check
             try {
-                bfrAD = new BufferedReader(new FileReader("advisor.txt"));
+                bfrAD = new BufferedReader(new FileReader("advisor.txt"));//now reading from the advisor's file the advisor's ID and name
+                //compare the advisor ID from the file with the one the user enetered
                 while ((adRead = bfrAD.readLine()) != null) {
                     lineAD = adRead.split(",");
                     System.out.println(lineAD[2]);
-                    if (lineAD[1].equals(ID.getText())) {
-                        svNam = lineAD[2]; //assigning the advisor's name from reading from the advisor's file 
+                    if (lineAD[1].equals(ID.getText())) {//if it matches what the user entered with the ID in the file
+                        //we will assign the advisor's name from the file 
+                        svNam = lineAD[2] + " " + lineAD[3]; //assigning the advisor's name from reading from the advisor's file 
                       
                     }
 
                 }
-                
-                IDreturn = login.AuthLogin(password.getText(), ID.getText());
-                if (IDreturn != -1) {
-                    print.print(ID.getText());
-                    print.print(",");
-                    print.print(svNam);
-                    Calendar calendar = Calendar.getInstance();
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                    System.out.println(formatter.format(calendar.getTime()));
-                    print.print(",");
-                    print.print(calendar.getTime());
-                    supervisorMenu menSV = new supervisorMenu(stuInfo, bwSD);
-                    menSV.setVisible(true);
-                } else {
+                //after we determined it is an advisor
+                //we have another check.. we need to check the advisor's ID and password if it matches what is in the file
+                IDreturn = login.AuthLogin(password.getText(), ID.getText());//by using the AUthenLogin method in the login class
+                if (IDreturn != -1) {//which is true (matches what is in the file)
+          //-----------------------------------------------------------
+                    t1.start();//write loggin info to the file
+                    t1.join();//wait until writing is finished
+                    t2.start();//display the menu
+          //-----------------------------------------------------------           
+                } else { //it doesn't match what is in the file
                     UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
                             "serif", Font.BOLD, 16)));
                     JOptionPane.showMessageDialog(this, " Wrong Password or Username");
@@ -299,53 +319,46 @@ public class Home extends javax.swing.JFrame {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if (log.isStudent(ID.getText())==true){
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        } else if (log.isStudent(ID.getText())==true){ //it is not an advisor thus its a student!
             try {
-                bfrSD = new BufferedReader(new FileReader("students.txt"));
+                bfrSD = new BufferedReader(new FileReader("students.txt"));//reading from the students file the student's info
+                //the ID and name to compare what the user entered 
                 System.out.println("true stu");
                 while ((sdRead = bfrSD.readLine()) != null) {
                     lineSD = sdRead.split(",");
-                    System.out.println(lineSD[3] + " index 3");
                     System.out.println(ID.getText());
-                    if (lineSD[3].equals(ID.getText())) {
+                    if (lineSD[3].equals(ID.getText())) { //if the ID the user entered matches what is in the file
                         sdNam = lineSD[0] + " " + lineSD[1];//assigning student's first & last name from the file student
-                        svNam = lineSD[8];
+                        svNam = lineSD[8] + " " + lineSD[9];//assigning advisor's first & last name from the file advisor
                         System.out.println(sdNam);
                         System.out.println(lineSD[8]);
                     }
 
                 }
                 sdmenu menSD;
-                   IDreturn = login.AuthLogin(password.getText(), ID.getText());
-                try {
-                    if (IDreturn != -1) {
-                        print.println("\n");
-                        print.print(ID.getText());
-                        print.print(",");
-                        print.print(sdNam);
-                        Calendar calendar = Calendar.getInstance();
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                        System.out.println(formatter.format(calendar.getTime()));
-                        print.print(",");
-                        print.print(calendar.getTime());
-                        menSD = new sdmenu();
-                        menSD.setVisible(true);
-                    } else {
-                        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
-                                "serif", Font.BOLD, 16)));
-                        JOptionPane.showMessageDialog(this, " Wrong Password or Username");
-                        ID.setText("");
-                        password.setText("");
-                    }
-
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                   IDreturn = login.AuthLogin(password.getText(), ID.getText());//now check the password and ID
+                   if (IDreturn != -1) {//which is true (matches what is in the file)
+                       //-----------------------------------------------------------
+                       t1.start();//write loggin info to the file
+                       t1.join();//wait until writing is finished
+                       t2.start();//display the menu
+                       //-----------------------------------------------------------
+                   } else {//doesn't match what is in the file! wrong!
+                       UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
+                               "serif", Font.BOLD, 16)));
+                       JOptionPane.showMessageDialog(this, "Wrong Password or Username");
+                       ID.setText("");
+                       password.setText("");
+                   }
 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

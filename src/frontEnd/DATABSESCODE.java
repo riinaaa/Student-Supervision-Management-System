@@ -22,8 +22,8 @@ import java.util.logging.Logger;
 public class DATABSESCODE {
 
     /**
-     * this class is used for creating both the student & advisor tables in a
-     * database
+     * this class is used for creating both the student & advisor tables in a database
+     * 
      */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
@@ -34,7 +34,7 @@ public class DATABSESCODE {
         // (2) set the path for the database
         String ConnectionURL = "jdbc:mysql://localhost:3306";
         // (3) create connection
-        con = DriverManager.getConnection(ConnectionURL, "root", "");//add your password
+        con = DriverManager.getConnection(ConnectionURL, "root", "1234");//please add your mysql server password
         // (4) create statment object
         Statement st = con.createStatement();
 
@@ -54,7 +54,7 @@ public class DATABSESCODE {
         ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
 
         // (3) create connection
-        con = DriverManager.getConnection(ConnectionURL, "root", ""); //add your password
+        con = DriverManager.getConnection(ConnectionURL, "root", "1234"); //add your password
 
         // (4) create statment object
         st = con.createStatement();

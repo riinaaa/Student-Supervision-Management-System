@@ -24,18 +24,20 @@ public class studentInfoView extends javax.swing.JFrame {
      * Creates new form studentInfoView
      */
     public studentInfoView() throws SQLException, ClassNotFoundException {
-        initComponents();setLocationRelativeTo(null);
+        this.setSize(700, 647); this.setBounds(700, 100, 647, 80); initComponents();setLocationRelativeTo(null);
       Class.forName("com.mysql.cj.jdbc.Driver");
 
         // (2) set the path for the database
         String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
 
         // (3) create connection
-        con = DriverManager.getConnection(ConnectionURL, "root", "");
+        con = DriverManager.getConnection(ConnectionURL, "root", "myuniverse");//please add your mysql server password
 
         // (4) create statment object
         st = con.createStatement();
-        
+        /**
+         * retrieving student's info from the databases, and printing it in the interface
+         */
          ResultSet r;
         try {
             r = st.executeQuery("SELECT * FROM STUDENT ");
@@ -92,6 +94,7 @@ public class studentInfoView extends javax.swing.JFrame {
         type = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 647));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -189,7 +192,7 @@ public class studentInfoView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                                 .addComponent(jLabel9)
                                 .addGap(39, 39, 39)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

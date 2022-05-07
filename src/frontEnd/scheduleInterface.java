@@ -17,13 +17,18 @@ import java.util.logging.Logger;
 public class scheduleInterface extends javax.swing.JFrame {
     /**
      * Creates new form scheduleInterface
+*/
+    /**
+     *  This interface lets the student to select a specific level (semester) to further display the blocks in this selected level
      */
-    /*
-    This interface lets the student to select a specific level (semester) to further display the blocks in this selected level
-    */
     static String levelChosen;
     public scheduleInterface() {
-    initComponents();setLocationRelativeTo(null);
+    this.setBounds(700, 100, 647, 80);
+    this.setSize(700, 647);
+         
+    initComponents();
+    
+    setLocationRelativeTo(null);
         
    
     }

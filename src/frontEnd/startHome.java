@@ -17,6 +17,13 @@ import javax.swing.JFrame;
  *
  * @author mac
  */
+/**
+ * 
+ * @author Manar Mamdouh Hennawi - 1807473
+ *  @author Rina Alfarsi - 1808311
+ *  @author Wadyan Alafif - 1807345
+ *  @author Norah Eyssa Alharbi - 1808227
+ */
 public class startHome extends javax.swing.JFrame {
 
     /**
@@ -26,7 +33,9 @@ public class startHome extends javax.swing.JFrame {
        initComponents();
      setLocationRelativeTo(null);
      
-       
+       /*
+     THIS IS OUR SYSTEM'S FIRST PAGE
+     */
        
     }
 

@@ -77,24 +77,32 @@ public class Schedule {
         this.level=level;
     }
 
-   
+   /**
+    * //This method will print each block info(courses and instructors) to file based on user's selected level in
+    * the scheduleInterface
+    * @param subjects 
+    * @param no --> the capacity of the block
+    * @param level --> semester
+    * @throws FileNotFoundException
+    * @throws IOException 
+    */
     //----------------------------------this will print each block info(courses and instructors) to file---------------------------------------------
     public void writeToAFile(ArrayList<String> subjects, int no, int level) throws FileNotFoundException, IOException{
         FileWriter f = new FileWriter("blocks.txt",true);
         BufferedWriter out = new BufferedWriter(f);
         if (level == 5) {
-            out.write("THE,LEVEL" + level + "th" +"\n");
+            out.write("\nTHE LEVEL" + level + "th" +"\n");
             out.write("THE SUBJECTS: \n");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT210")) {
                     out.write("\n"+subjects.get(i) + "," + "INSTRUCTOR: Doaa Sinnari " +",");
-                } else { //subject will be CPCS204
+                } else if(subjects.get(i).equals("CPCS204")) { //subject will be CPCS204
                     out.write("\n"+subjects.get(i) + "," + "INSTRUCTOR: Abeer Alhothali "+"");
                 }
             }
         
         } else if (level == 6) {
-            out.write("\n"+"THE,LEVEL " + level + "th" +"\n");
+            out.write("\n"+"THE LEVEL " + level + "th" +"\n");
             out.write("THE SUBJECTS: \n");
             for (int i = 0; i < subjects.size(); i++) {
                 if (subjects.get(i).equals("CPIT250")) {

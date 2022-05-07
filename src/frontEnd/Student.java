@@ -18,7 +18,9 @@ public class Student {
     private String stuStatus;
     private String stuMajor;
     private String advisorName;
-
+    //---- ALL STUDENT' INFO IN THIS CLASS -----
+    
+    //CONSTRUCTOR
     public Student(String stuID, String stuName, double stuGPA, String natID, int hours, String stuStatus, String stuMajor, String svName) {
         this.stuID = stuID;
         this.stuName = stuName;

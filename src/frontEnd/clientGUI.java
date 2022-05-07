@@ -1,8 +1,10 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//*****************************************
 package frontEnd;
 
 import static frontEnd.serverGUI.in;
@@ -12,10 +14,8 @@ import static frontEnd.serverGUI.ss;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,19 +25,77 @@ import java.util.logging.Logger;
  */
 //this interface is a chat interface where the student can send messages to their advisors
 public class clientGUI extends javax.swing.JFrame {
+
     static Socket s;
-    static String mes; 
+    static String mes;
     static DataInputStream in;
     static DataOutputStream out;
+
     /**
      * Creates new form clientGUI
      */
     public clientGUI() {
+        this.setSize(435, 538);
+        this.setBounds(435, 100, 538, 80);
         initComponents();
-        name.setText(Home.sdNam);//setting the student's name from the Home interface which stores the student's name
-           //becuase it has the login info... once the login is successed, the student's name is stored.
-    }
+        /**
+         * setting the student's name from the Home interface which stores the
+         * student's name because it has the login info... once the login is
+         * successed, the student's name is stored.
+         */
+     
 
+        //if its an advisor she needs to contact with the student from the search interface
+        //thats why i ndeeded to check if its an advisor or a student who wants to communicate
+        if (Home.ID.getText().startsWith("2")) {
+
+            name.setText(searchStudent.name1);
+
+            Runnable b = () -> {
+
+                try {
+                    String msg = "";
+                    s = new Socket("127.0.0.1", 1222);
+                    in = new DataInputStream(s.getInputStream());
+                    out = new DataOutputStream(s.getOutputStream());
+                    while (!msg.equals("exit")) {
+                        msg = in.readUTF();
+                        messageA.setText(messageA.getText() + "\n Advisor: \t" + msg);//getting the advisor's messages from the stream
+                        //and print it in the message ares
+                    }
+                } catch (Exception ex) {
+
+                }
+            };
+            Thread Client = new Thread(b);
+            Client.start();
+
+        } else {//its a student
+            name.setText(Home.sdNam);
+
+            Runnable b = () -> {
+
+                try {
+                    String msg = "";
+                    s = new Socket("127.0.0.1", 1222);
+                    in = new DataInputStream(s.getInputStream());
+                    out = new DataOutputStream(s.getOutputStream());
+                    while (!msg.equals("exit")) {
+                        msg = in.readUTF();
+                        messageA.setText(messageA.getText() + "\n Advisor: \t" + msg);//getting the advisor's messages from the stream
+                        //and print it in the message ares
+                    }
+                } catch (Exception ex) {
+
+                }
+            };
+            Thread Client = new Thread(b);
+            Client.start();
+
+        }
+
+    }
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,6 +112,7 @@ public class clientGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         name = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(800, 180));
@@ -91,6 +150,13 @@ public class clientGUI extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/user.png"))); // NOI18N
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cpit305project/icons/back.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -99,15 +165,20 @@ public class clientGUI extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
-                .addGap(47, 47, 47))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
+                        .addGap(47, 47, 47))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,13 +187,15 @@ public class clientGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(messageF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,6 +227,11 @@ public class clientGUI extends javax.swing.JFrame {
         }
         messageF.setText(" ");
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        supervisorMenu sv = new supervisorMenu(null, null);
+        sv.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -188,25 +266,28 @@ public class clientGUI extends javax.swing.JFrame {
                 new clientGUI().setVisible(true);
             }
         });
-        String msg="";
-        try{
-            s = new Socket("127.0.0.1",1222);
-            in = new DataInputStream(s.getInputStream()); 
+
+        // String msg = "";
+        try {
+            s = new Socket("127.0.0.1", 1222);
+            in = new DataInputStream(s.getInputStream());
             out = new DataOutputStream(s.getOutputStream());
-            while(!msg.equals("exit")){
+            String msg = "";
+            while (!msg.equals("exit")) {
                 msg = in.readUTF();
                 messageA.setText(messageA.getText() + "\n Advisor: \t" + msg);//getting the advisor's messages from the stream
                 //and print it in the message ares
-                
+
             }
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
-       
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

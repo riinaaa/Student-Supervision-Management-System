@@ -32,20 +32,23 @@ import javax.swing.plaf.FontUIResource;
  * @author mac
  */
 public class searchStudent extends javax.swing.JFrame {
-
+/**
+ * con object is for the database sql connection
+ * res for the resultset object 
+ * dlm to define the list that we will retrieve  the ids from the databases and display it in the list
+ */
     static Connection con;
-    static ArrayList<String> ids = new ArrayList<>();
-    static String split[];
-    static BufferedReader bw;
     static ResultSet res;
     static Statement st;
     DefaultListModel dlm;
+    static String name1;
+    static int counter;
 
     /**
      * Creates new form searchStudent
      */
     public searchStudent(ArrayList<Student> stuInfo, FileWriter bwSD) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
-        bwSD = new FileWriter("Student.txt", true);
+      
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -53,13 +56,14 @@ public class searchStudent extends javax.swing.JFrame {
         String ConnectionURL = "jdbc:mysql://localhost:3306/305PROJECT_GROUP4";
 
         // (3) create connection
-        con = DriverManager.getConnection(ConnectionURL, "root", "");
+        con = DriverManager.getConnection(ConnectionURL, "root", "myuniverse");//please add your mysql server password
 
         // (4) create statment object
         st = con.createStatement();
         setLocationRelativeTo(null);
 
         updateList();
+       
 
     }
 
@@ -508,20 +512,27 @@ public class searchStudent extends javax.swing.JFrame {
 
     // contact the chosen student button will open the serverGUI
     private void contactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMouseClicked
-        serverGUI g;
+      counter++;
+      System.out.println(counter);
+      serverGUI ser;
+       serverGUI g;
         try {
             g = new serverGUI();
             g.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(searchStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
+        clientGUI c = new clientGUI ();
+        c.setVisible(true);
+        
     }//GEN-LAST:event_contactMouseClicked
 
     // the supervisor can update the student's info then clicking the update button to update the DB as well
     private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
-
+/**
+ * based on what the advisor entered the information. the updated info will be
+ * updated into the database
+ */
         double gppa = Double.valueOf(gpa.getText());
         int idd = Integer.valueOf(id.getText());
         int cred = Integer.valueOf(credits.getText());
@@ -566,7 +577,7 @@ public class searchStudent extends javax.swing.JFrame {
 
     }//GEN-LAST:event_clearMouseClicked
 
-    // this will show student's information that the supervisor chose
+    // this will show student's information that the supervisor clicked on the ID by retrieving info from DB
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         ResultSet r;
         try {
@@ -582,7 +593,8 @@ public class searchStudent extends javax.swing.JFrame {
                     type.setText(r.getString("TYPE"));
                     name.setText(r.getString("NAME"));
                     id.setText(r.getString("ID"));
-
+                    name1=r.getString("NAME");
+                 
                 }
             }
         } catch (SQLException ex) {
@@ -590,7 +602,7 @@ public class searchStudent extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_listMouseClicked
-    // deleting a specific student from the supervisor's list
+    // deleting a specific student from the supervisor's list from the DB
     private void deleteStuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteStuMouseClicked
         ResultSet r;
         try {
@@ -724,7 +736,7 @@ public class searchStudent extends javax.swing.JFrame {
                 }
             }
         });
-        con.close();
+         con.close();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

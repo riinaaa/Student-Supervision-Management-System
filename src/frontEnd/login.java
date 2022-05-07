@@ -28,7 +28,7 @@ public class login {
 
     /**
      *
-     * @param password
+     * @param password --> from the file
      */
     public void setPassword(String password) {
         this.password = password;
@@ -56,21 +56,15 @@ public class login {
     public login() {
     }
 
-    /**
-     *
-     *
-     * @param password of the user
-     * @param ID of the user
-     */
+
     /**
      * this method will read user's ID and passwords from file and compare it to
      * the ones used in logging in, will return an id cause its needed to
      * compare in the interfaces if either id or password didnt match the ones
      * from file it will return -1
      *
-     * @param password of the user
-     * @param ID of the user
-     * @return
+     * 
+     * @return -1 mismatch or match
      */
     public static int AuthLogin(String pass, String guiID) throws IOException {
         String line[];

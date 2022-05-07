@@ -12,7 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *k
+ * k
+ *
  * @author mac
  */
 public class sdmenu extends javax.swing.JFrame {
@@ -21,9 +22,15 @@ public class sdmenu extends javax.swing.JFrame {
      * Creates new form sdmenu
      */
     public sdmenu() throws IOException {
-        initComponents();setLocationRelativeTo(null);
-           name.setText(Home.sdNam); //setting the student's name from the Home interface which stores the student's name
-           //becuase it has the login info... once the login is successed, the student's name is stored.
+         this.setSize(700, 647); this.setBounds(700, 100, 647, 80);
+        initComponents();
+        setLocationRelativeTo(null);
+        name.setText(Home.sdNam);
+        /**
+         * setting the student's name from the Home interface which stores the
+         * student's name because it has the login info... once the login is
+         * successed, the student's name is stored.
+         */
     }
 
     /**
@@ -192,7 +199,7 @@ public class sdmenu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
@@ -215,7 +222,7 @@ public class sdmenu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(name))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,33 +238,35 @@ public class sdmenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-    studentInfoView v;
+        studentInfoView v;
         try {
-            v = new studentInfoView();   v.setVisible(true);
+            v = new studentInfoView();
+            v.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(sdmenu.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(sdmenu.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
+
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-      scheduleInterface sd = new scheduleInterface ();
-      sd.setVisible(true);
+        scheduleInterface sd = new scheduleInterface();
+        sd.setVisible(true);
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-       serverGUI ser;
+        serverGUI ser;
         try {
-            ser = new serverGUI();  ser.setVisible(true);
+            ser = new serverGUI();
+            ser.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(sdmenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
-       clientGUI cl = new clientGUI ();
-       cl.setVisible(true);
-       
+
+        clientGUI cl = new clientGUI();
+        cl.setVisible(true);
+
     }//GEN-LAST:event_jPanel2MouseClicked
 
     /**

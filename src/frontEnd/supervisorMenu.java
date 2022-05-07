@@ -30,9 +30,15 @@ public class supervisorMenu extends javax.swing.JFrame {
      */
     
     public supervisorMenu(ArrayList <Student> stuInfo ,FileWriter bwSD  ) {
-        initComponents(); 
+      this.setSize(700, 647);   this.setBounds(700, 100, 647, 80);initComponents(); 
         name2.setText(Home.svNam);
        setLocationRelativeTo(null);
+       /**
+        * the below code just handles reading from the advisor txt file to determine the advisor's name
+        * and display it on the upper corner of the menu.
+        * by comparing the ID from Home interface the advisor entered 
+        * with the ID from the Advisor file
+        */
         try {
             String id1 = Home.theID + " ";
                 File file = new File("advisor.txt");
@@ -102,7 +108,7 @@ public class supervisorMenu extends javax.swing.JFrame {
         name2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 640));
+        setPreferredSize(new java.awt.Dimension(700, 647));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 77));
@@ -111,7 +117,7 @@ public class supervisorMenu extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel9.setText("welcome back supervisor");
+        jLabel9.setText("welcome back Advisor");
 
         viewInfo.setBackground(new java.awt.Color(255, 204, 102));
         viewInfo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,10 +217,10 @@ public class supervisorMenu extends javax.swing.JFrame {
                         .addComponent(jLabel17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
+                                .addGap(83, 83, 83)
                                 .addComponent(jLabel9))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
+                                .addGap(131, 131, 131)
                                 .addComponent(name2)))))
                 .addContainerGap(322, Short.MAX_VALUE))
         );
